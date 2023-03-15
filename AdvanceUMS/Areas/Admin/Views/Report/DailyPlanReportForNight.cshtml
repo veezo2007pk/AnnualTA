@@ -1,0 +1,148 @@
+﻿@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+    string s = dHelper.year();
+}
+
+
+<h6 class="card-title mb-2">Night Attendance Report</h6>
+
+
+
+<div class="content-wrapper">
+    <section class="content">
+        <input type="hidden" value="@ViewBag.year" id="year" />
+
+        @using (Html.BeginForm("DailyPlanReportForNight", "Report", FormMethod.Get))
+        {
+            <div class="row">
+
+
+
+                <div class="col-8">
+
+
+                    @Html.Raw(ViewBag.Message)
+                    @if (ViewBag.IsAdmin != true)
+                    {
+                        <div class="box box-primary">
+
+
+
+
+                            <div class="box-body">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Filter By Year</label>
+                                            <select name="year" class="form-control">
+                                                <option value=""></option>
+                                                @foreach (var item in ViewBag.yearList)
+                                                {
+                                                    <option value="@item.Text">@item.Text</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group" style="padding-top: 28px;">
+                                            <label></label>
+                                            <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class=" btn btn-primary">Search</button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                    }
+
+
+                </div>
+
+
+
+
+            </div>
+        }
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="box">
+                    <div id="Barchart"></div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+           var year = $("#year").val();
+            if (year == null || year == '' || year == 'undefined') {
+            year = @s;
+        }
+        $.ajax({
+            type: "GET",
+            url: "/Admin/Report/BarChartForNight",
+            data: {year:year},
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                console.log(response.Lists);
+                successFunc(response.Lists);
+            },
+        });
+
+        function successFunc(jsondata) {
+            var chart = c3.generate({
+                bindto: '#Barchart',
+                data: {
+
+
+                    json: jsondata,
+                    keys: {
+                        x: 'Date',
+
+
+                        value: ['Planned', 'Actual'],
+                    },
+                    columns: ['Planned', 'Actual'],
+                    type: 'bar',
+
+                },
+                axis: {
+                    x: {
+                        type: 'timeseries',
+                        // if true, treat x value as localtime (Default)
+                        // if false, convert to UTC internally
+                        localtime: true,
+                        tick: {
+                            format: '%d-%m-%Y'
+                        }
+                    }
+                },
+                color: {
+                    pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+                },
+            });
+        }
+    });
+
+</script>
+

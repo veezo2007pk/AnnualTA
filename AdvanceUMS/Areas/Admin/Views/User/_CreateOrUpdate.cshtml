@@ -1,0 +1,325 @@
+﻿@model AdvanceUMS.Helper.UserViewModel
+
+<script src="/scripts/jquery.validate.min.js"></script>
+<script src="/scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-4">
+            @using (Ajax.BeginForm("AddUser", "User", new { }, new AjaxOptions { OnSuccess = "SuccessAddUser" }, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.ID)
+                <div id="message"></div>
+                @Html.Raw(ViewBag.Message)
+
+                <div class="">
+
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Login Information</h3>
+                        </div>
+                        <div class="box-body">
+
+                            <div class="form-group">
+                                <label>UserName @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })</label>
+                                @if (ViewBag.Edit == "1")
+                                {
+                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "UserName", @readonly = "readonly" })
+                                }
+                                else
+                                {
+                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "UserName" })
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label>Password @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })</label>
+                                @Html.TextBoxFor(model => model.Password, new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "Password",
+                                    @type = "password",
+                               @required = "required"
+                           })
+                            </div>
+                            <div class="form-group">
+
+                                <label>Confirm Password @Html.ValidationMessageFor(model => model.cPassword, "", new { @class = "text-danger" })</label>
+                                @Html.TextBoxFor(model => model.cPassword, new
+                                {
+                                    @class = "form-control",
+                                    placeholder = "Password",
+                                    @type = "password",
+                               @required = "required"
+                                })
+                            </div>
+                            @if (ViewBag.IsAdmin == true)
+                            {
+                                if (Model!= null)
+                                {
+                                    <div class="form-group">
+
+                                        <input type="checkbox" name="IsSupervisor" id="supervisorcheckbox" checked="@Model.IsSupervisor" /> Is Supervisor
+
+
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-group">
+
+                                        <input type="checkbox" name="IsSupervisor" id="supervisorcheckbox" /> Is Supervisor
+
+
+
+                                    </div>
+                                }
+                                <div class="form-group">
+
+                                    @Html.DropDownListFor(model => model.uqSupervisorCode, (SelectList)ViewBag.supervisorList, "-- Select Supervisor --", new { @class = "form-control", @id = "supervisordropdown", @disabled = "disabled" })
+
+
+                                    @*@Html.DropDownListFor(model => model.uqSupervisorCode, ViewBag.supervisorList as SelectList, "-- Select Supervisor --", new { @class = "form-control", @id = "supervisordropdown", @disabled = "disabled" })*@
+
+
+
+
+                                </div>
+                                if (Model!= null)
+                                {
+                                    <div class="form-group">
+                                        <input type="checkbox" name="IsEngineer" id="engineercheckbox" checked="@Model.IsEngineer" /> Is Engineer
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="form-group">
+                                        <input type="checkbox" name="IsEngineer" id="engineercheckbox" /> Is Engineer
+
+                                    </div>
+
+                                }
+                                <div class="form-group">
+                                    @Html.DropDownListFor(model => model.uqEngineerCode, (SelectList)ViewBag.engineerList, "-- Select Engineer --", new { @class = "form-control", @id = "engineerdropdown", @disabled = "disabled" })
+
+                                    @*@Html.DropDownListFor(model => model.uqEngineerCode, ViewBag.engineerList as SelectList, "-- Select Engineer --", new { @class = "form-control", @id = "engineerdropdown", @disabled = "disabled" })*@
+
+                                </div>
+                                if (Model!= null)
+                                {
+
+                                    <div class="form-group">
+                                        <input type="checkbox" name="IsHOD" id="hodcheckbox" checked="@Model.IsHOD" /> Is HOD
+
+                                    </div>
+                                }
+                                else
+                                { <div class="form-group">
+                                        <input type="checkbox" name="IsHOD" id="hodcheckbox"  /> Is HOD
+
+                                    </div>
+
+                                }
+                                <div class="form-group">
+                                    @Html.DropDownListFor(model => model.uqHODCode, (SelectList)ViewBag.hodList, "-- Select HOD --", new { @class = "form-control", @id = "hoddropdown", @disabled = "disabled" })
+
+                                    @*@Html.DropDownListFor(model => model.uqEngineerCode, ViewBag.engineerList as SelectList, "-- Select Engineer --", new { @class = "form-control", @id = "engineerdropdown", @disabled = "disabled" })*@
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.DropDownListFor(model => model.uqContractorCode, ViewBag.ContractorList as SelectList, "-- Select Contractor --", new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    @if (ViewBag.Edit == "1")
+                                    {
+                                        if (ViewBag.IsAdmin == true)
+                                        {
+                                            @Html.DropDownListFor(model => model.RoleID, ViewBag.RoleList as SelectList, "Select Role", new { @class = "form-control" })
+                                        }
+                                        else
+                                        {
+                                            @Html.DropDownListFor(model => model.RoleID, ViewBag.RoleList as SelectList, "Select Role", new { @class = "form-control", @readonly = "readonly" })
+                                        }
+                                    }
+                                    else
+                                    {
+                                        @Html.DropDownListFor(model => model.RoleID, ViewBag.RoleList as SelectList, "Select Role", new { @class = "form-control" })
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="box-footer">
+                        <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </div>
+                </div>
+
+
+
+
+            }
+        </div>
+        </div>
+</section>
+<input type="hidden" id="type" value="@ViewBag.Edit" />
+<link rel="stylesheet" href="/content/assets/css/dropify.min.css" />
+<script src="/content/assets/js/dropify.min.js"></script>
+<script>
+    $('#supervisordropdown').selectize({
+        sortField: 'text'
+    });
+    $('#engineerdropdown').selectize({
+        sortField: 'text'
+    });
+    $('#hoddropdown').selectize({
+        sortField: 'text'
+    });
+    $("#supervisorcheckbox").click(function () {
+        if ($(this).prop("checked") == true) {
+            $('#supervisordropdown')[0].selectize.enable();
+            //$('#engineerdropdown').attr("disabled", $(this).is(":checked"));
+            $('#engineerdropdown')[0].selectize.disable();
+            $('#engineercheckbox').attr("disabled", "disabled");
+            $('#hodcheckbox').attr("disabled", "disabled");
+         
+            $('#hoddropdown')[0].selectize.disable();
+
+
+          
+
+
+            
+            //console.log('checked');
+        }
+        if ($(this).prop("checked") == false) {
+         
+            //$('#supervisordropdown').attr("disabled", $(this).is(":checked"));
+           
+            $('#supervisordropdown')[0].selectize.disable();
+            $('#engineerdropdown')[0].selectize.disable();
+            $('#hoddropdown')[0].selectize.disable();
+            $('#engineercheckbox').removeAttr("disabled");
+            $('#hodcheckbox').removeAttr("disabled");
+            $('#hodcheckbox').removeAttr("disabled");
+            
+           // console.log('unchecked');
+        }
+        //$('#engineercheckbox').attr("disabled", $(this).is(":checked"));
+        //$('#engineerdropdown').attr("disabled", $(this).is(":checked"));
+        //$('#supervisordropdown')[0].selectize.enable();
+        
+    });
+    $("#engineercheckbox").click(function () {
+        if ($(this).prop("checked") == true) {
+            $('#engineerdropdown')[0].selectize.enable();
+            //$('#engineerdropdown').attr("disabled", $(this).is(":checked"));
+            $('#supervisordropdown')[0].selectize.disable();
+            $('#supervisorcheckbox').attr("disabled", "disabled");
+            $('#hodcheckbox').attr("disabled", "disabled");
+         
+            $('#hoddropdown')[0].selectize.disable();
+
+
+           // console.log('checked');
+        }
+        if ($(this).prop("checked") == false) {
+            //$('#supervisordropdown').attr("disabled", $(this).is(":checked"));
+            $('#supervisordropdown')[0].selectize.disable();
+            $('#engineerdropdown')[0].selectize.disable();
+            $('#hoddropdown')[0].selectize.disable();
+            $('#supervisorcheckbox').removeAttr("disabled");
+            $('#hodcheckbox').removeAttr("disabled");
+            //console.log('unchecked');
+        }
+       
+        //$('#supervisorcheckbox').attr("disabled", $(this).is(":checked"));
+        //$('#supervisordropdown').attr("disabled", $(this).is(":checked"));
+        //$('#engineerdropdown')[0].selectize.enable();
+
+
+    });
+
+    $("#hodcheckbox").click(function () {
+        if ($(this).prop("checked") == true) {
+            $('#engineerdropdown')[0].selectize.disable();
+            $('#engineercheckbox').attr("disabled", "disabled");
+            //$('#engineerdropdown').attr("disabled", $(this).is(":checked"));
+            $('#supervisordropdown')[0].selectize.disable();
+            $('#supervisorcheckbox').attr("disabled", "disabled");
+
+
+            $('#hoddropdown')[0].selectize.enable();
+            // console.log('checked');
+        }
+        if ($(this).prop("checked") == false) {
+            //$('#supervisordropdown').attr("disabled", $(this).is(":checked"));
+            $('#supervisordropdown')[0].selectize.disable();
+            $('#engineerdropdown')[0].selectize.disable();
+            $('#hoddropdown')[0].selectize.disable();
+            $('#supervisorcheckbox').removeAttr("disabled");
+            $('#engineercheckbox').removeAttr("disabled");
+            //console.log('unchecked');
+        }
+        
+        //$('#supervisorcheckbox').attr("disabled", $(this).is(":checked"));
+        //$('#supervisordropdown').attr("disabled", $(this).is(":checked"));
+        //$('#engineerdropdown')[0].selectize.enable();
+
+
+    });
+    $(function () {
+        var type = $('#type').val();
+        if (type == "1") {
+            $('#divPreviewPhoto').show();
+            $('#divUploadPhoto').hide();
+        }
+        else {
+            $('#divUploadPhotoButtons').hide();
+            $('#divPreviewPhoto').hide();
+            $('#divUploadPhoto').show();
+        }
+        $('#dtpDob').datepicker({
+            format: 'dd-M-yyyy'
+        });
+
+        $('.dropify').dropify();
+        var drEvent = $('#dropify-event').dropify();
+        drEvent.on('dropify.beforeClear', function (event, element) {
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+        drEvent.on('dropify.afterClear', function (event, element) {
+            alert('File deleted');
+        });
+        $('.dropify-fr').dropify(
+        {
+            messages:
+            {
+                default: 'Click here to choose any image',
+                replace: 'Click remove to remove this image',
+                remove: 'Remove',
+            }
+        });
+    });
+    function SuccessAddUser(data) {
+        if (data.status == "1") {
+            window.location = data.url;
+        }
+        if (data.status == "2") {
+            $('#message').html(data.message);
+        }
+    }
+    function UploadPhoto() {
+        $('#divPreviewPhoto').hide();
+        $('#divUploadPhoto').show();
+    }
+    function PreviewPhoto() {
+        $('#divPreviewPhoto').show();
+        $('#divUploadPhoto').hide();
+    }
+  
+
+</script>

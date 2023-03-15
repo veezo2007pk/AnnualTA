@@ -1,0 +1,89 @@
+﻿@model AdvanceUMS.Models.tblUser
+@{
+    ViewBag.Title = "User Profile";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            User Profile
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">User profile</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Profile Image -->
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <img class="profile-user-img img-responsive img-circle" src="@ViewBag.PhotoPath" alt="User profile picture">
+                        <h3 class="profile-username text-center">@Html.DisplayFor(m => m.FirstName) @Html.DisplayFor(m => m.LastName)</h3>
+                        <p class="text-muted text-center">@ViewBag.RoleName</p>
+                        <div class="text-center">
+                            <a href="@Html.DisplayFor(m=>m.FacebookLink)" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="@Html.DisplayFor(m=>m.GoogleLink)" class="btn btn-social-icon btn-google"><i class="fa fa-google-plus"></i></a>
+                            <a href="@Html.DisplayFor(m=>m.LinkedInLink)" class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                            <a href="@Html.DisplayFor(m=>m.TwitterLink)" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
+                        </div>
+                        <br />
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b>Email</b> <a class="pull-right">@Html.DisplayFor(m => m.Email)</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>BirthDate</b> <a class="pull-right">@Html.DisplayFor(m => m.DateOfBirth)</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Phone</b> <a class="pull-right">@Html.DisplayFor(m => m.Phone)</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Skype</b> <a class="pull-right">@Html.DisplayFor(m => m.SkypeID)</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Last Login</b> <a class="pull-right">@Html.DisplayFor(m => m.LastLoginDate)</a>
+                            </li>
+                        </ul>
+
+                        <a  data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" href="/admin/user/edit?ID=@Html.DisplayFor(m=>m.ID)" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+                <!-- About Me Box -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">About Me</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+                        <p class="text-muted">@Html.DisplayFor(m => m.Address)</p>
+                        <hr>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Activity Log</h3>
+                    </div>
+                    <div class="box-body">
+                        @{ Html.RenderAction("GetActivityLog", "User");}
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+    </section>
+    <!-- /.content -->
+</div>

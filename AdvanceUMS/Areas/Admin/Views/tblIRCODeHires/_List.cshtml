@@ -1,0 +1,204 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblSupervisorListForm>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+@{
+    @ViewBag.hour
+}
+<style>
+    .clock {
+        /*position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translateX(-50%) translateY(-50%);
+        */
+        position: relative;
+        color: #3c8dbc;
+        font-size: 40px;
+        font-family: Orbitron;
+        letter-spacing: 7px;
+        text-align: center;
+    }
+</style>
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+
+    <section>
+        <div class="row">
+
+
+
+
+            @*<div class="col-md-12">
+
+                    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+
+
+
+
+                </div>*@
+            @*<div class="center col-md-4">
+
+                </div>
+                <div class="center col-md-4">
+                  <label>Select Date</label>
+                    <input type="date" class="form-control" />
+                </div>
+                <div class="center col-md-4">
+
+                </div>*@
+
+
+        </div>
+
+    </section>
+
+    @{
+        int sn = 1;
+    }
+   
+        <table id="" class="table table-bordered table-responsive ">
+            <thead>
+                <tr>
+                    @*<th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>*@
+                    <th>S/N</th>
+                    <th>Worker ID</th>
+                    <th>Name</th>
+                    <th>Trade</th>
+                    <th>Shift</th>
+                    <th>Remarks</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    using (Html.BeginForm("DeHire", "tblDehires", FormMethod.Post))
+                    {
+                        <input type="hidden" value="@item.tblWorker.uqId" name="uqId"/>
+                        <tr>
+                            @*<td><input type="checkbox" name="ID" value="@item.tblAttendance.uqAttendanceCode " class="custom-checkbox chkCheckBoxId" /></td>*@
+                            
+                            <td>@sn</td>
+                            <td>@item.tblWorker.strWorkderId</td>
+                            <td>@item.tblWorker.strName</td>
+                            <td>@item.tblTrade.strTradeName</td>
+                            <td>@item.tblShift.strShiftName</td>
+                        
+
+                            <td>
+                               <span style="color:red;">De-Hired</span>
+                            </td>
+                            <!--<td>
+
+
+                            <!--</td>-->
+                        </tr>
+
+                        sn++;
+                    }
+                }
+                </tbody>
+        </table>
+        @*<button type="submit" class="btn btn-primary btn-xs">Save Entire List</button>*@
+   
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+
+
+
+<script src="/scripts/Common.js"></script>
+
+<script>
+    function GetStudent() {
+        var myVal = $("#ddlClassType").data("myValue");
+      
+  
+       
+    }
+    $(document).ready(function () {
+        $('#submitbtn').attr("disabled", "disabled");
+        $('#tblSupervisor').DataTable();
+        $('#checkBoxAll').click(function () {
+            if ($(this).is(":checked")) {
+                $(".chkCheckBoxId").prop("checked", true)
+            }
+            else {
+                $(".chkCheckBoxId").prop("checked", false)
+            }
+        });
+    });
+    function SelectedIndexChanged() {
+        //Form post
+        document.demoForm.submit();
+    }
+    $(document).ready(function () {
+        $('#tblSupervisor').DataTable();
+    });
+    $(document).ready(function () {
+        $("#tblUser").DataTable();
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblUser').load(data.url);
+                    $("#tblUser").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+    function showTime() {
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); // 0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var session = "AM";
+
+        if (h == 0) {
+            h = 12;
+        }
+
+        if (h >= 12) {
+
+            if (h == 12) {
+                alert(h);
+                h = h;
+            }
+            else {
+                h = h - 12;
+            }
+
+            session = "PM";
+        }
+
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+
+        var time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("MyClockDisplay").innerText = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+
+        setTimeout(showTime, 1000);
+
+    }
+
+    showTime();
+</script>

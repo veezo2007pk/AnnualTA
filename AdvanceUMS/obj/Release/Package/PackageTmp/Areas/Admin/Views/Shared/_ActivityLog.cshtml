@@ -1,0 +1,30 @@
+﻿@model IEnumerable<AdvanceUMS.Helper.ActivityViewModel>
+<div class="box-body">
+    @Html.Raw(ViewBag.Message)
+    <table id="tblActivityLog" class="table">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Message</th>
+                <th>Log Time</th>
+                <th width="100px">Ip Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.Message</td>
+                    <td>@item.LogTime</td>
+                    <td>@item.IPAddress</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#tblActivityLog").DataTable();
+    });
+</script>

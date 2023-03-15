@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblDepartment>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+    <table id="tblAccomodation" class="table">
+        <thead>
+            <tr>
+                <th>Department Name</th>
+                <th>Created At</th>
+                <th style="text-align:center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.strDepartmentName</td>
+
+                <td>@item.dtCreatedAt</td>
+
+                <td style="text-align:center">
+                    @if (ViewBag.IsEdit == true)
+                    {
+                    <a href="/admin/tblDepartments/edit?ID=@item.uqDepartmentCode" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                    }
+                    @if (ViewBag.IsDelete == true)
+                    {
+                <a href="#" data-url="/admin/tblDepartments/delete/@item.uqDepartmentCode" class="delete btn btn-outline-danger btn-sm"><i class="fa fa-trash-alt"></i> Delete</a>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="/scripts/Common.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tblAccomodation").DataTable();
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblAccomodation').load(data.url);
+                    $("#tblAccomodation").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+</script>

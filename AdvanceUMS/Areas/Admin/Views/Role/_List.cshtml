@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblRole>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+    <table id="tblRole" class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Display Name</th>
+                <th width="100px">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        @item.DisplayName
+                    </td>
+                    <td>
+                        @if (ViewBag.IsEdit == true)
+                        {
+                        <a href="/admin/role/edit?ID=@item.ID" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                        }
+                        @if (ViewBag.IsDelete == true)
+                        {
+                    <a href="#" onclick="return confirm('Are you sure, you want to delete?');" data-url="/admin/role/delete/@item.ID" class="delete btn btn-outline-danger btn-sm"><i class="fa fa-trash-alt"></i> Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="/scripts/Common.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tblRole").DataTable();
+        $('.delete').click(function () {
+            var url = $(this).data('url');            
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblRole').load(data.url);
+                    $("#tblRole").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+</script>

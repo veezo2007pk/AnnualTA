@@ -1,0 +1,9 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblWorker>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+
+<h6 class="card-title mb-2">Tool Room Clearance List</h6>
+
+
+@{Html.RenderAction("PopulateWorkers", "tblClearance", new { Status = @ViewBag.year });}

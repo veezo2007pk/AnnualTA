@@ -1,0 +1,993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbannualTAaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblAccomodation">
+    <Key>
+      <PropertyRef Name="uqAccommodationCode" />
+    </Key>
+    <Property Name="uqAccommodationCode" Type="Guid" Nullable="false" />
+    <Property Name="strAccommodationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblArea">
+    <Key>
+      <PropertyRef Name="uqAreaCode" />
+    </Key>
+    <Property Name="uqAreaCode" Type="Guid" Nullable="false" />
+    <Property Name="strAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblAttendance">
+    <Key>
+      <PropertyRef Name="uqAttendanceCode" />
+    </Key>
+    <Property Name="uqAttendanceCode" Type="Guid" Nullable="false" />
+    <Property Name="uqWorkerCode" Type="Guid" />
+    <Property Name="dtCheckIn" Type="DateTime" Precision="3" />
+    <Property Name="dtCheckOut" Type="DateTime" Precision="3" />
+    <Property Name="bolIsOvertime" Type="Boolean" />
+    <Property Name="bolIsVerified" Type="Boolean" />
+    <Property Name="uqShiftCode" Type="Guid" />
+    <Property Name="uqTradeCode" Type="Guid" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+    <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bolisAttendanceShiftToBackDate" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblClearance">
+    <Key>
+      <PropertyRef Name="uqClearanceCode" />
+    </Key>
+    <Property Name="uqClearanceCode" Type="Guid" Nullable="false" />
+    <Property Name="uqWorkerCode" Type="Guid" />
+    <Property Name="strEngineeerRemarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="dtEngineerRemarks" Type="DateTime" Precision="3" />
+    <Property Name="strClearanceRemarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="dtClearanceRemarks" Type="DateTime" Precision="3" />
+    <Property Name="strContractotRemarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="dtContractorRemarks" Type="DateTime" Precision="3" />
+    <Property Name="strFeedback" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dtCreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" />
+    <Property Name="uqModifyBy" Type="Guid" />
+    <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblContractor">
+    <Key>
+      <PropertyRef Name="uqContractorCode" />
+    </Key>
+    <Property Name="uqContractorCode" Type="Guid" Nullable="false" />
+    <Property Name="strContractorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+    <NavigationProperty Name="tblUsers" Relationship="Self.FK_tblUser_tblContractor" FromRole="tblContractor" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblContractorUser">
+    <Key>
+      <PropertyRef Name="uqId" />
+    </Key>
+    <Property Name="uqId" Type="Guid" Nullable="false" />
+    <Property Name="strUsername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="strPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uqContractorId" Type="Guid" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblCountry">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblDehireLog">
+    <Key>
+      <PropertyRef Name="uqDehireLog" />
+    </Key>
+    <Property Name="uqDehireLog" Type="Guid" Nullable="false" />
+    <Property Name="uqWorkerId" Type="Guid" />
+    <Property Name="intDehireStatus" Type="Int32" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblDepartment">
+    <Key>
+      <PropertyRef Name="uqDepartmentCode" />
+    </Key>
+    <Property Name="uqDepartmentCode" Type="Guid" Nullable="false" />
+    <Property Name="strDepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblEngineer">
+    <Key>
+      <PropertyRef Name="uqEngineerId" />
+    </Key>
+    <Property Name="uqEngineerId" Type="Guid" Nullable="false" />
+    <Property Name="strEngineerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uqDepartmentCode" Type="Guid" />
+    <Property Name="uqHODId" Type="Guid" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblExperience">
+    <Key>
+      <PropertyRef Name="uqExperienceCode" />
+    </Key>
+    <Property Name="uqExperienceCode" Type="Guid" Nullable="false" />
+    <Property Name="strExperienceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblHOD">
+    <Key>
+      <PropertyRef Name="uqHODId" />
+    </Key>
+    <Property Name="uqHODId" Type="Guid" Nullable="false" />
+    <Property Name="strHODName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uqDepartmentCode" Type="Guid" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblJoiningStat">
+    <Key>
+      <PropertyRef Name="uqJoiningStatusCode" />
+    </Key>
+    <Property Name="uqJoiningStatusCode" Type="Guid" Nullable="false" />
+    <Property Name="strJoiningStatusCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblModule">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="ModuleName" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="PageIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PageUrl" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="PageSlug" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDefault" Type="Boolean" />
+    <Property Name="ParentModuleID" Type="Int32" />
+    <NavigationProperty Name="tblRolePermissions" Relationship="Self.FK_UserPermission_ModuleMast" FromRole="tblModule" ToRole="tblRolePermission" />
+  </EntityType>
+  <EntityType Name="tblOvertime">
+    <Key>
+      <PropertyRef Name="uqOvertimeCode" />
+    </Key>
+    <Property Name="uqOvertimeCode" Type="Guid" Nullable="false" />
+    <Property Name="uqAttendanceCode" Type="Guid" />
+    <Property Name="intRecommendedHrs" Type="Int32" />
+    <Property Name="bolIsVerified" Type="Boolean" />
+    <Property Name="uqShiftCode" Type="Guid" />
+    <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+    <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblRelationship">
+    <Key>
+      <PropertyRef Name="uqRelationshipCode" />
+    </Key>
+    <Property Name="uqRelationshipCode" Type="Guid" Nullable="false" />
+    <Property Name="strRelationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblResidence">
+    <Key>
+      <PropertyRef Name="uqResidenceCode" />
+    </Key>
+    <Property Name="uqResidenceCode" Type="Guid" Nullable="false" />
+    <Property Name="strResidenceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsDefault" Type="Boolean" />
+    <Property Name="InsertBy" Type="Guid" />
+    <Property Name="InsertDate" Type="DateTime" Precision="3" />
+    <Property Name="LastModified" Type="DateTime" Precision="3" />
+    <Property Name="LastModifiedBy" Type="Guid" />
+    <NavigationProperty Name="tblRolePermissions" Relationship="Self.FK_tblRolePermission_tblRole" FromRole="tblRole" ToRole="tblRolePermission" />
+  </EntityType>
+  <EntityType Name="tblRolePermission">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModuleID" Type="Int32" />
+    <Property Name="RoleID" Type="Guid" />
+    <Property Name="IsView" Type="Boolean" />
+    <Property Name="IsAdd" Type="Boolean" />
+    <Property Name="IsEdit" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblModule" Relationship="Self.FK_UserPermission_ModuleMast" FromRole="tblRolePermission" ToRole="tblModule" />
+    <NavigationProperty Name="tblRole" Relationship="Self.FK_tblRolePermission_tblRole" FromRole="tblRolePermission" ToRole="tblRole" />
+  </EntityType>
+  <EntityType Name="tblSetting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LogoPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FeviconPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SMTPHost" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SMTPUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SMTPPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SMTPEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SMTPPort" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblShift">
+    <Key>
+      <PropertyRef Name="uqShiftId" />
+    </Key>
+    <Property Name="uqShiftId" Type="Guid" Nullable="false" />
+    <Property Name="strShiftName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tmFrom" Type="Time" Precision="0" />
+    <Property Name="tmTo" Type="Time" Precision="0" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblSkill">
+    <Key>
+      <PropertyRef Name="uqSkillCode" />
+    </Key>
+    <Property Name="uqSkillCode" Type="Guid" Nullable="false" />
+    <Property Name="strSkillName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblSupervisor">
+    <Key>
+      <PropertyRef Name="uqSupervisorId" />
+    </Key>
+    <Property Name="uqSupervisorId" Type="Guid" Nullable="false" />
+    <Property Name="strSupervisorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uqEngineerCode" Type="Guid" />
+    <Property Name="uqDepartmentCode" Type="Guid" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblTAPlanning">
+    <Key>
+      <PropertyRef Name="intTAPlanningCode" />
+    </Key>
+    <Property Name="intTAPlanningCode" Type="Guid" Nullable="false" />
+    <Property Name="uqTradeCode" Type="Guid" />
+    <Property Name="strTradeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="uqShiftCode" Type="Guid" />
+    <Property Name="strShiftName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="uqAreaCode" Type="Guid" />
+    <Property Name="strAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="uqDepartmentCode" Type="Guid" />
+    <Property Name="strDepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtFrom" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtTo" Type="DateTime" Precision="3" />
+    <Property Name="intDays" Type="Int32" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+    <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblToDo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="UserID" Type="Guid" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="IsCompleted" Type="Boolean" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="CompleteDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK_tblToDo_tblUser" FromRole="tblToDo" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblTrade">
+    <Key>
+      <PropertyRef Name="uqTradeCode" />
+    </Key>
+    <Property Name="uqTradeCode" Type="Guid" Nullable="false" />
+    <Property Name="strTradeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="intRate" Type="Int32" />
+    <Property Name="intMealAllowance" Type="Int32" />
+    <Property Name="intOvertimeRate" Type="Int32" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="RoleID" Type="Guid" />
+    <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="CountryID" Type="Int32" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhotoPath" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="FacebookLink" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="TwitterLink" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="GoogleLink" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="LinkedInLink" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="SkypeID" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsSupervisor" Type="Boolean" />
+    <Property Name="uqSupervisorCode" Type="Guid" />
+    <Property Name="IsEngineer" Type="Boolean" />
+    <Property Name="uqEngineerCode" Type="Guid" />
+    <Property Name="IsHOD" Type="Boolean" />
+    <Property Name="uqHODCode" Type="Guid" />
+    <Property Name="Password" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDefault" Type="Boolean" />
+    <Property Name="IsLockedOut" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+    <Property Name="LastLockoutDate" Type="DateTime" Precision="3" />
+    <Property Name="FailedPasswordCount" Type="Int32" />
+    <Property Name="InsertDate" Type="DateTime" Precision="3" />
+    <Property Name="InsertBy" Type="Guid" />
+    <Property Name="LastModified" Type="DateTime" Precision="3" />
+    <Property Name="LastModifiedBy" Type="Guid" />
+    <Property Name="uqContractorCode" Type="Guid" />
+    <NavigationProperty Name="tblContractor" Relationship="Self.FK_tblUser_tblContractor" FromRole="tblUser" ToRole="tblContractor" />
+    <NavigationProperty Name="tblToDoes" Relationship="Self.FK_tblToDo_tblUser" FromRole="tblUser" ToRole="tblToDo" />
+    <NavigationProperty Name="tblUserLogs" Relationship="Self.FK_tblUserLog_tblUser" FromRole="tblUser" ToRole="tblUserLog" />
+  </EntityType>
+  <EntityType Name="tblUserLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="UserID" Type="Guid" />
+    <Property Name="Message" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="LogTime" Type="DateTime" Precision="3" />
+    <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MoreInfo" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK_tblUserLog_tblUser" FromRole="tblUserLog" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblWorker">
+    <Key>
+      <PropertyRef Name="uqId" />
+    </Key>
+    <Property Name="uqId" Type="Guid" Nullable="false" />
+    <Property Name="uqContractorUserId" Type="Guid" />
+    <Property Name="strName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="strNextOfKin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="strNextOfKinContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="strFatherName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="strCNIC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="strContact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="strEmergencyNo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="intAge" Type="Int32" />
+    <Property Name="strWorkderId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="dtSafety" Type="DateTime" Precision="3" />
+    <Property Name="bolIsClearance" Type="Boolean" />
+    <Property Name="strAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="uqTradeCode" Type="Guid" />
+    <Property Name="strQualification" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="uqSkillCode" Type="Guid" />
+    <Property Name="uqExperienceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="strTAattended" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="dtLastTAyear" Type="DateTime" Precision="3" />
+    <Property Name="intTARate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="uqSupervisorCode" Type="Guid" />
+    <Property Name="uqAreaCode" Type="Guid" />
+    <Property Name="dtDurationFrom" Type="DateTime" Precision="3" />
+    <Property Name="dtDurationTo" Type="DateTime" Precision="3" />
+    <Property Name="uqResidenceCode" Type="Guid" />
+    <Property Name="uqContractorCode" Type="Guid" />
+    <Property Name="uqDepartmentCode" Type="Guid" />
+    <Property Name="uqAccommodationCode" Type="Guid" />
+    <Property Name="uqRelationshipCode" Type="Guid" />
+    <Property Name="uqShiftCode" Type="Guid" />
+    <Property Name="dtTAyear" Type="DateTime" Precision="3" />
+    <Property Name="vbrPicture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="vbrPicture1" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="intJoiningStatusCode" Type="Guid" />
+    <Property Name="dtLastCheckedIn" Type="DateTime" Precision="3" />
+    <Property Name="intTACurrentRate" Type="Int32" />
+    <Property Name="intDehireStatus" Type="Int32" />
+    <Property Name="dtDehire" Type="DateTime" Precision="3" />
+    <Property Name="bolIsSafetyVerified" Type="Boolean" />
+    <Property Name="bolIsWorkerApproveByEng" Type="Boolean" />
+    <Property Name="dtCreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" />
+    <Property Name="uqModifyBy" Type="Guid" />
+    <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblYear">
+    <Key>
+      <PropertyRef Name="intYearCode" />
+    </Key>
+    <Property Name="intYearCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="strYearName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_tblUser_tblContractor">
+    <End Role="tblContractor" Type="Self.tblContractor" Multiplicity="0..1" />
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblContractor">
+        <PropertyRef Name="uqContractorCode" />
+      </Principal>
+      <Dependent Role="tblUser">
+        <PropertyRef Name="uqContractorCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPermission_ModuleMast">
+    <End Role="tblModule" Type="Self.tblModule" Multiplicity="0..1" />
+    <End Role="tblRolePermission" Type="Self.tblRolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblModule">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblRolePermission">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRolePermission_tblRole">
+    <End Role="tblRole" Type="Self.tblRole" Multiplicity="0..1" />
+    <End Role="tblRolePermission" Type="Self.tblRolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRole">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblRolePermission">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblToDo_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblToDo" Type="Self.tblToDo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblToDo">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserLog_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblUserLog" Type="Self.tblUserLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblUserLog">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblAccomodations" EntityType="Self.tblAccomodation" />
+    <EntitySet Name="tblAreas" EntityType="Self.tblArea" />
+    <EntitySet Name="tblAttendances" EntityType="Self.tblAttendance" />
+    <EntitySet Name="tblClearances" EntityType="Self.tblClearance" />
+    <EntitySet Name="tblContractors" EntityType="Self.tblContractor" />
+    <EntitySet Name="tblContractorUsers" EntityType="Self.tblContractorUser" />
+    <EntitySet Name="tblCountries" EntityType="Self.tblCountry" />
+    <EntitySet Name="tblDehireLogs" EntityType="Self.tblDehireLog" />
+    <EntitySet Name="tblDepartments" EntityType="Self.tblDepartment" />
+    <EntitySet Name="tblEngineers" EntityType="Self.tblEngineer" />
+    <EntitySet Name="tblExperiences" EntityType="Self.tblExperience" />
+    <EntitySet Name="tblHODs" EntityType="Self.tblHOD" />
+    <EntitySet Name="tblJoiningStats" EntityType="Self.tblJoiningStat" />
+    <EntitySet Name="tblModules" EntityType="Self.tblModule" />
+    <EntitySet Name="tblOvertimes" EntityType="Self.tblOvertime" />
+    <EntitySet Name="tblRelationships" EntityType="Self.tblRelationship" />
+    <EntitySet Name="tblResidences" EntityType="Self.tblResidence" />
+    <EntitySet Name="tblRoles" EntityType="Self.tblRole" />
+    <EntitySet Name="tblRolePermissions" EntityType="Self.tblRolePermission" />
+    <EntitySet Name="tblSettings" EntityType="Self.tblSetting" />
+    <EntitySet Name="tblShifts" EntityType="Self.tblShift" />
+    <EntitySet Name="tblSkills" EntityType="Self.tblSkill" />
+    <EntitySet Name="tblSupervisors" EntityType="Self.tblSupervisor" />
+    <EntitySet Name="tblTAPlannings" EntityType="Self.tblTAPlanning" />
+    <EntitySet Name="tblToDoes" EntityType="Self.tblToDo" />
+    <EntitySet Name="tblTrades" EntityType="Self.tblTrade" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <EntitySet Name="tblUserLogs" EntityType="Self.tblUserLog" />
+    <EntitySet Name="tblWorkers" EntityType="Self.tblWorker" />
+    <EntitySet Name="tblYears" EntityType="Self.tblYear" />
+    <AssociationSet Name="FK_tblUser_tblContractor" Association="Self.FK_tblUser_tblContractor">
+      <End Role="tblContractor" EntitySet="tblContractors" />
+      <End Role="tblUser" EntitySet="tblUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPermission_ModuleMast" Association="Self.FK_UserPermission_ModuleMast">
+      <End Role="tblModule" EntitySet="tblModules" />
+      <End Role="tblRolePermission" EntitySet="tblRolePermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRolePermission_tblRole" Association="Self.FK_tblRolePermission_tblRole">
+      <End Role="tblRole" EntitySet="tblRoles" />
+      <End Role="tblRolePermission" EntitySet="tblRolePermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblToDo_tblUser" Association="Self.FK_tblToDo_tblUser">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblToDo" EntitySet="tblToDoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserLog_tblUser" Association="Self.FK_tblUserLog_tblUser">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblUserLog" EntitySet="tblUserLogs" />
+    </AssociationSet>
+    <FunctionImport Name="AdminAttendanceCorrection" ReturnType="Collection(dbannualTAaModel.AdminAttendanceCorrection_Result)" />
+    <FunctionImport Name="AdminOTCorrection" ReturnType="Collection(dbannualTAaModel.AdminOTCorrection_Result)" />
+    <FunctionImport Name="DailyPlanReport" ReturnType="Collection(dbannualTAaModel.DailyPlanReport_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DailyPlanReportForDay" ReturnType="Collection(dbannualTAaModel.DailyPlanReportForDay_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DailyPlanReportForNight" ReturnType="Collection(dbannualTAaModel.DailyPlanReportForNight_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DehireData" ReturnType="Collection(dbannualTAaModel.DehireData_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FrontCard" ReturnType="Collection(dbannualTAaModel.FrontCard_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertWorker">
+      <Parameter Name="intContractorUserId" Mode="In" Type="Int32" />
+      <Parameter Name="strName" Mode="In" Type="String" />
+      <Parameter Name="strFatherName" Mode="In" Type="String" />
+      <Parameter Name="strCNIC" Mode="In" Type="String" />
+      <Parameter Name="strContact" Mode="In" Type="String" />
+      <Parameter Name="strEmergencyNo" Mode="In" Type="String" />
+      <Parameter Name="intAge" Mode="In" Type="Int32" />
+      <Parameter Name="strWorkderId" Mode="In" Type="String" />
+      <Parameter Name="strAddress" Mode="In" Type="String" />
+      <Parameter Name="strTrade" Mode="In" Type="String" />
+      <Parameter Name="strQualification" Mode="In" Type="String" />
+      <Parameter Name="strSkillLevel" Mode="In" Type="String" />
+      <Parameter Name="strExperience" Mode="In" Type="String" />
+      <Parameter Name="strTAattended" Mode="In" Type="String" />
+      <Parameter Name="dtLastTAyear" Mode="In" Type="DateTime" />
+      <Parameter Name="intTACurrentRate" Mode="In" Type="Decimal" />
+      <Parameter Name="intTARate" Mode="In" Type="Decimal" />
+      <Parameter Name="strSupervisorName" Mode="In" Type="String" />
+      <Parameter Name="strAreaEngName" Mode="In" Type="String" />
+      <Parameter Name="strAreaAssigned" Mode="In" Type="String" />
+      <Parameter Name="dtDurationFrom" Mode="In" Type="DateTime" />
+      <Parameter Name="dtDurationTo" Mode="In" Type="DateTime" />
+      <Parameter Name="strResidence" Mode="In" Type="String" />
+      <Parameter Name="strContractor" Mode="In" Type="String" />
+      <Parameter Name="strDepartment" Mode="In" Type="String" />
+      <Parameter Name="strAccomodation" Mode="In" Type="String" />
+      <Parameter Name="dtTAyear" Mode="In" Type="DateTime" />
+      <Parameter Name="vbrPicture" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="MainAttendanceReport" ReturnType="Collection(dbannualTAaModel.MainAttendanceReport_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ModuleDeleteSortOrder" ReturnType="Collection(dbannualTAaModel.ModuleDeleteSortOrder_Result)">
+      <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+      <Parameter Name="PModuleID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ModuleInsertSortOrder">
+      <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+      <Parameter Name="PModuleID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ModuleList" ReturnType="Collection(dbannualTAaModel.ModuleList_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ModuleUpdateSortOrder">
+      <Parameter Name="OldSortOrder" Mode="In" Type="Int32" />
+      <Parameter Name="NewSortOrder" Mode="In" Type="Int32" />
+      <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+      <Parameter Name="PModuleID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PlanningData" ReturnType="Collection(dbannualTAaModel.PlanningData_Result)">
+      <Parameter Name="year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PlanningReport" ReturnType="Collection(dbannualTAaModel.PlanningReport_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="procGetClearanceList" ReturnType="Collection(dbannualTAaModel.procGetClearanceList_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="procGetWorkerList" ReturnType="Collection(dbannualTAaModel.procGetWorkerList_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+      <Parameter Name="contractorCode" Mode="In" Type="Guid" />
+      <Parameter Name="supervisorCode" Mode="In" Type="Guid" />
+      <Parameter Name="engineerCode" Mode="In" Type="Guid" />
+      <Parameter Name="hod" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="TradeSummary" ReturnType="Collection(dbannualTAaModel.TradeSummary_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UserLog" ReturnType="Collection(dbannualTAaModel.UserLog_Result)" />
+    <FunctionImport Name="WorkerAttendanceData" ReturnType="Collection(dbannualTAaModel.WorkerAttendanceData_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AttendanceReport" ReturnType="Collection(dbannualTAaModel.AttendanceReport_Result)" />
+    <FunctionImport Name="UpdateNigthBackDate" ReturnType="Collection(dbannualTAaModel.UpdateNigthBackDate_Result)">
+      <Parameter Name="year" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AttendanceForEngineer" ReturnType="Collection(dbannualTAaModel.AttendanceForEngineer_Result)">
+      <Parameter Name="engineerCode" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="AttendanceForSupervisor" ReturnType="Collection(dbannualTAaModel.AttendanceForSupervisor_Result)">
+      <Parameter Name="supervisorCode" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="OTForEngineer" ReturnType="Collection(dbannualTAaModel.OTForEngineer_Result)">
+      <Parameter Name="engineerCode" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="OTForSupervisor" ReturnType="Collection(dbannualTAaModel.OTForSupervisor_Result)">
+      <Parameter Name="supervisorCode" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="WorkerAttendanceDataForEng" ReturnType="Collection(dbannualTAaModel.WorkerAttendanceDataForEng_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+      <Parameter Name="engineerCode" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="WorkerAttendanceDataForSupervisor" ReturnType="Collection(dbannualTAaModel.WorkerAttendanceDataForSupervisor_Result)">
+      <Parameter Name="Year" Mode="In" Type="String" />
+      <Parameter Name="supervisorCode" Mode="In" Type="Guid" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="AdminAttendanceCorrection_Result">
+    <Property Type="String" Name="Year" Nullable="true" MaxLength="50" />
+    <Property Type="Guid" Name="uqAttendanceCode" Nullable="false" />
+    <Property Type="Guid" Name="uqId" Nullable="false" />
+    <Property Type="DateTime" Name="dtCheckIn" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="bolIsOvertime" Nullable="true" />
+    <Property Type="Boolean" Name="bolIsVerified" Nullable="true" />
+    <Property Type="Guid" Name="uqShiftCode" Nullable="true" />
+    <Property Type="Guid" Name="uqTradeCode" Nullable="true" />
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strEngineerName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strContractorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strDepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="AdminOTCorrection_Result">
+    <Property Type="String" Name="Year" Nullable="true" MaxLength="50" />
+    <Property Type="Guid" Name="uqAttendanceCode" Nullable="false" />
+    <Property Type="Guid" Name="uqId" Nullable="false" />
+    <Property Type="DateTime" Name="dtCheckIn" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="bolIsOvertime" Nullable="true" />
+    <Property Type="Boolean" Name="bolIsVerified" Nullable="true" />
+    <Property Type="Guid" Name="uqShiftCode" Nullable="true" />
+    <Property Type="Guid" Name="uqTradeCode" Nullable="true" />
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strEngineerName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strContractorName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strDepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="Guid" Name="uqOvertimeCode" Nullable="false" />
+    <Property Type="Int32" Name="intRecommendedHrs" Nullable="true" />
+    <Property Type="Boolean" Name="OvertimeVerified" Nullable="true" />
+    <Property Type="String" Name="OTRemarks" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="DailyPlanReport_Result">
+    <Property Type="DateTime" Name="Date" Nullable="true" />
+    <Property Type="Int32" Name="Planned" Nullable="true" />
+    <Property Type="Int32" Name="Actual" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DailyPlanReportForDay_Result">
+    <Property Type="DateTime" Name="Date" Nullable="true" />
+    <Property Type="Int32" Name="Planned" Nullable="true" />
+    <Property Type="Int32" Name="Actual" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DailyPlanReportForNight_Result">
+    <Property Type="DateTime" Name="Date" Nullable="true" />
+    <Property Type="Int32" Name="Planned" Nullable="true" />
+    <Property Type="Int32" Name="Actual" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DehireData_Result">
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strDepartmentName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strEngineerName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strContractorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="21" />
+  </ComplexType>
+  <ComplexType Name="FrontCard_Result">
+    <Property Type="String" Name="strCNIC" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="Binary" Name="vbrPicture" Nullable="true" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strDepartmentName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="strResidenceName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strContact" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="MainAttendanceReport_Result">
+    <Property Type="String" Name="Trade" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Date" Nullable="true" />
+    <Property Type="Int32" Name="Qty" Nullable="true" />
+    <Property Type="Int32" Name="Actual" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ModuleDeleteSortOrder_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="DisplayOrder" Nullable="true" />
+    <Property Type="String" Name="ModuleName" Nullable="true" MaxLength="512" />
+    <Property Type="String" Name="PageIcon" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PageUrl" Nullable="true" MaxLength="512" />
+    <Property Type="String" Name="PageSlug" Nullable="true" MaxLength="512" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Boolean" Name="IsDefault" Nullable="true" />
+    <Property Type="Int32" Name="ParentModuleID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ModuleList_Result">
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="ModuleName" Nullable="true" MaxLength="512" />
+    <Property Type="String" Name="FullName" Nullable="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Int32" Name="DisplayOrder" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PlanningData_Result">
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="intRate" Nullable="true" />
+    <Property Type="Int32" Name="intDays" Nullable="true" />
+    <Property Type="Int32" Name="Days" Nullable="true" />
+    <Property Type="Int32" Name="intMealAllowance" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PlanningReport_Result">
+    <Property Type="String" Name="ShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Trade" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Area" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Department" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="Date" Nullable="true" />
+    <Property Type="Int32" Name="Qty" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="procGetClearanceList_Result">
+    <Property Type="String" Name="WrokerYear" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ClearanceYear" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="dtDehire" Nullable="true" Precision="23" />
+    <Property Type="Guid" Name="uqClearanceCode" Nullable="true" />
+    <Property Type="String" Name="strFeedback" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="dtContractorRemarks" Nullable="true" Precision="23" />
+    <Property Type="String" Name="strContractotRemarks" Nullable="true" MaxLength="500" />
+    <Property Type="Guid" Name="uqEngineerId" Nullable="true" />
+    <Property Type="Guid" Name="uqContractorCode" Nullable="true" />
+    <Property Type="Boolean" Name="bolIsClearance" Nullable="true" />
+    <Property Type="DateTime" Name="dtClearanceRemarks" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="dtEngineerRemarks" Nullable="true" Precision="23" />
+    <Property Type="String" Name="strEngineeerRemarks" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="strClearanceRemarks" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="bolIsWorkerApproveByEng" Nullable="true" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="Guid" Name="uqId" Nullable="false" />
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strContact" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strDepartmentName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="intAge" Nullable="true" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strEngineerName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strJoiningStatusCode" Nullable="true" MaxLength="50" />
+    <Property Type="Guid" Name="uqJoiningStatusCode" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="procGetWorkerList_Result">
+    <Property Type="String" Name="Year" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strCNIC" Nullable="true" MaxLength="255" />
+    <Property Type="Boolean" Name="bolIsWorkerApproveByEng" Nullable="true" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="Guid" Name="uqId" Nullable="false" />
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strContact" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strDepartmentName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="intAge" Nullable="true" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strEngineerName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strJoiningStatusCode" Nullable="true" MaxLength="50" />
+    <Property Type="Guid" Name="uqJoiningStatusCode" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="TradeSummary_Result">
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Approved" Nullable="true" />
+    <Property Type="Int32" Name="Confirmed" Nullable="true" />
+    <Property Type="Int32" Name="Pending" Nullable="true" />
+    <Property Type="Int32" Name="NotJoining" Nullable="true" />
+    <Property Type="Int32" Name="NotResponding" Nullable="true" />
+    <Property Type="Int32" Name="Rejected" Nullable="true" />
+    <Property Type="Int32" Name="Total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UserLog_Result">
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Message" Nullable="true" MaxLength="1024" />
+    <Property Type="DateTime" Name="LogTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="IPAddress" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="WorkerAttendanceData_Result">
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="dtCheckIn" Nullable="true" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strDepartmentName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strEngineerName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strContractorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="AttendanceReport_Result">
+    <Property Type="String" Name="Year" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="dtCheckIn" Nullable="true" />
+    <Property Type="Guid" Name="attendance" Nullable="true" />
+    <Property Type="Guid" Name="totaltrade" Nullable="true" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="UpdateNigthBackDate_Result">
+    <Property Type="Guid" Name="uqAttendanceCode" Nullable="false" />
+    <Property Type="Guid" Name="uqWorkerCode" Nullable="true" />
+    <Property Type="DateTime" Name="dtCheckIn" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="dtCheckOut" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="bolIsOvertime" Nullable="true" />
+    <Property Type="Boolean" Name="bolIsVerified" Nullable="true" />
+    <Property Type="Guid" Name="uqShiftCode" Nullable="true" />
+    <Property Type="Guid" Name="uqTradeCode" Nullable="true" />
+    <Property Type="DateTime" Name="dtCreatedAt" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="dtMoidifyAt" Nullable="true" Precision="23" />
+    <Property Type="Guid" Name="uqCreatedBy" Nullable="false" />
+    <Property Type="Guid" Name="uqModifyBy" Nullable="true" />
+    <Property Type="String" Name="Year" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="bolisAttendanceShiftToBackDate" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="AttendanceForEngineer_Result">
+    <Property Type="String" Name="Year" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="dtCheckIn" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="AttendanceForSupervisor_Result">
+    <Property Type="String" Name="Year" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="dtCheckIn" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="OTForEngineer_Result">
+    <Property Type="Int32" Name="intRecommendedHrs" Nullable="true" />
+    <Property Type="Boolean" Name="overtimeverified" Nullable="true" />
+    <Property Type="String" Name="overtimeRemarks" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="overtimeDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Year" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="dtCheckIn" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="OTForSupervisor_Result">
+    <Property Type="Int32" Name="intRecommendedHrs" Nullable="true" />
+    <Property Type="Boolean" Name="overtimeverified" Nullable="true" />
+    <Property Type="String" Name="overtimeRemarks" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="overtimeDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Year" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="dtCheckIn" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="WorkerAttendanceDataForEng_Result">
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="dtCheckIn" Nullable="true" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strDepartmentName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strEngineerName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strContractorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="WorkerAttendanceDataForSupervisor_Result">
+    <Property Type="String" Name="strWorkderId" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="strName" Nullable="true" MaxLength="255" />
+    <Property Type="DateTime" Name="dtCheckIn" Nullable="true" />
+    <Property Type="String" Name="strSupervisorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strDepartmentName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strAreaName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strTradeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strEngineerName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strShiftName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="strContractorName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="1" />
+  </ComplexType>
+</Schema>

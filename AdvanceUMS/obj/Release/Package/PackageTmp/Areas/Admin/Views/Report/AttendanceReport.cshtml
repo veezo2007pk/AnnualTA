@@ -1,0 +1,123 @@
+﻿
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+    string s = dHelper.year();
+}
+<h6 class="card-title mb-2">Attendance Report</h6>
+
+
+
+<div class="content-wrapper">
+
+    <section class="content">
+        <input type="hidden" value="@ViewBag.year" id="year" />
+
+        @using (Html.BeginForm("AttendanceReport", "Report", FormMethod.Get))
+        {
+            <div class="row">
+
+
+
+                <div class="col-8">
+
+
+                    @Html.Raw(ViewBag.Message)
+                    @if (ViewBag.IsAdmin != true)
+                    {
+                        <div class="box box-primary">
+
+
+
+
+                            <div class="box-body">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Filter By Year</label>
+                                            <select name="year" class="form-control">
+                                                <option value=""></option>
+                                                @foreach (var item in ViewBag.yearList)
+                                                {
+                                                    <option value="@item.Text">@item.Text</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group" style="padding-top: 28px;">
+                                            <label></label>
+                                            <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class=" btn btn-primary">Search</button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                    }
+
+
+                </div>
+
+
+
+
+            </div>
+        }
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="box">
+
+                  
+                    <div class="row" id="divReport">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+       
+        var searchText = $("#searchText").val();
+    var year = $("#year").val();
+            if (year == null || year == '' || year == 'undefined') {
+            year = @s;
+        }
+        //ASPX page URL to load report
+        var src = '/Report/AttendanceReport.aspx?';
+        //We can add parameters here
+        src = src + "year=" + year
+
+        //We can append more than one parameter like below
+        //var companyId = 1
+        //src = src + "compnayID=" + companyId
+
+        //Create a dynamic iframe here and append this to div tag
+        var iframe = '<iframe id="reportFrame" width="100%" height="800px" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+        $("#divReport").html(iframe);
+        
+    });
+    $(function () {
+        $('#btnSearch').click(function () {
+
+
+        });
+    });
+
+</script>  

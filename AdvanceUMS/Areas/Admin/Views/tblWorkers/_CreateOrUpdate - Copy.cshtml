@@ -1,0 +1,768 @@
+﻿﻿
+
+@model AdvanceUMS.Helper.WorkerViewModel
+<link href="~/Assets/Style.css" rel="stylesheet" />
+<script src="/scripts/jquery.validate.min.js"></script>
+<script src="/scripts/jquery.validate.unobtrusive.min.js"></script>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+       
+        @using (Ajax.BeginForm("AddUser", "tblWorkers", new { }, new AjaxOptions { OnSuccess = "SuccessAddUser", OnFailure= "FailureAddUser" }, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(model => model.uqId)
+            <div id="message"></div>
+            @Html.Raw(ViewBag.Message)
+    <div class="col-md-8">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Personal Information</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label>@Html.ValidationMessageFor(model => model.strName, "", new { @class = "text-danger" })</label>
+                            @Html.TextBoxFor(model => model.strName, new { @class = "form-control", placeholder = "First Name", required = "required" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label> @Html.ValidationMessageFor(model => model.strFatherName, "", new { @class = "text-danger" })</label>
+                            @Html.TextBoxFor(model => model.strFatherName, new { @class = "form-control", placeholder = "Last Name" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label> @Html.ValidationMessageFor(model => model.strContact, "", new { @class = "text-danger" })</label>
+                            @*<div class="input-group " >*@
+
+                            @Html.TextBoxFor(model => model.strContact, new { @class = "form-control", placeholder = "Contact No" })
+                            @*id="dtpDob"<span class="input-group-addon"><i class="fa fa-calendar"></i></span>*@
+                            @*</div>*@
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label> @Html.ValidationMessageFor(model => model.strEmergencyNo, "", new { @class = "text-danger" })</label>
+                            @*<div class="input-group" >*@
+                            @Html.TextBoxFor(model => model.strEmergencyNo, new { @class = "form-control", placeholder = "Emergency No" })
+                            @*<span class="input-group-addon"><i class="fa fa-calendar"></i></span>*@
+                            @*</div>*@
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label> @Html.ValidationMessageFor(model => model.strCNIC, "", new { @class = "text-danger" })</label>
+
+                            @Html.TextBoxFor(model => model.strCNIC, new { @class = "form-control", placeholder = "CNIC" })
+
+
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label> @Html.ValidationMessageFor(model => model.intAge, "", new { @class = "text-danger" })</label>
+                            @Html.TextBoxFor(model => model.intAge, new { @class = "form-control", placeholder = "Age", type = "Number" })
+
+
+                        </div>
+                    </div>
+                    @*<div class="col-xs-6">
+                        <div class="form-group">
+                            <label>Age @Html.ValidationMessageFor(model => model.intAge, "", new { @class = "text-danger" })</label>
+                            @Html.DropDownListFor(model => model.int, ViewBag.CountryList as SelectList, "Select Country", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label>Phone @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })</label>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", placeholder = "Phone" })
+                        </div>
+                    </div>*@
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Worker ID @Html.ValidationMessageFor(model => model.strWorkderId, "", new { @class = "text-danger" })</label>*@
+                            @{ if (ViewBag.strWorkerIdd != "0")
+                                {
+
+                                    <input name="strWorkderId" type="text" class="form-control" placeholder="Worker ID" readonly="readonly" value="@ViewBag.strWorkerId" />
+
+                                }
+                                else
+                                {
+                                    @Html.TextBoxFor(model => model.strWorkderId, new { @class = "form-control", placeholder = "Age", @readonly="readonly" })
+
+                                }
+
+                            }
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label>@Html.ValidationMessageFor(model => model.strAddress, "", new { @class = "text-danger" })</label>
+
+                            @Html.TextAreaFor(model => model.strAddress, new { @class = "form-control", placeholder = "Address" })
+                        </div>
+                        @*<div class="col-xs-6">
+                            <div class="form-group">
+                                <label>Address</label>
+                                @Html.TextAreaFor(model => model.strAddress, new { @class = "form-control", placeholder = "Address" })
+                            </div>
+                        </div>*@
+                        @*<div class="form-group">
+                            <label>Role @Html.ValidationMessageFor(model => model.RoleID, "", new { @class = "text-danger" })</label>
+                            @if (ViewBag.Edit == "1")
+                            {
+                                if (ViewBag.IsAdmin == true)
+                                {
+                                    @Html.DropDownListFor(model => model.RoleID, ViewBag.RoleList as SelectList, "Select Role", new { @class = "form-control" })
+                                }
+                                else
+                                {
+                                    @Html.DropDownListFor(model => model.RoleID, ViewBag.RoleList as SelectList, "Select Role", new { @class = "form-control", @readonly = "readonly" })
+                                }
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(model => model.RoleID, ViewBag.RoleList as SelectList, "Select Role", new { @class = "form-control" })
+                            }
+                        </div>*@
+                    </div>
+                    @*<div class="col-xs-6">
+                        <div class="form-group">
+                            <label>Address</label>
+                            @Html.TextAreaFor(model => model.Address, new { @class = "form-control", placeholder = "Address" })
+                        </div>
+                    </div>*@
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Joining Status</label>*@
+                            <label>@Html.ValidationMessageFor(model => model.intJoiningStatusCode, "", new { @class = "text-danger" })</label>
+
+                            @Html.DropDownListFor(model => model.intJoiningStatusCode, ViewBag.joiningStatList as SelectList, "Joining Status", new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="box-header with-border">
+                <h3 class="box-title">Contact Detail</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label> @Html.ValidationMessageFor(model => model.strNextOfKin, "", new { @class = "text-danger" })</label>
+                            @Html.TextBoxFor(model => model.strNextOfKin, new { @class = "form-control", placeholder = "Next of kin" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label>@Html.ValidationMessageFor(model => model.uqRelationshipCode, "", new { @class = "text-danger" })</label>
+                            @Html.DropDownListFor(model => model.uqRelationshipCode, ViewBag.relationshipList as SelectList, "Select Relationship", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label> @Html.ValidationMessageFor(model => model.strNextOfKinContactNo, "", new { @class = "text-danger" })</label>
+                            @Html.TextBoxFor(model => model.strNextOfKinContactNo, new { @class = "form-control", placeholder = "Next of kin Contact No" })
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="box-header with-border">
+                <h3 class="box-title">Professional Information</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-6">
+
+                        <div class="form-group">
+
+                            @*<label>Trade</label>*@
+                            @*@Html.DropDownListFor(model => model.uqTradeCode, ViewBag.tradeList as SelectList, "Select Trade", new { @onChange = "showvalue(this.value)",@id="selecttrader", @class = "form-control" })*@
+                            <label> @Html.ValidationMessageFor(model => model.uqTradeCode, "", new { @class = "text-danger" })</label>
+
+                            <select name="uqTradeCode" id="traderid" onchange="showvalue(this.value)" class="form-control">
+                                @foreach (var item in ViewBag.tradeList)
+                                {
+                                    if (Model != null)
+                                    {
+                                        <option value="@item.uqTradeCode" data-rate="@item.intRate" @(Model.uqTradeCode == @item.uqTradeCode ? "selected" : "")>
+                                            @item.strTradeName
+                                        </option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.uqTradeCode" data-rate="@item.intRate">
+                                            @item.strTradeName
+                                        </option>
+                                    }
+                                }
+                            </select>
+                            @*<select name="" id="traderid" onchange="showvalue(this.value)">
+                                <option value="1" data-rate="30">a</option>
+                                <option value="2" data-rate="40">a</option>
+                                <option value="3" data-rate="50">a</option>
+                            </select>*@
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Skill</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.uqSkillCode, "", new { @class = "text-danger" })</label>
+
+                            @Html.DropDownListFor(model => model.uqSkillCode, ViewBag.skillList as SelectList, "Select Skill", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Qualification</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.strQualification, "", new { @class = "text-danger" })</label>
+
+                            @Html.TextBoxFor(model => model.strQualification, new { @class = "form-control", placeholder = "Qualification" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Experience</label>*@
+                            @*@Html.DropDownListFor(model => model.uqExperienceCode, ViewBag.experienceList as SelectList, "Select Experience", new { @class = "form-control" })*@
+                            <label> @Html.ValidationMessageFor(model => model.uqExperienceCode, "", new { @class = "text-danger" })</label>
+
+                            <select name="uqExperienceCode" title="Select Experience" class="form-control">
+
+                                @if (Model.uqExperienceCode != null)
+                                {
+                                    <option value="@Model.uqExperienceCode" @(Model.uqExperienceCode == @Model.uqExperienceCode ? "selected" : "")>
+                                        @Model.uqExperienceCode
+                                    </option>
+
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="20+">20+</option>
+                                    <option value="Fresh">Fresh</option>
+                                }
+                                else
+                                {
+                                    <option>Select Experience</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="20+">20+</option>
+                                    <option value="Fresh">Fresh</option>
+
+                                }
+                            </select>
+                            @*<select name="uqExperienceCode" class="form-control">
+                                <option>Select Experience</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="20+">20+</option>
+                                <option value="Fresh">Fresh</option>
+                            </select>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="box-header with-border">
+                <h3 class="box-title">Last Turnaround Information</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+
+                            @*<label>Last TA Attended</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.strTAattended, "", new { @class = "text-danger" })</label>
+
+                            @Html.TextBoxFor(model => model.strTAattended, new { @class = "form-control", placeholder = "Last TA Attended" })
+                        </div>
+                    </div>
+                    @*<div class="col-xs-6">
+                        <div class="form-group">
+                            <label>Year</label>
+                            <div class="input-group date " id="dtpDob">
+                                @Html.TextBoxFor(model => model.dtLastTAyear, new { @class = "form-control", placeholder = "Year" })
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>*@
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Rate</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.intTARate, "", new { @class = "text-danger" })</label>
+
+                            @Html.TextBoxFor(model => model.intTARate, new { @class = "form-control", placeholder = "Rate" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Year</label>*@
+                            <div class="input-group date dtpDob" id="">
+                                <label> @Html.ValidationMessageFor(model => model.dtLastTAyear, "", new { @class = "text-danger" })</label>
+
+                                @Html.TextBoxFor(model => model.dtLastTAyear, "{0:dd-MMM-yyyy}", new { @class = "form-control", placeholder = "Year" })
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="box-header with-border">
+                <h3 class="box-title">Annual TA 2020-21 Information</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+
+                            @*<label>Supervisor Name</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.uqSupervisorCode, "", new { @class = "text-danger" })</label>
+
+                            @Html.DropDownListFor(model => model.uqSupervisorCode, ViewBag.supervisorList as SelectList, "Select Supervisor", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Contractor</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.uqContractorCode, "", new { @class = "text-danger" })</label>
+
+                            @Html.DropDownListFor(model => model.uqContractorCode, ViewBag.ContractorList as SelectList, "Select Contractor", new { @class = "form-control", @disabled = "disabled" })
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Area Eng.Name</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.uqShiftCode, "", new { @class = "text-danger" })</label>
+
+                            @Html.DropDownListFor(model => model.uqShiftCode, ViewBag.shiftList as SelectList, "Select Shift", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Department</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.uqDepartmentCode, "", new { @class = "text-danger" })</label>
+
+                            @Html.DropDownListFor(model => model.uqDepartmentCode, ViewBag.departmentList as SelectList, "Select Department", new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Area Assigned</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.uqAreaCode, "", new { @class = "text-danger" })</label>
+
+                            @Html.DropDownListFor(model => model.uqAreaCode, ViewBag.areaList as SelectList, "Select Area", new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Accommodation</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.uqAccommodationCode, "", new { @class = "text-danger" })</label>
+
+                            @Html.DropDownListFor(model => model.uqAccommodationCode, ViewBag.accommodationList as SelectList, "Select Accommodation", new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <div class="form-group">
+                            @*<label>Duration From</label>*@
+                            <div class="input-group date dtpDob" id="">
+                                <label> @Html.ValidationMessageFor(model => model.dtDurationFrom, "", new { @class = "text-danger" })</label>
+
+                                @Html.TextBoxFor(model => model.dtDurationFrom, "{0:dd-MMM-yyyy}", new { @class = "form-control", placeholder = "From" })
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="form-group">
+                            @*<label>To</label>*@
+                            <div class="input-group date dtpDob" id="">
+                                <label> @Html.ValidationMessageFor(model => model.dtDurationTo, "", new { @class = "text-danger" })</label>
+
+                                @Html.TextBoxFor(model => model.dtDurationTo, "{0:dd-MMM-yyyy}", new { @class = "form-control", placeholder = "To" })
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>TA Year</label>*@
+                            <div class="input-group date dtpDob" id="">
+                                <label> @Html.ValidationMessageFor(model => model.dtTAyear, "", new { @class = "text-danger" })</label>
+
+                                @Html.TextBoxFor(model => model.dtTAyear, "{0:dd-MMM-yyyy}", new { @value = "2021-01-06", @class = "form-control", placeholder = "TA Year" })
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    @*<div class="col-xs-6">
+                        <div class="form-group">
+                            <label>To</label>
+                            <div class="input-group date " id="dtpDob">
+                                @Html.TextBoxFor(model => model.dtDurationTo, new { @class = "form-control", placeholder = "To" })
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+
+                            @*<label>Residence Status</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.uqResidenceCode, "", new { @class = "text-danger" })</label>
+
+                            @Html.DropDownListFor(model => model.uqResidenceCode, ViewBag.residenceList as SelectList, "Select Residence", new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            @*<label>Current Rate</label>*@
+                            <label> @Html.ValidationMessageFor(model => model.intTACurrentRate, "", new { @class = "text-danger" })</label>
+
+                            @Html.TextBoxFor(model => model.intTACurrentRate, new { @class = "form-control", placeholder = "Current Rate", @readonly = "readonly", @id = "rate" })
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                @*<div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Login Information</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>UserName @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })</label>
+                            @if (ViewBag.Edit == "1")
+                            {
+                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "UserName", @readonly = "readonly" })
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "UserName" })
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label>Password @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })</label>
+                            @Html.TextBoxFor(model => model.Password, new { @class = "form-control", placeholder = "Password" })
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password @Html.ValidationMessageFor(model => model.cPassword, "", new { @class = "text-danger" })</label>
+                            @Html.TextBoxFor(model => model.cPassword, new { @class = "form-control", placeholder = "Password" })
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+
+        </div>
+        @if (ViewBag.IsAdd == true || ViewBag.IsAdmin == true)
+        {
+            <div class="box-footer">
+
+
+                <button type="submit" class=" btn btn-primary">Submit</button>
+
+            </div>
+            <span id="duplicateID" class="alert-danger"> </span>
+
+        }
+
+    </div>
+
+            <div class="col-md-4">
+
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Photo</h3>
+                    </div>
+                    <div class="box-body">
+                        <div id="">
+                            <table border="0" cellpadding="0" cellspacing="0">
+
+                                @if (ViewBag.add != "add")
+                                {
+                                    <tr>
+
+                                        @if (Model.vbrPicture != null)
+                                        {
+                                            if (Model.vbrPicture.Length > 0)
+                                            {
+                                                var base64 = Convert.ToBase64String(Model.vbrPicture);
+                                                var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                                                <td style="text-align:center"><img width="200" height="200" src="@imgSrc" /></td>
+                                            }
+
+
+
+                                        }
+
+
+
+                                    </tr>
+                                 
+                                    <tr>
+                                        <td><div id="webcam"></div> </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td align="center"><u>Update Picture</u></td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td><img id="imgCapture" style="visibility: hidden; width: 320px;height: 240px" /></td>
+
+
+                                    </tr>
+                                }
+                                else
+                                {
+                                   
+                                    <tr>
+                                        <td><div id="webcam"></div> </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td align="center"><u>Captured Picture</u></td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td><img id="imgCapture" style="visibility: hidden; width: 320px;height: 240px" /></td>
+
+
+                                    </tr>
+                                }
+
+                            </table>
+                            <br />
+                            @if (ViewBag.IsAdd == true || ViewBag.IsAdmin == true)
+                            {
+                                <input type="button" value="Capture" class="btn btn-primary" onclick="Capture();" />
+                            }
+                            <br />
+                            <span id="camStatus"></span>
+                            @*<input type="file" name="Photo" id="UserPhoto" class="dropify-fr" data-allowed-file-extensions="png jpeg jpg gif" data-max-file-size="2M" data-show-loader="true" data-show-remove="true" data-errors-position="inside" />*@
+                            @*<div id="divUploadPhotoButtons" class="text-center">
+                                    <br />
+                                    <input type="submit" name="ChangePhoto" value="Change Photo" id="ChangePhoto" onclick="UploadPhoto();" class="btn btn-default btn-sm" />
+                                    <input id="btnPreviewPhoto" type="button" class="btn btn-default btn-sm" value="Preview Photo" onclick="PreviewPhoto();" />
+                                </div>*@
+                        </div>
+                        @*<div id="divPreviewPhoto" class="text-center">
+                                <center style="border: 2px solid #e6e6e6; padding: 10px 10px;">
+                                    <img src="@ViewBag.PhotoPath" alt="" class="img-responsive" style="height:180px; width:170px" />
+                                </center>
+                                <br />
+                                <input type="button" class="btn btn-default btn-sm" value="Change Photo" onclick="UploadPhoto();" />
+                            </div>*@
+                    </div>
+                </div>
+
+            </div>
+
+
+        }
+
+    </div>
+
+</section>
+<input type="hidden" id="type" value="@ViewBag.Edit" />
+
+<script>
+    $(function () {
+        var type = $('#type').val();
+        if (type == "1") {
+            $('#divPreviewPhoto').show();
+            $('#divUploadPhoto').hide();
+        }
+        else {
+            $('#divUploadPhotoButtons').hide();
+            $('#divPreviewPhoto').hide();
+            $('#divUploadPhoto').show();
+        }
+        console.log("test");
+
+        //$(document).ready(function () {
+        console.log("ready");
+
+
+            $('.dtpDob').datepicker({
+                format: 'dd-M-yyyy',
+                //Disable the future dates.
+            });
+       //})
+
+
+        //$('.dropify').dropify();
+        //var drEvent = $('#dropify-event').dropify();
+        //drEvent.on('dropify.beforeClear', function (event, element) {
+        //    return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        //});
+        //drEvent.on('dropify.afterClear', function (event, element) {
+        //    alert('File deleted');
+        //});
+        //$('.dropify-fr').dropify(
+        //    {
+        //        messages:
+        //        {
+        //            default: 'Click here to choose any image',
+        //            replace: 'Click remove to remove this image',
+        //            remove: 'Remove',
+        //        }
+        //    });
+    });
+    function SuccessAddUser(data) {
+        
+        if (data.status == "1") {
+            window.location = data.url;
+        }
+        if (data.status == "2") {
+            $('#message').html(data.message);
+        }
+        if (data.status == "3") {
+            var div = document.getElementById('duplicateID');
+            div.innerHTML += "WorkerID already exist";
+       
+
+        }
+    }
+    function FailureAddUser(data) {
+     
+      
+        if (data.status == "3") {
+            var div = document.getElementById('duplicateID');
+            div.innerHTML += "WorkerID already exist";
+        }
+    }
+    function UploadPhoto() {
+        $('#divPreviewPhoto').hide();
+        $('#divUploadPhoto').show();
+    }
+    function PreviewPhoto() {
+        $('#divPreviewPhoto').show();
+        $('#divUploadPhoto').hide();
+    }
+
+</script>
+

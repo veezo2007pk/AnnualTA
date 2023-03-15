@@ -1,0 +1,58 @@
+﻿@model AdvanceUMS.Models.tblAccomodation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblAccomodation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.strAccommodationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.strAccommodationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtCreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtCreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtMoidifyAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtMoidifyAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.intCreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.intCreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.intModifyAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.intModifyAt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.uqAccommodationCode }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

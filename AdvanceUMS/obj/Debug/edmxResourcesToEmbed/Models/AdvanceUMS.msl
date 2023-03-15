@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AdvanceUMSModelStoreContainer" CdmEntityContainer="AdvanceUMSEntities">
+    <FunctionImportMapping FunctionImportName="ModuleList" FunctionName="AdvanceUMSModel.Store.ModuleList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AdvanceUMSModel.ModuleList_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ModuleDeleteSortOrder" FunctionName="AdvanceUMSModel.Store.ModuleDeleteSortOrder">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AdvanceUMSModel.ModuleDeleteSortOrder_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="PageIcon" ColumnName="PageIcon" />
+          <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+          <ScalarProperty Name="PageSlug" ColumnName="PageSlug" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="ParentModuleID" ColumnName="ParentModuleID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ModuleInsertSortOrder" FunctionName="AdvanceUMSModel.Store.ModuleInsertSortOrder" />
+    <FunctionImportMapping FunctionImportName="ModuleUpdateSortOrder" FunctionName="AdvanceUMSModel.Store.ModuleUpdateSortOrder" />
+    <EntitySetMapping Name="tblAccomodations">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblAccomodation">
+        <MappingFragment StoreEntitySet="tblAccomodation">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="strAccommodationName" ColumnName="strAccommodationName" />
+          <ScalarProperty Name="uqAccommodationCode" ColumnName="uqAccommodationCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAreas">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblArea">
+        <MappingFragment StoreEntitySet="tblArea">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="uqAreaCode" ColumnName="uqAreaCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblContractors">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblContractor">
+        <MappingFragment StoreEntitySet="tblContractor">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="strContractorName" ColumnName="strContractorName" />
+          <ScalarProperty Name="uqContractorCode" ColumnName="uqContractorCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblContractorUsers">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblContractorUser">
+        <MappingFragment StoreEntitySet="tblContractorUser">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="uqContractorId" ColumnName="uqContractorId" />
+          <ScalarProperty Name="strPassword" ColumnName="strPassword" />
+          <ScalarProperty Name="strUsername" ColumnName="strUsername" />
+          <ScalarProperty Name="uqId" ColumnName="uqId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCountries">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblCountry">
+        <MappingFragment StoreEntitySet="tblCountry">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDepartments">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblDepartment">
+        <MappingFragment StoreEntitySet="tblDepartment">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="uqDepartmentCode" ColumnName="uqDepartmentCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblExperiences">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblExperience">
+        <MappingFragment StoreEntitySet="tblExperience">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="strExperienceName" ColumnName="strExperienceName" />
+          <ScalarProperty Name="uqExperienceCode" ColumnName="uqExperienceCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblModules">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblModule">
+        <MappingFragment StoreEntitySet="tblModule">
+          <ScalarProperty Name="ParentModuleID" ColumnName="ParentModuleID" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="PageSlug" ColumnName="PageSlug" />
+          <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+          <ScalarProperty Name="PageIcon" ColumnName="PageIcon" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblResidences">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblResidence">
+        <MappingFragment StoreEntitySet="tblResidence">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="strResidenceName" ColumnName="strResidenceName" />
+          <ScalarProperty Name="uqResidenceCode" ColumnName="uqResidenceCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRoles">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblRole">
+        <MappingFragment StoreEntitySet="tblRole">
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+          <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+          <ScalarProperty Name="InsertBy" ColumnName="InsertBy" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRolePermissions">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblRolePermission">
+        <MappingFragment StoreEntitySet="tblRolePermission">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsEdit" ColumnName="IsEdit" />
+          <ScalarProperty Name="IsAdd" ColumnName="IsAdd" />
+          <ScalarProperty Name="IsView" ColumnName="IsView" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSettings">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblSetting">
+        <MappingFragment StoreEntitySet="tblSetting">
+          <ScalarProperty Name="SMTPPort" ColumnName="SMTPPort" />
+          <ScalarProperty Name="SMTPEmail" ColumnName="SMTPEmail" />
+          <ScalarProperty Name="SMTPPassword" ColumnName="SMTPPassword" />
+          <ScalarProperty Name="SMTPUserName" ColumnName="SMTPUserName" />
+          <ScalarProperty Name="SMTPHost" ColumnName="SMTPHost" />
+          <ScalarProperty Name="FeviconPath" ColumnName="FeviconPath" />
+          <ScalarProperty Name="LogoPath" ColumnName="LogoPath" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSkills">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblSkill">
+        <MappingFragment StoreEntitySet="tblSkills">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="strSkillName" ColumnName="strSkillName" />
+          <ScalarProperty Name="uqSkillCode" ColumnName="uqSkillCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblToDoes">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblToDo">
+        <MappingFragment StoreEntitySet="tblToDo">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="CompleteDate" ColumnName="CompleteDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTrades">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblTrade">
+        <MappingFragment StoreEntitySet="tblTrade">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="uqTradeCode" ColumnName="uqTradeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserLogs">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblUserLog">
+        <MappingFragment StoreEntitySet="tblUserLog">
+          <ScalarProperty Name="MoreInfo" ColumnName="MoreInfo" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblJoiningStats">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblJoiningStat">
+        <MappingFragment StoreEntitySet="tblJoiningStat">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="strJoiningStatusCode" ColumnName="strJoiningStatusCode" />
+          <ScalarProperty Name="uqJoiningStatusCode" ColumnName="uqJoiningStatusCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblWorkers">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblWorker">
+        <MappingFragment StoreEntitySet="tblWorker">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="intTACurrentRate" ColumnName="intTACurrentRate" />
+          <ScalarProperty Name="intJoiningStatusCode" ColumnName="intJoiningStatusCode" />
+          <ScalarProperty Name="vbrPicture" ColumnName="vbrPicture" />
+          <ScalarProperty Name="dtTAyear" ColumnName="dtTAyear" />
+          <ScalarProperty Name="uqAccommodationCode" ColumnName="uqAccommodationCode" />
+          <ScalarProperty Name="uqDepartmentCode" ColumnName="uqDepartmentCode" />
+          <ScalarProperty Name="uqContractorCode" ColumnName="uqContractorCode" />
+          <ScalarProperty Name="uqResidenceCode" ColumnName="uqResidenceCode" />
+          <ScalarProperty Name="dtDurationTo" ColumnName="dtDurationTo" />
+          <ScalarProperty Name="dtDurationFrom" ColumnName="dtDurationFrom" />
+          <ScalarProperty Name="uqAreaCode" ColumnName="uqAreaCode" />
+          <ScalarProperty Name="strAreaEngName" ColumnName="strAreaEngName" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="intTARate" ColumnName="intTARate" />
+          <ScalarProperty Name="dtLastTAyear" ColumnName="dtLastTAyear" />
+          <ScalarProperty Name="strTAattended" ColumnName="strTAattended" />
+          <ScalarProperty Name="uqExperienceCode" ColumnName="uqExperienceCode" />
+          <ScalarProperty Name="uqSkillCode" ColumnName="uqSkillCode" />
+          <ScalarProperty Name="strQualification" ColumnName="strQualification" />
+          <ScalarProperty Name="uqTradeCode" ColumnName="uqTradeCode" />
+          <ScalarProperty Name="strAddress" ColumnName="strAddress" />
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="intAge" ColumnName="intAge" />
+          <ScalarProperty Name="strEmergencyNo" ColumnName="strEmergencyNo" />
+          <ScalarProperty Name="strContact" ColumnName="strContact" />
+          <ScalarProperty Name="strCNIC" ColumnName="strCNIC" />
+          <ScalarProperty Name="strFatherName" ColumnName="strFatherName" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="uqContractorUserId" ColumnName="uqContractorUserId" />
+          <ScalarProperty Name="uqId" ColumnName="uqId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblShifts">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblShift">
+        <MappingFragment StoreEntitySet="tblShift">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="tmTo" ColumnName="tmTo" />
+          <ScalarProperty Name="tmFrom" ColumnName="tmFrom" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="uqShiftId" ColumnName="uqShiftId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSupervisors">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblSupervisor">
+        <MappingFragment StoreEntitySet="tblSupervisor">
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="strPassword" ColumnName="strPassword" />
+          <ScalarProperty Name="strUsername" ColumnName="strUsername" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="uqSupervisorId" ColumnName="uqSupervisorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="AdvanceUMSModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="uqContractorCode" ColumnName="uqContractorCode" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+          <ScalarProperty Name="InsertBy" ColumnName="InsertBy" />
+          <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+          <ScalarProperty Name="FailedPasswordCount" ColumnName="FailedPasswordCount" />
+          <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="uqSupervisorId" ColumnName="uqSupervisorId" />
+          <ScalarProperty Name="IsSupervisor" ColumnName="IsSupervisor" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SkypeID" ColumnName="SkypeID" />
+          <ScalarProperty Name="LinkedInLink" ColumnName="LinkedInLink" />
+          <ScalarProperty Name="GoogleLink" ColumnName="GoogleLink" />
+          <ScalarProperty Name="TwitterLink" ColumnName="TwitterLink" />
+          <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

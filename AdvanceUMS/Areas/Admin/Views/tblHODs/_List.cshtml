@@ -1,0 +1,84 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblHOD>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+    <table id="tblHOD" class="table">
+        <thead>
+            <tr>
+                <th>HOD Name</th>
+                <th>Created At</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.strHODName</td>
+
+                <td>@item.dtCreatedAt</td>
+
+                <td>
+                <td>
+                    @if (ViewBag.IsEdit == true)
+                    {
+                        <a href="/admin/tblHODs/edit?ID=@item.uqHODId" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                    }
+                    @*@if (ViewBag.IsDelete == true)
+                    {
+                        <a href="#" data-url="/admin/tblHODs/delete/@item.uqHODId" class="delete btn btn-outline-danger btn-sm"><i class="fa fa-trash-alt"></i> Delete</a>
+                    }*@
+                </td>
+               
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+
+
+
+<script src="/scripts/Common.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tblHOD').DataTable({
+           pageLength: '100',
+            dom: 'Bfrtip',
+            //buttons: [
+                
+            //    'excelHtml5',
+             
+            //    'pdfHtml5'
+            //]
+        });
+    });
+    $(document).ready(function () {
+        $("#tblUser").DataTable();
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblUser').load(data.url);
+                    $("#tblUser").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+</script>

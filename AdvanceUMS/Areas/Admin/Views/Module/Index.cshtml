@@ -1,0 +1,47 @@
+﻿
+@{
+
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Module List
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Module List</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <input data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="button"  class="btn-bootstrap-dialog btn btn-info pull-right" title="Add Module" data-url="/admin/module/create" value="Add Module" data-toggle="modal" />
+                    </div>
+                    <div id="divModule">
+                        @{Html.RenderAction("PopulateModule", "Module");}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/scripts/Common.js"></script>
+<div class="modal fade" id="bootstrapDialog" role="dialog" aria-labelledby="myModal-label" aria-hidden="true">
+
+</div>
+<script>
+    function CreateSuccess(data) {
+        if (data.status == "1") {            
+            $('#bootstrapDialog').modal('hide');
+            $('#divModule').load("/Admin/Module/PopulateModule");
+        }
+        if (data.status = "2") {
+            $('#Modelmessage').html(data.message);
+        }
+    }
+</script>

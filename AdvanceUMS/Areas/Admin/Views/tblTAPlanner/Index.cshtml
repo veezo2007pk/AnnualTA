@@ -1,0 +1,494 @@
+﻿@model AdvanceUMS.Helper.WorkerViewModel
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+    string s = dHelper.year();
+}
+<h6 class="card-title mb-2">Manpower Load Plan</h6>
+
+
+
+<div class="content-wrapper">
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div id="calender"></div>
+                    <div>
+                        <section class="content">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="box">
+                                        <input type="hidden" value="@ViewBag.year" id="year" />
+                                        <section class="content">
+                                            @using (Html.BeginForm("Index", "tblTAPlanner", FormMethod.Get))
+                                            {
+                                                <div class="row">
+
+
+
+                                                    <div class="col-8">
+
+
+                                                        @Html.Raw(ViewBag.Message)
+                                                        <div class="box box-primary">
+
+
+
+
+                                                            <div class="box-body">
+
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <div class="form-group">
+                                                                            <label>Filter By Year</label>
+                                                                            <select name="year" class="form-control">
+                                                                                <option value=""></option>
+                                                                                @foreach (var item in ViewBag.yearList)
+                                                                                {
+                                                                                    <option value="@item.Text">@item.Text</option>
+                                                                                }
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <div class="form-group" style="padding-top: 28px;">
+                                                                            <label></label>
+                                                                            <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class=" btn btn-primary">Search</button>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </div>
+
+
+                                                        </div>
+
+
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            }
+                                        </section>
+
+                                        <div class="row" id="divReport">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title"><span id="eventTitle"></span></h4>
+
+                                    <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+
+                                
+                                    <p id="pDetails"></p>
+                                    <button type="button" id="btnEdit" class="btn btn-primary "> <span class="fa fa-edit"></span> Edit</button>
+                                    @*<button type="button" id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right:5px;">
+            <span class="fa fa-edit"></span> Edit
+        </button>*@
+                                    <button type="button" id="btnDelete" class="btn btn-danger"> <span class="fa fa-backspace"></span> Remove</button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background-color:white;" id="myModalSave" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Save</h4>
+
+                                    <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="col-md-12 form-horizontal">
+                                        <input type="hidden" id="intTAPlanningCode" />
+                                        <div class="form-group">
+
+                                            @Html.DropDownListFor(model => model.uqTradeCode, ViewBag.tradeList as SelectList, "Select Trade", new { @class = "form-control", @id = "tradeid" })
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            @Html.DropDownListFor(model => model.uqShiftCode, ViewBag.shiftList as SelectList, "Select Shift", new { @class = "form-control", @id = "shiftid" })
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            @Html.DropDownListFor(model => model.uqAreaCode, ViewBag.areaList as SelectList, "Select Area", new { @class = "form-control", @id = "areaid" })
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            @Html.DropDownListFor(model => model.uqDepartmentCode, ViewBag.departmentList as SelectList, "Select Department", new { @class = "form-control", @id = "departmentid" })
+
+                                        </div>
+                                        <div style="display:none;" class="form-group">
+                                            <label>Start</label>
+                                            <div class="input-group date" id="dtp1">
+                                                <input disabled type="text" id="txtStart" class="form-control" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div style="display:none;"  class="form-group" id="divEndDate">
+                                            <label>End</label>
+                                            <div class="input-group date" id="dtp2">
+                                                <input disabled type="text" id="txtEnd" class="form-control" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>No</label>
+                                            <input type="number" id="txtintDays" inputmode="numeric" class="form-control" />
+                                        </div>
+                                        <button type="button" id="btnSave" class="btn btn-success">Save</button>
+                                        <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var searchText = $("#year").val();
+        if (searchText == null || searchText == '' || searchText == 'undefined') {
+            searchText = @s;
+        }
+
+        //ASPX page URL to load report
+        var src = '/Report/PlannerData.aspx?';
+        //We can add parameters here
+        src = src + "searchText=" + searchText
+
+        //We can append more than one parameter like below
+        //var companyId = 1
+        //src = src + "compnayID=" + companyId
+
+        //Create a dynamic iframe here and append this to div tag
+        var iframe = '<iframe id="reportFrame" width="100%" height="800px" scrolling="no" frameborder="0" src="' + src + '" allowfullscreen></iframe>';
+        $("#divReport").html(iframe);
+
+
+
+        var events = [];
+        var selectedEvent = null;
+        FetchEventAndRenderCalendar();
+        function FetchEventAndRenderCalendar() {
+            events = [];
+            $.ajax({
+                type: "GET",
+                url: "/tblTAPlanner/GetEvents",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+
+                        events.push({
+                            title: v.strTradeName + ' | ' + v.intDays + ' | ' + v.strAreaName + ' | ' + v.strShiftName,
+                            intTAPlanningCode: v.intTAPlanningCode,
+                            uqTradeCode: v.uqTradeCode,
+                            strTradeName: v.strTradeName,
+                            strAreaName: v.strAreaName,
+                            strDepartmentName: v.strDepartmentName,
+                            uqShiftCode: v.uqShiftCode,
+                            uqAreaCode: v.uqAreaCode,
+                            strShiftName: v.strShiftName,
+                            uqDepartmentCode: v.uqDepartmentCode,
+                            intDays: v.intDays,
+                            start: moment(v.dtFrom),
+                            end: v.dtTo != null ? moment(v.dtTo) : null,
+                            allDay: true,
+                            editable: false
+
+
+                        });
+                    })
+
+                    GenerateCalender(events);
+                },
+                beforeSend: function () {
+                    // Show image container
+                    $('.loading').show();
+                },
+                error: function (error) {
+                    alert('failed');
+                },
+                complete: function (data) {
+                   
+                    // Hide image container
+                    $('.loading').hide();
+                }
+            })
+        }
+
+        function GenerateCalender(events) {
+            $('#calender').fullCalendar('destroy');
+
+            $('#calender').fullCalendar({
+                contentHeight: 400,
+                //defaultDate: new Date(),
+                timeFormat: null,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    //right: 'month,basicWeek,basicDay,agenda'
+                },
+                eventLimit: true,
+                eventColor: '#378006',
+
+                events: events,
+                eventClick: function (calEvent, jsEvent, view) {
+                    console.log(calEvent);
+
+                    selectedEvent = calEvent;
+                    //$('#myModal #eventTitle').text(calEvent.uqTradeCode);
+                    var $intDays = $('<div/>');
+                    $intDays.append($('<p/>').html('<b>Start: </b>' + calEvent.start.format("YYYY-MM-DD HH:mm")));
+
+                    $intDays.append($('<p/>').html('<b>End: </b>' + calEvent.end.format("YYYY-MM-DD  HH:mm")));
+
+                    $intDays.append($('<p/>').html('<b>Trade: </b>' + calEvent.strTradeName));
+                    $intDays.append($('<p/>').html('<b>Area: </b>' + calEvent.strAreaName));
+                    $intDays.append($('<p/>').html('<b>Department: </b>' + calEvent.strDepartmentName));
+                    $intDays.append($('<p/>').html('<b>Shift: </b>' + calEvent.strShiftName));
+                    $intDays.append($('<p/>').html('<b>No: </b>' + calEvent.intDays));
+                    $('#myModal #pDetails').empty().html($intDays);
+
+                    $('#myModal').modal();
+                },
+                draggable: false,
+                selectable: true,
+                select: function (start, end) {
+                    selectedEvent = {
+                        intTAPlanningCode: '',
+                        uqTradeCode: '',
+                        uqAreaCode: '',
+                        uqDepartmentCode: '',
+                        uqShiftCode: '',
+                        intDays: '',
+                        intTAPlanningCode: '',
+
+                        start: start,
+                        end: end,
+
+                    };
+                    openAddEditForm();
+                    $('#calendar').fullCalendar('unselect');
+                },
+                editable: true,
+                eventDrop: function (event) {
+                    var data = {
+
+                        intTAPlanningCode: event.intTAPlanningCode,
+                        uqTradeCode: event.uqTradeCode,
+                        uqShiftCode: event.uqShiftCode,
+                        uqAreaCode: event.uqAreaCode,
+                        uqDepartmentCode: event.uqDepartmentCode,
+                        intTAPlanningCode: event.intTAPlanningCode,
+
+                        Start: event.start.format('YYYY-MM-DD HH:mm'),
+                        End: event.end.format('YYYY-MM-DD HH:mm'),
+                        intDays: event.intDays,
+                        editable:false
+
+                    };
+                    SaveEvent(data);
+                }
+            })
+        }
+
+        $('#btnEdit').click(function () {
+            //Open modal dialog for edit event
+            openAddEditForm();
+        })
+        $('#btnDelete').click(function () {
+            if (selectedEvent != null && confirm('Are you sure?')) {
+                $("#btnDelete").text("Please Wait");
+                $('#btnDelete').attr('disabled', 'disabled');
+                $.ajax({
+                    type: "POST",
+                    url: '/tblTAPlanner/DeleteEvent',
+                    data: { 'eventID': selectedEvent.intTAPlanningCode },
+                    success: function (data) {
+                        if (data.status) {
+                            //Refresh the calender
+                            
+                            $('#myModal').modal('hide');
+                            $('#myModalSave').modal('hide');
+                            $("#btnDelete").text("Remove");
+                            $('#btnDelete').removeAttr('disabled');
+                            
+                        }
+                    },
+                    beforeSend: function () {
+                        // Show image container
+                        $('.loading').show();
+                    },
+                    error: function () {
+                        alert('Failed');
+                    },
+                    complete: function (data) {
+                        FetchEventAndRenderCalendar();
+                        // Hide image container
+                        $('.loading').hide();
+                    }
+                })
+            }
+        })
+
+        $('#dtp1,#dtp2').datetimepicker({
+            format: 'yyyy-MM-dd HH:mm'
+        });
+
+        $('#chkIsFullDay').change(function () {
+            if ($(this).is(':checked')) {
+                $('#divEndDate').hide();
+            }
+            else {
+                $('#divEndDate').show();
+            }
+        });
+
+        function openAddEditForm() {
+            console.log(selectedEvent);
+            if (selectedEvent != null) {
+                $('#tradeid').val(selectedEvent.uqTradeCode);
+                $('#areaid').val(selectedEvent.uqAreaCode);
+                $('#departmentid').val(selectedEvent.uqDepartmentCode);
+                $('#intTAPlanningCode').val(selectedEvent.intTAPlanningCode);
+                $('#shiftid').val(selectedEvent.uqShiftCode);
+                $('#txtStart').val(selectedEvent.start.format('YYYY-MM-DD HH:mm'));
+
+
+                $('#txtEnd').val(selectedEvent.end.format('YYYY-MM-DD HH:mm'));
+                $('#txtintDays').val(selectedEvent.intDays);
+
+            }
+            $('#myModal').modal('hide');
+            $('#myModalSave').modal();
+        }
+
+        $('#btnSave').click(function () {
+            $("#btnSave").text("Please Wait");
+            $('#btnSave').attr('disabled', 'disabled');
+            //Validation/
+            if ($('#tradeid').val() == "") {
+                alert('Trade required');
+                return;
+            }
+            if ($('#shiftid').val() == "") {
+                alert('Shift required');
+                return;
+            }
+            if ($('#areaid').val() == "") {
+                alert('Area required');
+                return;
+            }
+            if ($('#departmentid').val() == "") {
+                alert('Department required');
+                return;
+            }
+            if ($('#txtintDays').val() == "") {
+                alert('Days required');
+                return;
+            }
+
+            else {
+                var startDate = moment($('#txtStart').val(), "YYYY-MM-DD HH:mm").toDate();
+                var endDate = moment($('#txtEnd').val(), "YYYY-MM-DD HH:mm").toDate();
+                if (startDate > endDate) {
+                    alert('Invalid end date');
+                    return;
+                }
+            }
+
+            var data = {
+                uqTradeCode: $('#tradeid').val(),
+                uqShiftCode: $('#shiftid').val(),
+                uqAreaCode: $('#areaid').val(),
+                uqDepartmentCode: $('#departmentid').val(),
+                dtFrom: $('#txtStart').val(),
+                dtTo: $('#txtEnd').val(),
+                intDays: $('#txtintDays').val(),
+                intTAPlanningCode: $('#intTAPlanningCode').val()
+
+            }
+            $.ajax({
+                type: "POST",
+                url: '/tblTAPlanner/SaveEvent',
+                data: data,
+                success: function (data) {
+                    if (data.status) {
+                        //Refresh the calender
+
+                        $('#myModalSave').modal('hide');
+                        $("#btnSave").text("Save");
+                        $('#btnSave').removeAttr('disabled');
+                    }
+                },
+                beforeSend: function () {
+                    // Show image container
+                    $('.loading').show();
+                },
+                error: function () {
+                    alert('Failed');
+                },
+                complete: function (data) {
+                    FetchEventAndRenderCalendar();
+                    // Hide image container
+                    $('.loading').hide();
+                }
+            })
+            // call function for submit data to the server
+        })
+
+        function SaveEvent(data) {
+            
+        }
+    })
+</script>
+
+

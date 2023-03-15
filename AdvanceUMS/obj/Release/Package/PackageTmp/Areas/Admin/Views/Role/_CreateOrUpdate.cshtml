@@ -1,0 +1,123 @@
+﻿@model AdvanceUMS.Helper.RoleViewModel
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+<script src="/scripts/jquery.validate.min.js"></script>
+<script src="/scripts/jquery.validate.unobtrusive.min.js"></script>
+<!-- Main content -->
+<section class="content">
+    <div class="row">        
+        @using (Ajax.BeginForm("Create", "Role", new { }, new AjaxOptions { OnSuccess = "SuccessAddRole" }, new { enctype = "multipart/form-data" }))
+            {
+            @Html.HiddenFor(model => model.ID)
+            <div class="col-12">
+                <div id="message"> </div>
+                @Html.Raw(ViewBag.Message)
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">General</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Name @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })</label>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Name" })
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Display Name</label>
+                                    @Html.TextBoxFor(model => model.DisplayName, new { @class = "form-control", placeholder = "Display Name" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Permissions</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th width="150px">View</th>
+                                            <th width="150px">Create</th>
+                                            <th width="150px">Edit</th>
+                                            <th width="150px">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewBag.ModuleList)
+                                        {
+                                            <tr>
+                                                <td>@item.FullName</td>
+                                                <td>
+                                                    <label class="switch m-r-20">
+                                                        <input type="checkbox" name="view[@item.id]" class="minimal" @dHelper.CheckRolePermission("view", item.id, ViewBag.RoleID)>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="switch m-r-20">
+                                                        <input type="checkbox" name="create[@item.id]" class="minimal" @dHelper.CheckRolePermission("create", item.id, ViewBag.RoleID)>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="switch m-r-20">
+                                                        <input type="checkbox" name="edit[@item.id]" class="minimal" @dHelper.CheckRolePermission("edit", item.id, ViewBag.RoleID)>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="switch m-r-20">
+                                                        <input type="checkbox" name="delete[@item.id]" class="minimal" @dHelper.CheckRolePermission("delete", item.id, ViewBag.RoleID)>
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <a data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" href="/admin/role" class="btn btn-secondary pull-right margin">Cancel</a>
+                        <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class="btn btn-primary pull-right margin">Submit</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<input type="hidden" id="type" value="@ViewBag.Edit" />
+<link rel="stylesheet" href="/content/assets/css/dropify.min.css" />
+<script src="/content/assets/js/dropify.min.js"></script>
+<script>
+    $(function () {
+        $('input[type="checkbox"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue'
+        });
+        var type = $('#type').val();
+        if (type == "1") {
+            $('#divPreviewPhoto').show();
+            $('#divUploadPhoto').hide();
+        }
+        else {
+            $('#divUploadPhotoButtons').hide();
+            $('#divPreviewPhoto').hide();
+            $('#divUploadPhoto').show();
+        }
+    });
+    function SuccessAddRole(data) {        
+        if (data.status == "1") {
+            window.location = data.url;
+        }
+        if (data.status == "2") {
+            $('#message').html(data.message);
+        }
+    }
+
+</script>

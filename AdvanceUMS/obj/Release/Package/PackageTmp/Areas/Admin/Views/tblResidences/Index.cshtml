@@ -1,0 +1,16 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblResidence>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+<h6 class="card-title mb-2">Residence List</h6>
+
+
+@if (ViewBag.IsAdd == true)
+{
+    <div class="box-header">
+        <a data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" href="/admin/tblResidences/create" class="btn btn-primary pull-right mt-3 mb-3">Add Residence</a>
+    </div>
+}
+
+
+@{Html.RenderAction("PopulateResidences", "tblResidences");}

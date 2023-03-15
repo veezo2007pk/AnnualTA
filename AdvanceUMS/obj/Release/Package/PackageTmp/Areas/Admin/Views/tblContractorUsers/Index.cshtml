@@ -1,0 +1,69 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblContractorUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.strUsername)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.strPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.uqContractorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtCreatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtMoidifyAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intCreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intModifyAt)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.strUsername)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.strPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.uqContractorId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtCreatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dtMoidifyAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intCreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intModifyAt)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.uqId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.uqId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.uqId })
+        </td>
+    </tr>
+}
+
+</table>

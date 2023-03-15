@@ -1,0 +1,25 @@
+﻿@model AdvanceUMS.Models.tblToDo
+
+
+<div id="ModalPopUp" class="modal-dialog modal-xs" role="document">
+    <div class="modal-content">
+        <div class="modal-header bg-primary">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icons-office-52"></i></button>
+            <h4 class="modal-title"><strong>Add </strong> ToDo</h4>
+        </div>
+        @using (Ajax.BeginForm("Create", "ToDo", null, new AjaxOptions { OnSuccess = "CreateSuccess" }, new { @id = "formid" }))
+        {
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-control-label"> Description</label>
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = "Description", @required = "required" })
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close </button>
+                <button type="submit" id="save_type" name="state" value="Save" class="btn btn-primary"> Save </button>
+            </div>
+        }
+    </div>
+</div>
+

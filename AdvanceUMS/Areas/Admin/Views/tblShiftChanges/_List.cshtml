@@ -1,0 +1,224 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblSupervisorListForm>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+
+    <section class="">
+        <div class="row">
+            @*@using (Ajax.BeginForm("AddUser", "tblSupervisors", new { }, new AjaxOptions { OnSuccess = "SuccessAddUser" }, new { enctype = "multipart/form-data" }))
+                {*@
+
+            <div id="message"></div>
+            @Html.Raw(ViewBag.Message)
+            <div class="col-8">
+                <div class="box box-primary">
+                    
+                    <div class="box-body">
+                        <div class="row">
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    @using (Html.BeginForm("FilterByDepartment", "tblShiftChanges", FormMethod.Post, new { id = "demoForm", name = "demoForm" }))
+                                    {
+                                        @Html.DropDownList("uqShiftId", ViewBag.shiftList as SelectList, "Select Shift", new { @id = "shiftchange", @class = "form-control SelectedShiftIndexChanged" })
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+
+                                    @Html.DropDownList("uqSupervisorId", ViewBag.supervisorList as SelectList, "Select Supervisor", new { @class = "form-control SelectedSupervisorIndexChanged" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            @*}*@
+        </div>
+    </section>
+    @{
+        int sn = 1;
+    }
+    @using (Html.BeginForm("UpdateWorkerShift", "tblShiftChanges", FormMethod.Post))
+    {
+        <input type="hidden" id="shift" name="shift" />
+        <input type="hidden" id="supervisor" name="supervisor" />
+        <table id="tblSupervisor" class="table table-responsive">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>
+
+
+                    <th>S/N</th>
+                    <th>Worker Id</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Trade</th>
+                    <th>Department</th>
+                    <th>Shift</th>
+                    <th>Supervisor</th>
+                    <th>Area</th>
+                    <th>Age</th>
+
+                    <th>Status</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td><input type="checkbox" name="ID" value="@item.tblWorker.uqId " class="custom-checkbox chkCheckBoxId" /></td>
+                        <td>@sn</td>
+                        <td>@item.tblWorker.strWorkderId</td>
+                        <td>
+                            @item.tblWorker.strName
+                        </td>
+                        <td>@item.tblWorker.strContact</td>
+
+                        <td>@item.tblTrade.strTradeName</td>
+
+
+                        <td>@item.tblDepartment.strDepartmentName</td>
+
+                        <td>@item.tblShift.strShiftName</td>
+
+
+                        <td>@item.tblSupervisor.strSupervisorName</td>
+
+                        <td>@item.tblArea.strAreaName</td>
+
+                        <td>@item.tblWorker.intAge</td>
+
+                        @if (item.tblJoiningStat.uqJoiningStatusCode == new Guid("D3B967C8-2F02-4937-8A79-29CABD9101D1"))
+                        {
+                            <td style="        color: #32CD32">
+
+                                @item.tblJoiningStat.strJoiningStatusCode
+
+                            </td>
+                        }
+                        else if (item.tblJoiningStat.uqJoiningStatusCode == new Guid("200282CB-737F-471C-AB34-5B721BF15742"))
+                        {
+                            <td style="color:blue;">
+                                @item.tblJoiningStat.strJoiningStatusCode
+                            </td>
+                        }
+                        else if (item.tblJoiningStat.uqJoiningStatusCode == new Guid("D16E4B36-3E95-4A76-8084-76A848153E9C"))
+                        {
+                            <td style="color:red;">
+                                @item.tblJoiningStat.strJoiningStatusCode
+                            </td>
+                        }
+                        else if (item.tblJoiningStat.uqJoiningStatusCode == new Guid("AB0AC9F1-1F95-403F-8322-DAE4CA038521"))
+                        {
+                            <td style="        color: #FF1493;">
+
+                                @item.tblJoiningStat.strJoiningStatusCode
+                            </td>
+                        }
+
+
+
+
+
+
+
+
+
+                    </tr>
+                    sn++;
+                }
+
+
+
+
+
+
+            </tbody>
+        </table>
+        <button  type="submit" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" class="engineerbtn btn btn-primary btn-xs">Save</button>
+
+    }
+</div>
+
+
+
+
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+
+<script src="/scripts/Common.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        
+
+        $('#tblSupervisor').DataTable({
+            dom: "Bfrtip",
+            scrollY: "300px",
+            scrollX: true,
+            scrollCollapse: true,
+            pageLength: 2000,
+            buttons: ['excel', 'colvis'],
+            fixedColumns: {
+                leftColumns: 2
+            }
+        });
+
+        
+
+
+      
+    });
+
+    $(document).ready(function () {
+        $('#checkBoxAll').click(function () {
+            if ($(this).is(":checked")) {
+                $(".chkCheckBoxId").prop("checked", true)
+            }
+            else {
+                $(".chkCheckBoxId").prop("checked", false)
+            }
+        });
+
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblUser').load(data.url);
+                    $("#tblUser").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+</script>

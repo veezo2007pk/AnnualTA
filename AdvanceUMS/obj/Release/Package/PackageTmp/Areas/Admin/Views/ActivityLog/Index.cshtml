@@ -1,0 +1,27 @@
+﻿
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Activity Log
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Activity Log</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    @{ Html.RenderAction("GetActivityLog", "ActivityLog");}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

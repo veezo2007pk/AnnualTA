@@ -1,0 +1,782 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblSupervisorListForm>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+    string s = dHelper.year();
+}
+@{
+    @ViewBag.hour
+}
+<style>
+    .clock {
+        /*position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translateX(-50%) translateY(-50%);
+        */
+        position: relative;
+        color: #3c8dbc;
+        font-size: 40px;
+        font-family: Orbitron;
+        letter-spacing: 7px;
+        text-align: center;
+    }
+</style>
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+    @*<section class="content">
+        @using (Html.BeginForm("Index", "tblOvertimes", FormMethod.Get))
+        {
+            <div class="row">
+
+
+
+                <div class="col-8">
+
+
+                    @Html.Raw(ViewBag.Message)
+                    <div class="box box-primary">
+
+
+
+
+                        <div class="box-body">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Filter By Year</label>
+                                        <select name="year" class="form-control">
+                                            <option value=""></option>
+                                            @foreach (var item in ViewBag.yearList)
+                                            {
+                                                <option value="@item.Text">@item.Text</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group" style="padding-top: 28px;">
+                                        <label></label>
+                                        <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class=" btn btn-primary">Search</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+        }
+    </section>*@
+
+    <section>
+        <div class="row">
+
+
+
+
+            @*<div class="col-md-12">
+
+                    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+
+
+
+
+                </div>*@
+            @*<div class="center col-md-4">
+
+                </div>
+                <div class="center col-md-4">
+                  <label>Select Date</label>
+                    <input type="date" class="form-control" />
+                </div>
+                <div class="center col-md-4">
+
+                </div>*@
+
+
+        </div>
+
+    </section>
+
+    @{
+        int sn = 1;
+    }
+    @if (ViewBag.supervisorCode != null)
+    {
+        <table id="tblSupervisor" class="table table-bordered table-responsive  ">
+            <thead>
+                <tr>
+                    @*<th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>*@
+                    <th>S/N</th>
+                    <th>Worker ID</th>
+                    <th>Name</th>
+                    <th>Trade</th>
+                    <th>Area</th>
+                    <th>Shift</th>
+                    <th>Contractor</th>
+
+                    <th>Check In Time</th>
+                    <th>Overtime</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @*@using (Html.BeginForm("InsertOvertime", "tblOvertimes", FormMethod.Post))
+                    {*@
+
+                @foreach (var item in Model)
+                {
+
+
+                    <tr class="@sn">
+                        @*<td><input type="checkbox" name="ID" value="@item.tblAttendance.uqAttendanceCode " class="custom-checkbox chkCheckBoxId" /></td>*@
+                        <input type="hidden" class="uqAttendanceCode" value="@item.tblAttendance.uqAttendanceCode" name="uqAttendanceCode" />
+                        <td>@sn</td>
+                        <td>@item.tblWorker.strWorkderId</td>
+                        <td>@item.tblWorker.strName</td>
+                        <td>@item.tblTrade.strTradeName</td>
+                        <td>@item.tblArea.strAreaName</td>
+                        <td>@item.tblShift.strShiftName</td>
+                        <td>@item.tblContractor.strContractorName</td>
+                        <td>@item.tblAttendance.dtCheckIn</td>
+
+                        <td>
+                            <select style="width:100%" class="ddlClassType">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+
+                            </select>
+                        </td>
+                        @if (Convert.ToInt32(item.tblAttendance.Year) < Convert.ToInt32(s))
+                        {
+
+                        }
+                        else
+                        {
+                            <td>
+                                <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="button" class="btnSubmit engineerbtn btn btn-outline-primary btn-sm" onclick="return submitdata(@sn)"><i class="fa fa-save"></i> Save</button>
+                            </td>
+                        }
+                    </tr>
+
+                    sn++;
+                }
+
+                @*}*@
+            </tbody>
+        </table>
+    }
+    @if (ViewBag.engineerCode != null)
+    {
+
+        <table id="tblSupervisor" class="table table-bordered table-responsive  ">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Worker ID</th>
+                    <th>Name</th>
+                    <th>SupervisorName</th>
+                    <th>Area</th>
+
+                    <th>Trade</th>
+                    <th>Shift</th>
+                    <th>Check In Time</th>
+                    <th>OT Hrs</th>
+
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>@sn</td>
+                        <td>@item.tblWorker.strWorkderId</td>
+                        <td>@item.tblWorker.strName</td>
+                        <td>@item.tblSupervisor.strSupervisorName</td>
+                        <td>@item.tblArea.strAreaName</td>
+
+                        <td>@item.tblTrade.strTradeName</td>
+                        <td>@item.tblShift.strShiftName</td>
+                        <td>@item.tblAttendance.dtCheckIn</td>
+                        <td>@item.tblOvertime.intRecommendedHrs</td>
+                        @if (Convert.ToInt32(item.tblAttendance.Year) < Convert.ToInt32(s))
+                        {
+
+                        }
+                        else
+                        {
+                    <td>
+
+                        <a href="#" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" onclick="modalForRemarks('@item.tblOvertime.uqOvertimeCode')" class=" btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Verify </a>
+                        <a data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing"  href="/admin/tblOvertimes/Revert?ID=@item.tblOvertime.uqOvertimeCode" class="btnSubmit engineerbtn btn btn-outline-danger btn-sm"><i class="fa fa-times-circle"></i> Revert</a>
+                        @*<a onclick="return confirm('Are you sure, you want to verify?');" href="/admin/tblOvertimes/verifySingleOvertime?ID=@item.tblOvertime.uqOvertimeCode" class="engineerbtn btn btn-primary btn-xs">Verify </a>*@
+
+                        @*<a data-url="/admin/tblSupervisors/delete/@item.uqId" class="delete btn btn-warning btn-xs">Check Out</a>*@
+
+                    </td>
+                        }
+                    </tr>
+                    sn++;
+
+                }
+            </tbody>
+        </table>
+
+    }
+    @if (ViewBag.hodCode != null)
+    {
+
+        <table id="tblSupervisor" class="table table-bordered table-responsive  ">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Worker ID</th>
+                    <th>Name</th>
+                    <th>SupervisorName</th>
+                    <th>EngineerName</th>
+                    <th>Area</th>
+
+                    <th>Trade</th>
+                    <th>Shift</th>
+                    <th>Check In Time</th>
+                    <th>Status</th>
+                    <th>OT Hrs</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>@sn</td>
+                        <td>@item.tblWorker.strWorkderId</td>
+                        <td>@item.tblWorker.strName</td>
+                        <td>@item.tblSupervisor.strSupervisorName</td>
+                        @if (item.tblEngineer != null)
+                        {
+                            <td>@item.tblEngineer.strEngineerName</td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                        <td>@item.tblArea.strAreaName</td>
+
+                        <td>@item.tblTrade.strTradeName</td>
+                        <td>@item.tblShift.strShiftName</td>
+                        @if (Convert.ToInt32(item.tblAttendance.Year) < Convert.ToInt32(s))
+                        {
+
+                        }
+                        else
+                        {
+                            if (@item.tblAttendance != null)
+                            {
+                                <td>@item.tblAttendance.dtCheckIn</td>
+                                if (item.tblAttendance.bolIsVerified == true)
+                                {
+                                    <td> <span style="color:green; font-weight:bold">Present</span></td>
+
+                                }
+                                //else if (item.tblAttendance.bolIsVerified == false || item.tblAttendance.bolIsVerified == null)
+                                //{
+
+                                //}
+
+                            }
+                            else
+                            {
+                                <td></td>
+
+                                <td>  <span style="color:red; font-weight:bold">Pending</span></td>
+
+                            }
+                        }
+                        @if (Convert.ToInt32(item.tblAttendance.Year) < Convert.ToInt32(s))
+                        {
+
+                        }
+                        else
+                        {
+                            if (@item.tblOvertime != null)
+                            {
+                                <td>@item.tblOvertime.intRecommendedHrs</td>
+
+
+                            }
+                            else
+                            {
+                                <td></td>
+
+
+                            }
+                        }
+
+
+                    </tr>
+                    sn++;
+
+                }
+            </tbody>
+        </table>
+
+    }
+
+    @if (ViewBag.contractorCode != null)
+    {
+
+        <table id="tblSupervisor" class="table table-bordered table-responsive  ">
+            <thead>
+                <tr>
+
+                    <th>S/N</th>
+                    <th>Worker ID</th>
+                    <th>Name</th>
+                    <th>Supervisor</th>
+                    <th>Engineer</th>
+                    <th>Area</th>
+
+                    <th>Deparment</th>
+
+
+                    <th>Trade</th>
+                    <th>Shift</th>
+                    <th>Check In Time</th>
+
+                    <th>OT Hrs</th>
+                    <th>Remarks</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@sn</td>
+                        <td>@item.tblWorker.strWorkderId</td>
+                        <td>@item.tblWorker.strName</td>
+                        <td>@item.tblSupervisor.strSupervisorName</td>
+                        @if (item.tblEngineer != null)
+                        {
+                            <td>@item.tblEngineer.strEngineerName</td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                        <td>@item.tblArea.strAreaName</td>
+                        <td>@item.tblDepartment.strDepartmentName</td>
+
+                        <td>@item.tblTrade.strTradeName</td>
+                        <td>@item.tblShift.strShiftName</td>
+                        @if (Convert.ToInt32(item.tblAttendance.Year) < Convert.ToInt32(s))
+                        {
+
+                        }
+                        else
+                        {
+                            <td>@item.tblAttendance.dtCheckIn</td>
+
+                            if (@item.tblOvertime != null)
+                            {
+                                <td>@item.tblOvertime.intRecommendedHrs</td>
+
+
+                            }
+                            else
+                            {
+                                <td></td>
+
+
+                            }
+                            <td>@item.tblOvertime.Remarks</td>
+                            if (item.tblOvertime.bolIsVerified == true)
+                            {
+                                <td> <span style="color:green; font-weight:bold">Verified</span></td>
+
+                            }
+
+                            else
+                            {
+
+
+                                <td>  <span style="color:red; font-weight:bold">Pending</span></td>
+
+                            }
+                        }
+
+                    </tr>
+                    sn++;
+
+                }
+            </tbody>
+        </table>
+
+    }
+    else if (ViewBag.IsAdmin == true)
+    {
+        <div class="col-6">
+            <input placeholder="Worker ID" type="number" id="workerid" class="form-control" />
+            <a onclick="loadDataOvertime(workerid.value)" class="btn btn-outline-primary btn-sm"><i class="fa fa-search"></i>Search</a>
+
+        </div>
+        @*<div class="col-3">
+                <a data-toggle="modal" data-target="#myModal" onclick="clearTextBox();" class=" addattendance btn btn-outline-primary btn-sm pull-right"><i class="fa fa-plus"></i> Add Overtime</a>
+
+            </div>*@
+        <br />
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>Worker ID</th>
+                    <th>Name</th>
+                    <th>Supervisor</th>
+                    <th>Engineer</th>
+                    <th>Contactor</th>
+                    <th>Area</th>
+                    <th>Deparment</th>
+                    <th>Trade</th>
+                    <th>Shift</th>
+                    <th>OT</th>
+                    <th>Remarks</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="SetStudentList">
+            </tbody>
+        </table>
+
+
+    }
+</div>
+<div id="myModall" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            
+            @using (Html.BeginForm("verifySingleOvertime", "tblOvertimes", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="strWorkerId">Remarks</label>
+                        <textarea class="form-control" id="Remarks" name="Remarks" placeholder="Remarks"  ></textarea>
+                        <input type="hidden" class="form-control" name="uqOvertimeCode" id="uqOvertimeCodee" placeholder="WorkerId"  />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing"  class="btnSubmit engineerbtn btn btn-primary">Update</button>
+                    <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div> 
+             }
+            </div>
+           
+
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">&times;</span></button>*@
+                @*<button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title" id="myModalLabel">Overtime</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="strWorkerId">ID</label>
+                    <input type="text" class="form-control" id="strWorkerId" name="strWorkderId" placeholder="WorkerId" disabled="disabled" />
+                    <input type="hidden" class="form-control" name="uqOvertimeCode" id="uqOvertimeCode" placeholder="WorkerId" disabled="disabled" />
+                </div>
+                <div class="form-group">
+                    <label id="labelName" for="Name">Name</label>
+                    <input type="text" class="form-control" id="Name" placeholder="Name" disabled="disabled" />
+                </div>
+                <div class="form-group">
+                    <label for="dtCheckIn">Overtime</label>
+                    @*<input type="text" class="datetimepicker form-control" name="dtCheckIn" id="dtCheckIn" placeholder="CheckIn Date<" />*@
+                    <select id="dtCheckIntest" class="form-control ddlClassType" name="intRecommendedHrs">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+
+                    </select>
+                    @*//<input id="dtCheckIntest" class="datetimepicker form-control" name="dtCheckIn" />*@
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="button" class="btn btn-primary" id="btnAdd" onclick="return AddOvertime();">Add</button>
+                    <button type="submit" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" class="engineerbtn btn btn-primary" onclick="UpdateOvertime();" id="btnUpdate" style="display:none;">Update</button>
+                    <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("InsertOvertime", "tblOvertimes", FormMethod.Post, new { @id = "overtimepost" }))
+{
+    <input type="hidden" id="uqAttendanceCode" name="uqAttendanceCode" />
+    <input type="hidden" id="hours" name="hours" />
+    <input type="submit" value="submit" style="display:none;" />
+}
+
+
+@*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
+
+@*<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>*@
+
+
+
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+
+<script src="/scripts/Common.js"></script>
+
+<script>
+    function modalForRemarks(uqOvertimeCode) {
+      
+
+        $('#Remarks').css('border-color', 'lightgrey');
+
+
+        $('#uqOvertimeCodee').val(uqOvertimeCode);
+
+
+
+        $('#myModall').modal('show');
+
+
+
+    }
+
+
+
+
+    $(".addbtn").hide();
+    function formatJSONDate(jsonDate) {
+        var newDate = dateFormat(jsonDate, "mm/dd/yyyy");
+        return newDate;
+    }
+    function getbyIDAdd(EmpID) {
+
+        $('#strWorkerId').css('border-color', 'lightgrey');
+        $('#Name').css('border-color', 'lightgrey');
+        $('#dtCheckIntest').css('border-color', 'lightgrey');
+
+        $.ajax({
+            url: "/tblOvertimes/getbyID/" + EmpID,
+            typr: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (result) {
+
+                $('#uqOvertimeCode').val(result[0].uqOvertimeCode);
+                $('#strWorkerId').val(result[0].strWorkderId);
+                $('#Name').val(result[0].strName);
+
+
+
+
+                $('#myModal').modal('show');
+                $('#btnUpdate').hide();
+                $('#btnAdd').show();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+        return false;
+    }
+
+
+
+
+    function AddOvertime() {
+        $("#pageloader").fadeIn();
+        var empObj = {
+
+            strWorkderId: $('#strWorkerId').val(),
+            intRecommendedHrs: $('#dtCheckIntest').val(),
+        };
+
+        $.ajax({
+            url: "/tblOvertimes/AddAttendance",
+            data: JSON.stringify(empObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                loadDataOvertime($('#strWorkerId').val());
+                $('#myModal').modal('hide');
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+                $("#pageloader").fadeOut();
+            }
+        });
+    }
+
+    function clearTextBox() {
+        $('#strWorkerId').val($('#workerid').val());
+        $('#Name').val("");
+        $('#Name').hide();
+        $('#dtCheckIntest').val("");
+
+        $('#labelName').hide();
+        $('#btnUpdate').hide();
+        $('#btnAdd').show();
+        $('#strWorkerId').css('border-color', 'lightgrey');
+        $('#Name').css('border-color', 'lightgrey');
+        $('#dtCheckIntest').css('border-color', 'lightgrey');
+
+    }
+    
+    function GetStudent() {
+        var myVal = $("#ddlClassType").data("myValue");
+
+
+
+    }
+    $(document).ready(function () {
+        $('#submitbtn').attr("disabled", "disabled");
+        $('#tblSupervisor').DataTable({
+            dom: "Bfrtip",
+            scrollY: "300px",
+            scrollX: true,
+            scrollCollapse: true,
+            pageLength: 2000,
+            buttons: ['excel', 'colvis'],
+            fixedColumns: {
+                leftColumns: 2
+            }
+        });
+        $('#checkBoxAll').click(function () {
+            if ($(this).is(":checked")) {
+                $(".chkCheckBoxId").prop("checked", true)
+            }
+            else {
+                $(".chkCheckBoxId").prop("checked", false)
+            }
+        });
+    });
+    function SelectedIndexChanged() {
+        //Form post
+        document.demoForm.submit();
+    }
+
+    $(document).ready(function () {
+        $("#tblUser").DataTable();
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblUser').load(data.url);
+                    $("#tblUser").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+                        //function showTime() {
+                        //    var date = new Date();
+                        //    var h = date.getHours(); // 0 - 23
+                        //    var m = date.getMinutes(); // 0 - 59
+                        //    var s = date.getSeconds(); // 0 - 59
+                        //    var session = "AM";
+
+                        //    if (h == 0) {
+                        //        h = 12;
+                        //    }
+
+                        //    if (h >= 12) {
+
+                        //        if (h == 12) {
+                        //            h = h;
+                        //        }
+                        //        else {
+                        //            h = h - 12;
+                        //        }
+
+                        //        session = "PM";
+                        //    }
+
+                        //    h = (h < 10) ? "0" + h : h;
+                        //    m = (m < 10) ? "0" + m : m;
+                        //    s = (s < 10) ? "0" + s : s;
+
+                        //    var time = h + ":" + m + ":" + s + " " + session;
+                        //    document.getElementById("MyClockDisplay").innerText = time;
+                        //    document.getElementById("MyClockDisplay").textContent = time;
+
+                        //    setTimeout(showTime, 1000);
+
+                        //}
+
+                        //showTime();
+
+</script>

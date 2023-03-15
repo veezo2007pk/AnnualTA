@@ -1,0 +1,48 @@
+﻿
+@{
+
+}
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+    <table id="tblModule" class="table">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th width="100px">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.ModuleList)
+            {
+                <tr>
+                    <td>@item.FullName</td>
+                    <td>
+                        <a data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" data-url="/admin/module/edit?ID=@item.id" class="btn-bootstrap-dialog btn btn-primary btn-xs">Edit</a>
+                        <a data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" data-url="/admin/module/delete/@item.id" class="delete btn btn-warning btn-xs">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="/scripts/Common.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tblModule").DataTable();
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblModule').load(data.url);
+                    $("#tblModule").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+</script>

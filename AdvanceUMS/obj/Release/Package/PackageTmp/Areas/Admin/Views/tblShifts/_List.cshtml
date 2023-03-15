@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblShift>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+<div class="table-responsive">
+
+
+    <table id="tblAccomodation" class="table">
+        <thead>
+            <tr>
+                <th>Shift Name</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Created At</th>
+                <th style="text-align:center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.strShiftName</td>
+                    <td>@item.tmFrom</td>
+                    <td>@item.tmTo</td>
+                    <td>@item.dtCreatedAt</td>
+
+                    <td style="text-align:center">
+                        @if (ViewBag.IsEdit == true)
+                        {
+                            <a href="/admin/tblShifts/edit?ID=@item.uqShiftId" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                        }
+                        @if (ViewBag.IsDelete == true)
+                        {
+                            <a href="#" data-url="/admin/tblShifts/delete/@item.uqShiftId" class="delete btn btn-outline-danger btn-sm"><i class="fa fa-trash-alt"></i> Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</div>
+<script src="/scripts/Common.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tblAccomodation").DataTable();
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblAccomodation').load(data.url);
+                    $("#tblAccomodation").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+</script>

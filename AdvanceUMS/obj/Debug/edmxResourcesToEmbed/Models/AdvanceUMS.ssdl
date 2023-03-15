@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdvanceUMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblAccomodation">
+    <Key>
+      <PropertyRef Name="uqAccommodationCode" />
+    </Key>
+    <Property Name="uqAccommodationCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strAccommodationName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblArea">
+    <Key>
+      <PropertyRef Name="uqAreaCode" />
+    </Key>
+    <Property Name="uqAreaCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strAreaName" Type="varchar" MaxLength="50" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblContractor">
+    <Key>
+      <PropertyRef Name="uqContractorCode" />
+    </Key>
+    <Property Name="uqContractorCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strContractorName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblContractorUser">
+    <Key>
+      <PropertyRef Name="uqId" />
+    </Key>
+    <Property Name="uqId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strUsername" Type="nvarchar" MaxLength="50" />
+    <Property Name="strPassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="uqContractorId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblCountry">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblDepartment">
+    <Key>
+      <PropertyRef Name="uqDepartmentCode" />
+    </Key>
+    <Property Name="uqDepartmentCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strDepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblExperience">
+    <Key>
+      <PropertyRef Name="uqExperienceCode" />
+    </Key>
+    <Property Name="uqExperienceCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strExperienceName" Type="varchar" MaxLength="50" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblJoiningStat">
+    <Key>
+      <PropertyRef Name="uqJoiningStatusCode" />
+    </Key>
+    <Property Name="uqJoiningStatusCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strJoiningStatusCode" Type="varchar" MaxLength="50" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblModule">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" />
+    <Property Name="ModuleName" Type="nvarchar" MaxLength="512" />
+    <Property Name="PageIcon" Type="nvarchar" MaxLength="50" />
+    <Property Name="PageUrl" Type="nvarchar" MaxLength="512" />
+    <Property Name="PageSlug" Type="nvarchar" MaxLength="512" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDefault" Type="bit" />
+    <Property Name="ParentModuleID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblResidence">
+    <Key>
+      <PropertyRef Name="uqResidenceCode" />
+    </Key>
+    <Property Name="uqResidenceCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strResidenceName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="512" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="IsDefault" Type="bit" />
+    <Property Name="InsertBy" Type="uniqueidentifier" />
+    <Property Name="InsertDate" Type="datetime" />
+    <Property Name="LastModified" Type="datetime" />
+    <Property Name="LastModifiedBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblRolePermission">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModuleID" Type="int" />
+    <Property Name="RoleID" Type="uniqueidentifier" />
+    <Property Name="IsView" Type="bit" />
+    <Property Name="IsAdd" Type="bit" />
+    <Property Name="IsEdit" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblSetting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="LogoPath" Type="nvarchar" MaxLength="200" />
+    <Property Name="FeviconPath" Type="nvarchar" MaxLength="200" />
+    <Property Name="SMTPHost" Type="nvarchar" MaxLength="100" />
+    <Property Name="SMTPUserName" Type="nvarchar" MaxLength="100" />
+    <Property Name="SMTPPassword" Type="nvarchar" MaxLength="100" />
+    <Property Name="SMTPEmail" Type="nvarchar" MaxLength="100" />
+    <Property Name="SMTPPort" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tblShift">
+    <Key>
+      <PropertyRef Name="uqShiftId" />
+    </Key>
+    <Property Name="uqShiftId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strShiftName" Type="nvarchar" MaxLength="50" />
+    <Property Name="tmFrom" Type="time" Precision="7" />
+    <Property Name="tmTo" Type="time" Precision="7" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblSkills">
+    <Key>
+      <PropertyRef Name="uqSkillCode" />
+    </Key>
+    <Property Name="uqSkillCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strSkillName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblSupervisor">
+    <Key>
+      <PropertyRef Name="uqSupervisorId" />
+    </Key>
+    <Property Name="uqSupervisorId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strSupervisorName" Type="nvarchar" MaxLength="50" />
+    <Property Name="strUsername" Type="nvarchar" MaxLength="50" />
+    <Property Name="strPassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblToDo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserID" Type="uniqueidentifier" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="IsCompleted" Type="bit" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CompleteDate" Type="datetime" />
+    <Property Name="CreateBy" Type="nvarchar" MaxLength="200" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="200" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblTrade">
+    <Key>
+      <PropertyRef Name="uqTradeCode" />
+    </Key>
+    <Property Name="uqTradeCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="strTradeName" Type="varchar" MaxLength="50" />
+    <Property Name="dtCreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleID" Type="uniqueidentifier" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="150" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="150" />
+    <Property Name="DateOfBirth" Type="date" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="512" />
+    <Property Name="CountryID" Type="int" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhotoPath" Type="nvarchar" MaxLength="512" />
+    <Property Name="FacebookLink" Type="nvarchar" MaxLength="512" />
+    <Property Name="TwitterLink" Type="nvarchar" MaxLength="512" />
+    <Property Name="GoogleLink" Type="nvarchar" MaxLength="512" />
+    <Property Name="LinkedInLink" Type="nvarchar" MaxLength="512" />
+    <Property Name="SkypeID" Type="nvarchar" MaxLength="512" />
+    <Property Name="Email" Type="nvarchar" MaxLength="512" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsSupervisor" Type="bit" />
+    <Property Name="uqSupervisorId" Type="uniqueidentifier" />
+    <Property Name="Password" Type="nvarchar" MaxLength="512" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDefault" Type="bit" />
+    <Property Name="IsLockedOut" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="LastLoginDate" Type="datetime" />
+    <Property Name="LastLockoutDate" Type="datetime" />
+    <Property Name="FailedPasswordCount" Type="int" />
+    <Property Name="InsertDate" Type="datetime" />
+    <Property Name="InsertBy" Type="uniqueidentifier" />
+    <Property Name="LastModified" Type="datetime" />
+    <Property Name="LastModifiedBy" Type="uniqueidentifier" />
+    <Property Name="uqContractorCode" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="tblUserLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserID" Type="uniqueidentifier" />
+    <Property Name="Message" Type="nvarchar" MaxLength="1024" />
+    <Property Name="LogTime" Type="datetime" />
+    <Property Name="IPAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="MoreInfo" Type="nvarchar" MaxLength="1024" />
+  </EntityType>
+  <EntityType Name="tblWorker">
+    <Key>
+      <PropertyRef Name="uqId" />
+    </Key>
+    <Property Name="uqId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="uqContractorUserId" Type="uniqueidentifier" />
+    <Property Name="strName" Type="nvarchar" MaxLength="255" />
+    <Property Name="strFatherName" Type="nvarchar" MaxLength="255" />
+    <Property Name="strCNIC" Type="nvarchar" MaxLength="255" />
+    <Property Name="strContact" Type="nvarchar" MaxLength="255" />
+    <Property Name="strEmergencyNo" Type="nvarchar" MaxLength="255" />
+    <Property Name="intAge" Type="int" />
+    <Property Name="strWorkderId" Type="nvarchar" MaxLength="255" />
+    <Property Name="strAddress" Type="nvarchar" MaxLength="255" />
+    <Property Name="uqTradeCode" Type="uniqueidentifier" />
+    <Property Name="strQualification" Type="nvarchar" MaxLength="255" />
+    <Property Name="uqSkillCode" Type="uniqueidentifier" />
+    <Property Name="uqExperienceCode" Type="uniqueidentifier" />
+    <Property Name="strTAattended" Type="nvarchar" MaxLength="255" />
+    <Property Name="dtLastTAyear" Type="datetime" />
+    <Property Name="intTARate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="strSupervisorName" Type="nvarchar" MaxLength="255" />
+    <Property Name="strAreaEngName" Type="nvarchar" MaxLength="255" />
+    <Property Name="uqAreaCode" Type="uniqueidentifier" />
+    <Property Name="dtDurationFrom" Type="datetime" />
+    <Property Name="dtDurationTo" Type="datetime" />
+    <Property Name="uqResidenceCode" Type="uniqueidentifier" />
+    <Property Name="uqContractorCode" Type="uniqueidentifier" />
+    <Property Name="uqDepartmentCode" Type="uniqueidentifier" />
+    <Property Name="uqAccommodationCode" Type="uniqueidentifier" />
+    <Property Name="dtTAyear" Type="datetime" />
+    <Property Name="vbrPicture" Type="varbinary(max)" />
+    <Property Name="intJoiningStatusCode" Type="uniqueidentifier" />
+    <Property Name="intTACurrentRate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="dtCreatedAt" Type="datetime" />
+    <Property Name="dtMoidifyAt" Type="datetime" />
+    <Property Name="uqCreatedBy" Type="uniqueidentifier" />
+    <Property Name="uqModifyBy" Type="uniqueidentifier" />
+  </EntityType>
+  <Association Name="FK_tblRolePermission_tblRole">
+    <End Role="tblRole" Type="Self.tblRole" Multiplicity="0..1" />
+    <End Role="tblRolePermission" Type="Self.tblRolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRole">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblRolePermission">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblToDo_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblToDo" Type="Self.tblToDo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblToDo">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUser_tblContractor">
+    <End Role="tblContractor" Type="Self.tblContractor" Multiplicity="0..1" />
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblContractor">
+        <PropertyRef Name="uqContractorCode" />
+      </Principal>
+      <Dependent Role="tblUser">
+        <PropertyRef Name="uqContractorCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserLog_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblUserLog" Type="Self.tblUserLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblUserLog">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPermission_ModuleMast">
+    <End Role="tblModule" Type="Self.tblModule" Multiplicity="0..1" />
+    <End Role="tblRolePermission" Type="Self.tblRolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblModule">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblRolePermission">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="ModuleDeleteSortOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ModuleID" Type="int" Mode="In" />
+    <Parameter Name="PModuleID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ModuleInsertSortOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ModuleID" Type="int" Mode="In" />
+    <Parameter Name="PModuleID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ModuleList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ModuleUpdateSortOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OldSortOrder" Type="int" Mode="In" />
+    <Parameter Name="NewSortOrder" Type="int" Mode="In" />
+    <Parameter Name="ModuleID" Type="int" Mode="In" />
+    <Parameter Name="PModuleID" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="AdvanceUMSModelStoreContainer">
+    <EntitySet Name="tblAccomodation" EntityType="Self.tblAccomodation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblArea" EntityType="Self.tblArea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblContractor" EntityType="Self.tblContractor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblContractorUser" EntityType="Self.tblContractorUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCountry" EntityType="Self.tblCountry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDepartment" EntityType="Self.tblDepartment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblExperience" EntityType="Self.tblExperience" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblJoiningStat" EntityType="Self.tblJoiningStat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblModule" EntityType="Self.tblModule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblResidence" EntityType="Self.tblResidence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRolePermission" EntityType="Self.tblRolePermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSetting" EntityType="Self.tblSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblShift" EntityType="Self.tblShift" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSkills" EntityType="Self.tblSkills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSupervisor" EntityType="Self.tblSupervisor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblToDo" EntityType="Self.tblToDo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTrade" EntityType="Self.tblTrade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserLog" EntityType="Self.tblUserLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblWorker" EntityType="Self.tblWorker" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblRolePermission_tblRole" Association="Self.FK_tblRolePermission_tblRole">
+      <End Role="tblRole" EntitySet="tblRole" />
+      <End Role="tblRolePermission" EntitySet="tblRolePermission" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblToDo_tblUser" Association="Self.FK_tblToDo_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblToDo" EntitySet="tblToDo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUser_tblContractor" Association="Self.FK_tblUser_tblContractor">
+      <End Role="tblContractor" EntitySet="tblContractor" />
+      <End Role="tblUser" EntitySet="tblUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserLog_tblUser" Association="Self.FK_tblUserLog_tblUser">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblUserLog" EntitySet="tblUserLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPermission_ModuleMast" Association="Self.FK_UserPermission_ModuleMast">
+      <End Role="tblModule" EntitySet="tblModule" />
+      <End Role="tblRolePermission" EntitySet="tblRolePermission" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

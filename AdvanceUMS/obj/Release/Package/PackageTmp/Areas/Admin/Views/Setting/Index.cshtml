@@ -1,0 +1,140 @@
+﻿@model AdvanceUMS.Models.tblSetting
+@{
+    ViewBag.Title = "General Setting";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Update Night Attendance to Back Date
+        </h1>
+        <section class="content">
+            <div class="row">
+                <form action="/admin/setting/updateNightAttendance" method="post" enctype="multipart/form-data">
+                    <div class="col-md-12">
+                        
+                        <div class="box box-primary">
+                            
+                           
+                            <div class="box-footer">
+                                <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class="btnSubmit btn btn-primary pull-right">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <h1>
+            General Setting
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">General Setting</li>
+        </ol>
+    </section>
+    <script src="/scripts/jquery.validate.min.js"></script>
+    <script src="/scripts/jquery.validate.unobtrusive.min.js"></script>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <form action="/admin/setting" method="post" enctype = "multipart/form-data">
+                <div class="col-md-12">
+                    @Html.Raw(ViewBag.Message)
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">General Setting</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label>Website Name</label>
+                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Name", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label class="form-label">Logo Path</label>
+                                                @Html.TextBox("LogoPath", "", new { @class = "form-control", type = "file" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <img class="img-md mCS_img_loaded" src="@ViewBag.LogoPath" alt="Image">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label class="form-label">Fevicon</label>
+                                                @Html.TextBox("Fevicon", "", new { @class = "form-control", type = "file" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <img class="img-md mCS_img_loaded" src="@ViewBag.Fevicon" alt="Image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Email Setting</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <label>SMTP Host</label>
+                                        @Html.TextBoxFor(model => model.SMTPHost, new { @class = "form-control", placeholder = "SMTP Host", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <label>SMTP Port</label>
+                                        @Html.TextBoxFor(model => model.SMTPPort, new { @class = "form-control", placeholder = "SMTP Port", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <label>SMTP Email</label>
+                                        @Html.TextBoxFor(model => model.SMTPEmail, new { @class = "form-control", placeholder = "SMTP Email", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <label>SMTP UserName</label>
+                                        @Html.TextBoxFor(model => model.SMTPUserName, new { @class = "form-control", placeholder = "SMTP UserName", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <label>SMTP Password</label>
+                                        @Html.TextBoxFor(model => model.SMTPPassword, new { @class = "form-control", placeholder = "SMTP Password", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class="btn btn-primary pull-right">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+

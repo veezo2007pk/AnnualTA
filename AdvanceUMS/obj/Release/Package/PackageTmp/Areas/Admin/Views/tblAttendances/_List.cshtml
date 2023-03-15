@@ -1,0 +1,608 @@
+﻿@model IEnumerable < AdvanceUMS.Models.tblSupervisorListForm>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+    string s = dHelper.year();
+}
+<style>
+    .clock {
+        /*position: absolute;
+        top: 50%;
+        left: 50%;
+            
+        transform: translateX(-50%) translateY(-50%);
+        */
+        position: relative;
+        color: #3c8dbc;
+        font-size: 40px;
+        font-family: Orbitron;
+        letter-spacing: 7px;
+        text-align: center;
+    }
+</style>
+
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+    @*<section class="content">
+        @using (Html.BeginForm("Index", "tblAttendances", FormMethod.Get))
+        {
+            <div class="row">
+
+
+
+                <div class="col-8">
+
+
+                    @Html.Raw(ViewBag.Message)
+                    <div class="box box-primary">
+
+
+
+
+                        <div class="box-body">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Filter By Year</label>
+                                        <select name="year" class="form-control">
+                                            <option value=""></option>
+                                            @foreach (var item in ViewBag.yearList)
+                                            {
+                                                <option value="@item.Text">@item.Text</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group" style="padding-top: 28px;">
+                                        <label></label>
+                                        <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class=" btn btn-primary">Search</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+        }
+    </section>*@
+
+    <section>
+        <div class="row">
+
+
+
+
+            <div class="col-md-12">
+
+                @*<div id="MyClockDisplay" class="clock" onload="showTime()"></div>*@
+
+                <div style="text-align:center;padding:1em 0;"> <h4><a style="text-decoration:none;" href="#"></a></h4> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=small&timezone=Asia%2FKarachi" width="100%" height="90" frameborder="0" seamless></iframe> </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+    @{
+        int sn = 1;
+    }
+    @if (ViewBag.supervisorCode != null)
+    {
+        using (Html.BeginForm("InsertAttendance", "tblAttendances", FormMethod.Post))
+        {
+            <table id="tblSupervisor" class="table">
+                <thead>
+                    <tr>
+                        @* <th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>*@
+                        <th>S/N</th>
+                        <th>Worker ID</th>
+                        <th>Name</th>
+                        <th>Trade</th>
+                        <th>Area</th>
+                        <th>Shift</th>
+                        <th>Contractor</th>
+                        <th>Check In Time</th>
+
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+
+
+                    <tr>
+                        @*<td><input disabled type="checkbox" name="ID" value="@item.tblWorker.uqId" class="custom-checkbox chkCheckBoxId" /></td>*@
+                        <td>@sn</td>
+                        <td>@item.tblWorker.strWorkderId</td>
+                        <td>@item.tblWorker.strName</td>
+                        <td>@item.tblTrade.strTradeName</td>
+                        <td>@item.tblArea.strAreaName</td>
+                        <td>@item.tblShift.strShiftName</td>
+                        <td>@item.tblContractor.strContractorName</td>
+                        <td>@item.tblWorker.dtLastCheckedIn</td>
+                        @if (Convert.ToInt32(item.tblWorker.Year) < Convert.ToInt32(s))
+                        {
+
+                        }
+                        else
+                        {
+                            if (@item.tblWorker.dtLastCheckedIn != null)
+                            {
+                                <td>
+
+                                    <span style="color:green; font-weight:bold">Present</span>
+                                    @*<a data-url="/admin/tblSupervisors/delete/@item.uqId" class="delete btn btn-warning btn-xs">Check Out</a>*@
+
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+
+                                    <a href="/admin/tblAttendances/insertSingleAttendance?ID=@item.tblWorker.uqId" class="btnsupervisorattendance btnSubmit engineerbtn btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Check In </a>
+
+                                    @*<a data-url="/admin/tblSupervisors/delete/@item.uqId" class="delete btn btn-warning btn-xs">Check Out</a>*@
+
+                                </td>
+                            }
+                        }
+                        </tr>
+                        sn++;
+                    }
+                </tbody>
+            </table>
+            @*<button onclick = "return confirm('Are you sure, you want to checkin?');" type="submit" class="btn btn-primary btn-xs">Check In Entire List</button>*@
+        }
+    }
+    @if (ViewBag.engineerCode != null)
+    {
+        using (Html.BeginForm("VerifyAttendance", "tblAttendances", FormMethod.Post))
+        {
+            <table id="tblSupervisor" class="table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>
+
+                        <th>S/N</th>
+                        <th>Worker ID</th>
+                        <th>Name</th>
+                        <th>SupervisorName</th>
+                        <th>Area</th>
+
+                        <th>Trade</th>
+                        <th>Contractor</th>
+                        <th>Shift</th>
+                        <th>Check In Time</th>
+
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td><input type="checkbox" name="ID" value="@item.tblAttendance.uqAttendanceCode" class="custom-checkbox chkCheckBoxId" /></td>
+
+                            <td>@sn</td>
+                            <td>@item.tblWorker.strWorkderId</td>
+                            <td>@item.tblWorker.strName</td>
+                            <td>@item.tblSupervisor.strSupervisorName</td>
+                            <td>@item.tblArea.strAreaName</td>
+
+                            <td>@item.tblTrade.strTradeName</td>
+                            <td>@item.tblContractor.strContractorName</td>
+                            <td>@item.tblShift.strShiftName</td>
+                            <td>@item.tblAttendance.dtCheckIn</td>
+
+
+                            <td>
+
+                                <a href="/admin/tblAttendances/verifySingleAttendance?ID=@item.tblAttendance.uqAttendanceCode" class="btnSubmit engineerbtn btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Verify</a>
+
+                                <a data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing"  href="/admin/tblAttendances/Revert?ID=@item.tblAttendance.uqAttendanceCode" class="btnSubmit btn btn-outline-danger btn-sm"><i class="fa fa-times-circle"></i> Revert</a>
+
+                                @*<a data-url="/admin/tblSupervisors/delete/@item.uqId" class="delete btn btn-warning btn-xs">Check Out</a>*@
+
+                            </td>
+                        </tr>
+                        sn++;
+
+                    }
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary btn-xs">Verify Entire List</button>
+
+        }
+    }
+
+    @if (ViewBag.hodCode != null)
+    {
+        using (Html.BeginForm("VerifyAttendance", "tblAttendances", FormMethod.Post))
+        {
+            <table id="tblSupervisor" class="table">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Worker ID</th>
+                        <th>Name</th>
+                        <th>SupervisorName</th>
+                        <th>EngineerName</th>
+                        <th>Area</th>
+
+                        <th>Trade</th>
+                        <th>Shift</th>
+                        <th>Check In Time</th>
+                        <th>Status</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@sn</td>
+                            <td>@item.tblWorker.strWorkderId</td>
+                            <td>@item.tblWorker.strName</td>
+                            <td>@item.tblSupervisor.strSupervisorName</td>
+                            @if (item.tblEngineer != null)
+                            {
+                                <td>@item.tblEngineer.strEngineerName</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            <td>@item.tblArea.strAreaName</td>
+
+                            <td>@item.tblTrade.strTradeName</td>
+                            <td>@item.tblShift.strShiftName</td>
+                            @if (@item.tblAttendance != null)
+                            {
+                                <td>@item.tblAttendance.dtCheckIn</td>
+                                if (item.tblAttendance.bolIsVerified == true)
+                                {
+                                    <td> <span style="color:green; font-weight:bold">Present</span></td>
+
+                                }
+                                //else if (item.tblAttendance.bolIsVerified == false || item.tblAttendance.bolIsVerified == null)
+                                //{
+
+                                //}
+
+                            }
+                            else
+                            {
+                                <td></td>
+
+                                <td>  <span style="color:red; font-weight:bold">Pending</span></td>
+
+                            }
+
+
+
+                        </tr>
+                        sn++;
+
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
+    @if (ViewBag.contractorCode != null)
+    {
+        using (Html.BeginForm("InsertAttendance", "tblAttendances", FormMethod.Post))
+        {
+            <table id="tblSupervisor" class="table">
+                <thead>
+                    <tr>
+                        <th>S/N</th>
+                        <th>Worker ID</th>
+                        <th>Name</th>
+                        <th>Supervisor</th>
+                        <th>Engineer</th>
+                        <th>Area</th>
+
+                        @*<th>Deparment</th>*@
+
+
+                        <th>Trade</th>
+                        <th>Shift</th>
+                        <th>Check In Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@sn</td>
+                            <td>@item.tblWorker.strWorkderId</td>
+                            <td>@item.tblWorker.strName</td>
+                            @if (item.tblSupervisor != null)
+                            {
+                                <td>@item.tblSupervisor.strSupervisorName</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            @if (item.tblEngineer != null)
+                            {
+                                <td>@item.tblEngineer.strEngineerName</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            <td>@item.tblArea.strAreaName</td>
+                            @*<td>@item.tblDepartment.strDepartmentName</td>*@
+
+                            <td>@item.tblTrade.strTradeName</td>
+                            <td>@item.tblShift.strShiftName</td>
+
+                            <td>@item.tblAttendance.dtCheckIn</td>
+                            @if (item.tblAttendance.bolIsVerified == true)
+                            {
+                                <td> <span style="color:green; font-weight:bold">Present</span></td>
+
+                            }
+
+                            else
+                            {
+
+
+                                <td>  <span style="color:red; font-weight:bold">Pending</span></td>
+
+                            }
+                            @*@if (@item.tblAttendance.dtCheckIn != null || item.tblAttendance.bolIsVerified != false)
+                                {
+
+                                    if (item.tblAttendance.bolIsVerified == true)
+                                    {
+                                        <td> <span style="color:green; font-weight:bold">Present</span></td>
+
+                                    }
+                                    else if (item.tblAttendance.bolIsVerified == false || item.tblAttendance.bolIsVerified == null)
+                                    {
+                                        <td>  <span style="color:red; font-weight:bold">Pending</span></td>
+                                    }
+
+                                }*@
+
+                            <!--<td>
+
+                            <a href="/admin/tblAttendances/insertSingleAttendance?ID=@item.tblWorker.uqId" class="btn btn-primary btn-xs">Check In </a>-->
+                            @*<a data-url="/admin/tblSupervisors/delete/@item.uqId" class="delete btn btn-warning btn-xs">Check Out</a>*@
+
+                            <!--</td>-->
+                        </tr>
+                        sn++;
+
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
+    else if (ViewBag.IsAdmin == true)
+    {
+        <div class="col-6">
+            <input placeholder="Worker ID" type="number" id="workerid" class="form-control" />
+            <a onclick="loadData(workerid.value)" class="btn btn-outline-primary btn-sm"><i class="fa fa-search"></i>Search</a>
+
+        </div>
+        <div class="col-3">
+            <a data-toggle="modal" data-target="#myModal" onclick="clearTextBox();" class=" addattendance btn btn-outline-primary btn-sm pull-right"><i class="fa fa-plus"></i> Add Attendance</a>
+
+        </div>
+        <br />
+        <br />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+
+                    <th>Worker ID</th>
+                    <th>Name</th>
+                    <th>Supervisor</th>
+                    <th>Engineer</th>
+                    <th>Contactor</th>
+                    <th>Area</th>
+                    <th>Deparment</th>
+                    <th>Trade</th>
+                    <th>Shift</th>
+                    <th>Check In Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="SetStudentList">
+            </tbody>
+        </table>
+
+
+    }
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title" id="myModalLabel">Attendance</h4>
+            </div>
+          
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="strWorkerId">ID</label>
+                        <input type="text" class="form-control" id="strWorkerId" name="strWorkderId" placeholder="WorkerId" disabled="disabled" />
+                        <input type="hidden" class="form-control" name="uqAttendanceCode" id="uqAttendanceCode" placeholder="WorkerId" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label id="labelName" for="Name">Name</label>
+                        <input type="text" class="form-control" id="Name" placeholder="Name" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="dtCheckIn">CheckIn Date</label>
+                        @*<input type="text" class="datetimepicker form-control" name="dtCheckIn" id="dtCheckIn" placeholder="CheckIn Date<" />*@
+                    <input  id="dtCheckIntest"  class="datetimepicker form-control" name="dtCheckIn"  /> 
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" class=" btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                        <button type="submit" class="engineerbtn btn btn-primary"  onclick="Update();" id="btnUpdate" style="display:none;">Update</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+           
+        </div>
+    </div>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+
+
+
+    <script src="/scripts/Common.js"></script>
+
+    <script>
+      
+        function formatJSONDate(jsonDate) {
+            var newDate = dateFormat(jsonDate, "mm/dd/yyyy");
+            return newDate;
+        }
+
+
+
+
+        function clearTextBox() {
+            $('#strWorkerId').val($('#workerid').val());
+            $('#Name').val("");
+            $('#Name').hide();
+            $('#dtCheckIntest').val("");
+            
+            $('#labelName').hide();
+            $('#btnUpdate').hide();
+            $('#btnAdd').show();
+            $('#strWorkerId').css('border-color', 'lightgrey');
+            $('#Name').css('border-color', 'lightgrey');
+            $('#dtCheckIntest').css('border-color', 'lightgrey');
+          
+        }
+        $(document).ready(function () {
+
+
+
+            $('#submitbtn').attr("disabled", "disabled");
+
+            $('#checkBoxAll').click(function () {
+                if ($(this).is(":checked")) {
+                    $(".chkCheckBoxId").prop("checked", true)
+                }
+                else {
+                    $(".chkCheckBoxId").prop("checked", false)
+                }
+            });
+        });
+        function SelectedIndexChanged() {
+            //Form post
+            document.demoForm.submit();
+        }
+        $(document).ready(function () {
+            $('#tblSupervisor').DataTable({
+                dom: "Bfrtip",
+                scrollY: "300px",
+                scrollX: true,
+                scrollCollapse: true,
+                pageLength: 2000,
+                buttons: ['excel', 'colvis'],
+                fixedColumns: {
+                    leftColumns: 2
+                }
+        
+            });
+        });
+        $(document).ready(function () {
+            $("#tblUser").DataTable();
+            $('.delete').click(function () {
+                var url = $(this).data('url');
+                $.get(url, function (data) {
+                    if (data.success == "0") {
+                        $('#tblUser').load(data.url);
+                        $("#tblUser").DataTable();
+                        $('#message').html(data.message);
+                    }
+                    else if (data.success == "3") {
+                        $('#message').html(data.message);
+                    }
+                });
+                return false;
+            });
+        });
+                //function showTime() {
+                //    var date = new Date();
+                //    var h = date.getHours(); // 0 - 23
+                //    var m = date.getMinutes(); // 0 - 59
+                //    var s = date.getSeconds(); // 0 - 59
+                //    var session = "AM";
+
+                //    if (h == 0) {
+                //        h = 12;
+                //    }
+
+                //    if (h >= 12) {
+
+                //        if (h == 12) {
+
+                //            h = h;
+                //        }
+                //        else {
+                //            h = h - 12;
+                //        }
+
+                //        session = "PM";
+                //    }
+
+                //    h = (h < 10) ? "0" + h : h;
+                //    m = (m < 10) ? "0" + m : m;
+                //    s = (s < 10) ? "0" + s : s;
+
+                //    var time = h + ":" + m + ":" + s + " " + session;
+                //    document.getElementById("MyClockDisplay").innerText = time;
+                //    document.getElementById("MyClockDisplay").textContent = time;
+
+                //    setTimeout(showTime, 1000);
+
+                //}
+
+                //showTime();
+    </script>

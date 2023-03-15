@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7fa9bda5fd4f45a4bfc9948cc7b0ada8" Name="Diagram1" ZoomLevel="43">
+        <EntityTypeShape EntityType="dbannualTAaModel.tblAccomodation" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblArea" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblAttendance" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblClearance" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblContractor" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblContractorUser" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblCountry" Width="1.5" PointX="11.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblDehireLog" Width="1.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblDepartment" Width="1.5" PointX="11.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblEngineer" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblExperience" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblHOD" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblJoiningStat" Width="1.5" PointX="8.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblModule" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblOvertime" Width="1.5" PointX="13.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblRelationship" Width="1.5" PointX="13.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblResidence" Width="1.5" PointX="13.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblRole" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblRolePermission" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblSetting" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblShift" Width="1.5" PointX="10.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblSkill" Width="1.5" PointX="12.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblSupervisor" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblTAPlanning" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblToDo" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblTrade" Width="1.5" PointX="2.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblUser" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblUserLog" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblWorker" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbannualTAaModel.tblYear" Width="1.5" PointX="15.75" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="dbannualTAaModel.FK_tblUser_tblContractor" ManuallyRouted="false" />
+        <AssociationConnector Association="dbannualTAaModel.FK_UserPermission_ModuleMast" ManuallyRouted="false" />
+        <AssociationConnector Association="dbannualTAaModel.FK_tblRolePermission_tblRole" ManuallyRouted="false" />
+        <AssociationConnector Association="dbannualTAaModel.FK_tblToDo_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="dbannualTAaModel.FK_tblUserLog_tblUser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,482 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblSupervisorListForm>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+    string s = dHelper.year();
+}
+
+<style>
+    .clock {
+        /*position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translateX(-50%) translateY(-50%);
+        */
+        position: relative;
+        color: #3c8dbc;
+        font-size: 40px;
+        font-family: Orbitron;
+        letter-spacing: 7px;
+        text-align: center;
+    }
+</style>
+
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+    <section class="content">
+        @using (Html.BeginForm("Index", "tblWorkerApprovalList", FormMethod.Get))
+        {
+            <div class="row">
+
+
+
+                <div class="col-8">
+
+
+                    @Html.Raw(ViewBag.Message)
+                    <div class="box box-primary">
+
+
+
+
+                        <div class="box-body">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Filter By Year</label>
+                                        <select name="year" class="form-control">
+                                            <option value=""></option>
+                                            @foreach (var item in ViewBag.yearList)
+                                            {
+                                                <option value="@item.Text">@item.Text</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group" style="padding-top: 28px;">
+                                        <label></label>
+                                        <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class=" btn btn-primary">Search</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+        }
+    </section>
+
+    <section>
+        <div class="row">
+
+
+
+
+            <div class="col-12">
+
+                @*<div id="MyClockDisplay" class="clock" onload="showTime()"></div>*@
+
+                <div style="text-align:center;padding:1em 0;"> <h4><a style="text-decoration:none;" href="https://www.zeitverschiebung.net/en/timezone/asia--karachi"></a></h4> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=small&timezone=Asia%2FKarachi" width="100%" height="90" frameborder="0" seamless></iframe> </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+    @{
+        int sn = 1;
+    }
+    @if (ViewBag.engineerCode != null)
+    {
+        using (Html.BeginForm("VerifyAttendance", "tblWorkerApproval", FormMethod.Post))
+        {
+            <table id="tblSupervisor" class="table">
+                <thead>
+                    <tr>
+                        @*<th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>*@
+                        <th>S/N</th>
+                        <th>Worker ID</th>
+                        <th>Name</th>
+                        <th>SupervisorName</th>
+                        <th>Area</th>
+                        <th>Contractor</th>
+                        <th>Trade</th>
+                        <th>Shift</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            @*<td><input type="checkbox" name="ID" value="@item.tblWorker.uqId" class="custom-checkbox chkCheckBoxId"  /></td>*@
+                            <td>@sn</td>
+                            <td>@item.tblWorker.strWorkderId</td>
+                            <td>@item.tblWorker.strName</td>
+                            <td>@item.tblSupervisor.strSupervisorName</td>
+                            <td>@item.tblArea.strAreaName</td>
+                            <td>@item.tblContractor.strContractorName</td>
+                            <td>@item.tblTrade.strTradeName</td>
+                            <td>@item.tblShift.strShiftName</td>
+
+
+
+                        </tr>
+                        sn++;
+
+                    }
+                </tbody>
+            </table>
+            @*<button onclick = "return confirm('Are sure wants to approve?');" type="submit" class="btn btn-primary btn-xs">Approve Entire List</button>*@
+        }
+    }
+    @if (ViewBag.supervisorCode != null)
+    {
+        using (Html.BeginForm("VerifyAttendance", "tblWorkerApproval", FormMethod.Post))
+        {
+            <table id="tblSupervisor" class="table">
+                <thead>
+                    <tr>
+                        @*<th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>*@
+                        <th>S/N</th>
+                        <th>Worker ID</th>
+                        <th>Name</th>
+                        <th>Engineer</th>
+                        <th>Area</th>
+                        <th>Contractor</th>
+                        <th>Trade</th>
+                        <th>Shift</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            @*<td><input type="checkbox" name="ID" value="@item.tblWorker.uqId" class="custom-checkbox chkCheckBoxId"  /></td>*@
+                            <td>@sn</td>
+                            <td>@item.tblWorker.strWorkderId</td>
+                            <td>@item.tblWorker.strName</td>
+                            @if (item.tblEngineer != null)
+                            {
+                                <td>@item.tblEngineer.strEngineerName</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            <td>@item.tblArea.strAreaName</td>
+                            <td>@item.tblContractor.strContractorName</td>
+                            <td>@item.tblTrade.strTradeName</td>
+                            <td>@item.tblShift.strShiftName</td>
+
+
+
+                        </tr>
+                        sn++;
+
+                    }
+                </tbody>
+            </table>
+            @*<button onclick = "return confirm('Are sure wants to approve?');" type="submit" class="btn btn-primary btn-xs">Approve Entire List</button>*@
+        }
+    }
+    @if (ViewBag.hodCode != null)
+    {
+        using (Html.BeginForm("VerifyAttendance", "tblWorkerApproval", FormMethod.Post))
+        {
+            <table id="tblSupervisor" class="table">
+                <thead>
+                    <tr>
+                        @*<th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>*@
+                        <th>S/N</th>
+                        <th>Worker ID</th>
+                        <th>Name</th>
+                        <th>Supervisor</th>
+                        <th>Engineer</th>
+                        <th>Area</th>
+                        <th>Contractor</th>
+                        <th>Trade</th>
+                        <th>Shift</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            @*<td><input type="checkbox" name="ID" value="@item.tblWorker.uqId" class="custom-checkbox chkCheckBoxId"  /></td>*@
+                            <td>@sn</td>
+                            <td>@item.tblWorker.strWorkderId</td>
+                            <td>@item.tblWorker.strName</td>
+                            <td>@item.tblSupervisor.strSupervisorName</td>
+                            @if (item.tblEngineer != null)
+                            {
+                                <td>@item.tblEngineer.strEngineerName</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            <td>@item.tblArea.strAreaName</td>
+                            <td>@item.tblContractor.strContractorName</td>
+                            <td>@item.tblTrade.strTradeName</td>
+                            <td>@item.tblShift.strShiftName</td>
+
+
+
+                        </tr>
+                        sn++;
+
+                    }
+                </tbody>
+            </table>
+            @*<button onclick = "return confirm('Are sure wants to approve?');" type="submit" class="btn btn-primary btn-xs">Approve Entire List</button>*@
+        }
+    }
+    @if (ViewBag.contractorCode != null)
+    {
+        using (Html.BeginForm("VerifyAttendance", "tblWorkerApproval", FormMethod.Post))
+        {
+            <table id="tblSupervisor" class="table">
+                <thead>
+                    <tr>
+                        @*<th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>*@
+                        <th>S/N</th>
+                        <th>Worker ID</th>
+                        <th>Name</th>
+                        <th>Supervisor</th>
+                        <th>Engineer</th>
+                        <th>Area</th>
+
+                        <th>Trade</th>
+                        <th>Shift</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            @*<td><input type="checkbox" name="ID" value="@item.tblWorker.uqId" class="custom-checkbox chkCheckBoxId"  /></td>*@
+                            <td>@sn</td>
+                            <td>@item.tblWorker.strWorkderId</td>
+                            <td>@item.tblWorker.strName</td>
+                            <td>@item.tblSupervisor.strSupervisorName</td>
+                            @if (item.tblEngineer != null)
+                            {
+                                <td>@item.tblEngineer.strEngineerName</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            <td>@item.tblArea.strAreaName</td>
+
+                            <td>@item.tblTrade.strTradeName</td>
+                            <td>@item.tblShift.strShiftName</td>
+
+
+
+                        </tr>
+                        sn++;
+
+                    }
+                </tbody>
+            </table>
+            @*<button onclick = "return confirm('Are sure wants to approve?');" type="submit" class="btn btn-primary btn-xs">Approve Entire List</button>*@
+        }
+    }
+    @if (ViewBag.userCode != null)
+    {
+        using (Html.BeginForm("VerifyAttendance", "tblWorkerApproval", FormMethod.Post))
+        {
+            <table id="tblSupervisor" class="table">
+                <thead>
+                    <tr>
+                        @*<th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>*@
+                        <th>S/N</th>
+                        <th>Worker ID</th>
+                        <th>Name</th>
+                        <th>Supervisor</th>
+                        <th>Engineer</th>
+                        <th>Area</th>
+
+                        <th>Trade</th>
+                        <th>Shift</th>
+                        <th>Orientation Date</th>
+                        <th>Orientation</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            @*<td><input type="checkbox" name="ID" value="@item.tblWorker.uqId" class="custom-checkbox chkCheckBoxId"  /></td>*@
+                            <td>@sn</td>
+                            <td>@item.tblWorker.strWorkderId</td>
+                            <td>@item.tblWorker.strName</td>
+                            <td>@item.tblSupervisor.strSupervisorName</td>
+                            @if (item.tblEngineer != null)
+                            {
+                                <td>@item.tblEngineer.strEngineerName</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            <td>@item.tblArea.strAreaName</td>
+
+                            <td>@item.tblTrade.strTradeName</td>
+                            <td>@item.tblShift.strShiftName</td>
+                            <td>@item.tblWorker.dtSafety</td>
+                            @{
+                                if (item.tblWorker.bolIsSafetyVerified == true)
+                                {
+                                    <td>OK</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                            }
+
+
+
+                        </tr>
+                        sn++;
+
+                    }
+                </tbody>
+            </table>
+            @*<button onclick = "return confirm('Are sure wants to approve?');" type="submit" class="btn btn-primary btn-xs">Approve Entire List</button>*@
+        }
+    }
+
+
+</div>
+
+
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+<script src="/scripts/Common.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#submitbtn').attr("disabled", "disabled");
+        $('#tblSupervisor').DataTable({
+            dom: "Bfrtip",
+            scrollY: "300px",
+            scrollX: true,
+            scrollCollapse: true,
+            pageLength: 2000,
+            buttons: ['excel', 'colvis'],
+            fixedColumns: {
+                leftColumns: 2
+            }
+        });
+        $('#checkBoxAll').click(function () {
+            if ($(this).is(":checked")) {
+                $(".chkCheckBoxId").prop("checked", true)
+            }
+            else {
+                $(".chkCheckBoxId").prop("checked", false)
+            }
+        });
+    });
+    function SelectedIndexChanged() {
+        //Form post
+        document.demoForm.submit();
+    }
+
+    $(document).ready(function () {
+        $("#tblUser").DataTable();
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblUser').load(data.url);
+                    $("#tblUser").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+    function showTime() {
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); // 0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var session = "AM";
+
+        if (h == 0) {
+            h = 12;
+        }
+
+        if (h >= 12) {
+
+            if (h == 12) {
+
+                h = h;
+            }
+            else {
+                h = h - 12;
+            }
+
+            session = "PM";
+        }
+
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+
+        var time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("MyClockDisplay").innerText = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+
+        setTimeout(showTime, 1000);
+
+    }
+
+    showTime();
+</script>

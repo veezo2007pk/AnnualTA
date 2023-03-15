@@ -1,0 +1,9 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblSupervisor>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+
+<h6 class="card-title mb-2">Attendance List</h6>
+
+
+@{Html.RenderAction("PopulateSupervisors", "tblAttendances", new { Status = @ViewBag.year });}

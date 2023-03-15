@@ -1,0 +1,316 @@
+﻿@model IEnumerable<AdvanceUMS.Models.procGetWorkerList_Result>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+    string s = dHelper.year();
+}
+<div class="box-body">
+    @Html.Raw(ViewBag.shiftmessage) 
+    <section class="content">
+        @using (Html.BeginForm("Index", "tblWorkers", FormMethod.Get))
+        {
+            <div class="row">
+
+
+
+                <div class="col-8">
+
+
+                    @Html.Raw(ViewBag.Message)
+                    <div class="box box-primary">
+
+
+
+
+                        <div class="box-body">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Filter By Year</label>
+                                        <select name="year" class="form-control">
+                                            <option value=""></option>
+                                            @foreach (var item in ViewBag.yearList)
+                                            {
+                                                <option value="@item.Text">@item.Text</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group" style="padding-top: 28px;">
+                                        <label></label>
+                                        <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class=" btn btn-primary">Search</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+        }
+    </section>
+
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+
+    <div class="row">
+
+
+
+
+    </div>
+    <div class="table-responsive">
+        <table id="tblWorker" class="table">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Worker Id</th>
+                    <th>Name</th>
+                    <th>Father Name</th>
+                    <th>Contact</th>
+                    <th>Age</th>
+                    <th>CNIC</th>
+                    <th>Experience</th>
+                    <th>Trade</th>
+                    <th>Department</th>
+                    <th>Area</th>
+
+                    <th>Acommodation</th>
+                    <th>Supervisor</th>
+                    <th>Engineer</th>
+                    <th>Joining Status</th>
+                    <th>Shift</th>
+                    <th>Approval Status</th>
+
+                    <th style="text-align:center">Action</th>
+                </tr>
+              
+            </thead>
+            <tbody>
+                @{
+                    int sn = 1;
+                }
+                @foreach (var item in Model)
+                {
+                <tr>
+                    @*@if (item.vbrPicture != null)
+        {
+            var base64 = Convert.ToBase64String(item.vbrPicture);
+            var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+            <td><img class="img-circle" width="70" height="70" src="@imgSrc" /></td>
+        }
+        else
+        {
+            <td></td>
+        }*@
+                    <td>@sn</td>
+                    <td>@item.strWorkderId</td>
+                    <td>
+                        @item.strName
+                    </td>
+                    <td>
+                        @dHelper.GetFatherName(item.uqId)
+                    </td>
+                    <td>@item.strContact</td>
+                    <td>@item.intAge</td>
+                    <td>@item.strCNIC</td>
+                    <td>
+                        @dHelper.GetExperience(item.uqId)
+                    </td>
+
+                    <td>@item.strTradeName</td>
+
+
+                    <td>@item.strDepartmentName</td>
+
+
+                    <td>@item.strAreaName</td>
+                    <td>
+                        @dHelper.GetArea(item.uqId)
+                    </td>
+
+                    <td>@item.strSupervisorName</td>
+
+
+                    <td>@item.strEngineerName</td>
+
+                    @{
+                        if (item.uqJoiningStatusCode == new Guid("D3B967C8-2F02-4937-8A79-29CABD9101D1"))
+                        {
+                            <td>
+                                <span style="        color: #32CD32
+">   @item.strJoiningStatusCode</span>
+                </td>
+            }
+            else if (item.uqJoiningStatusCode == new Guid("200282CB-737F-471C-AB34-5B721BF15742"))
+            {
+                <td>
+                    <span style="color:blue;">   @item.strJoiningStatusCode</span>
+                </td>
+            }
+            else if (item.uqJoiningStatusCode == new Guid("D16E4B36-3E95-4A76-8084-76A848153E9C"))
+            {
+                <td>
+                    <span style="color:red;">   @item.strJoiningStatusCode</span>
+                </td>
+            }
+            else if (item.uqJoiningStatusCode == new Guid("AB0AC9F1-1F95-403F-8322-DAE4CA038521"))
+            {
+                <td>
+
+                    <span style="        color: #FF1493;">   @item.strJoiningStatusCode</span>
+                </td>
+            }
+            else if (item.uqJoiningStatusCode == new Guid("ab0ac9f1-1f95-403f-8342-dae4ca038521"))
+            {
+                <td>
+
+                    <span style="        color: darkred;">   @item.strJoiningStatusCode</span>
+                </td>
+            }
+                    }
+
+
+
+                    <td>@item.strShiftName</td>
+                    @{
+                        if (item.bolIsWorkerApproveByEng == false)
+                        {
+                            <td> <span style="        color: #FF1493;">Disapproved</span></td>
+                        }
+                        else if (item.bolIsWorkerApproveByEng == true)
+                        {
+                            <td>  <span style="        color: #32CD32">Approved</span></td>
+                        }
+                        else
+                        {
+                            <td>  <span style="        color: blue">Awaited</span></td>
+                        }
+                    }
+
+
+
+                    <td style="text-align:center">
+                        @if (Convert.ToInt32(item.Year) < Convert.ToInt32(s))
+                        {
+
+
+
+                            if (ViewBag.engineer != null || ViewBag.supervisor != null)
+                            {
+                                <a href="/admin/tblWorkers/edit?ID=@item.uqId" class="btn btn-outline-primary btn-sm"><i class="fa fa-eye"></i> View</a>
+                            }
+                            else
+                            {
+                                <a href="/admin/tblworkers/Shift?ID=@item.uqId&url=@Request.Url.ToString()" class=" btnSubmit btn btn-outline-primary btn-sm"><i class="fa fa-arrow-right"></i> shift</a>
+
+                            }
+                        }
+                        else
+                        {
+                            if (ViewBag.engineer != null || ViewBag.supervisor != null)
+                            {
+                                <a href="/admin/tblWorkers/edit?ID=@item.uqId" class="btn btn-outline-primary btn-sm"><i class="fa fa-eye"></i> View</a>
+                            }
+                            else
+                            {
+                                <a href="/admin/tblworkers/edit?id=@item.uqId" class="btn btn-outline-primary btn-sm"><i class="fa fa-eye"></i> Edit</a>
+
+                            }
+                        }
+                        @*@if (ViewBag.IsDelete == true)
+            {
+                <a data-url="/admin/tblWorkers/delete/@item.uqId" class="delete btn btn-warning btn-xs">Delete</a>
+            }*@
+                    </td>
+                </tr>
+                
+                    sn++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
+@*<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>*@
+
+
+
+
+@*<script src="/scripts/Common.js"></script>*@
+<script>
+    $(document).ready(function () {
+
+        //$('#tblWorker').DataTable({
+        //   pageLength: '1000000',
+        //    dom: 'Bfrtip',
+        //    buttons: [
+                
+        //        'excelHtml5',
+             
+        //        'pdfHtml5'
+        //    ]
+        //});
+     $('#tblWorker').DataTable({
+         dom: "Bfrtip",
+         scrollY: "300px",
+         scrollX: true,
+         scrollCollapse: true,
+         pageLength: 2000,
+         buttons: ['excel','colvis'],
+         fixedColumns: {
+             leftColumns: 2
+         }
+        });
+
+        $('.showHideColumn').on('click', function (e) {
+            e.preventDefault();
+
+            // Get the column API object
+            var column = table.column($(this).attr('data-columnindex'));
+
+            // Toggle the visibility
+            column.visible(!column.visible());
+        });
+    });
+    $(document).ready(function () {
+        $("#tblUser").DataTable({
+            responsive: true
+        });
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblUser').load(data.url);
+                    $("#tblUser").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+</script>

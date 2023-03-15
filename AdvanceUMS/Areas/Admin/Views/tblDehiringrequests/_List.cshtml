@@ -1,0 +1,249 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblSupervisorListForm>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+    string s = dHelper.year();
+}
+@{
+    @ViewBag.hour
+}
+<style>
+    .clock {
+        /*position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translateX(-50%) translateY(-50%);
+        */
+        position: relative;
+        color: #3c8dbc;
+        font-size: 40px;
+        font-family: Orbitron;
+        letter-spacing: 7px;
+        text-align: center;
+    }
+</style>
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+    <section class="content">
+        @using (Html.BeginForm("Index", "tblDehiringrequests", FormMethod.Get))
+        {
+            <div class="row">
+
+
+
+                <div class="col-8">
+
+
+                    @Html.Raw(ViewBag.Message)
+                    <div class="box box-primary">
+
+
+
+
+                        <div class="box-body">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Filter By Year</label>
+                                        <select name="year" class="form-control">
+                                            <option value=""></option>
+                                            @foreach (var item in ViewBag.yearList)
+                                            {
+                                                <option value="@item.Text">@item.Text</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group" style="padding-top: 28px;">
+                                        <label></label>
+                                        <button data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" type="submit" class=" btn btn-primary">Search</button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+        }
+    </section>
+
+    <section>
+        <div class="row">
+
+
+
+
+            @*<div class="col-md-12">
+
+                    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+
+
+
+
+                </div>*@
+            @*<div class="center col-md-4">
+
+                </div>
+                <div class="center col-md-4">
+                  <label>Select Date</label>
+                    <input type="date" class="form-control" />
+                </div>
+                <div class="center col-md-4">
+
+                </div>*@
+
+
+        </div>
+
+    </section>
+
+    @{
+        int sn = 1;
+    }
+    @using (Html.BeginForm("DeHireCollection", "tblDehiringrequests", FormMethod.Post))
+    {
+        <table id="tblSupervisor" class="table ">
+            <thead>
+                <tr>
+                    @*<th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>*@
+                    <th>S/N</th>
+                    <th>Worker ID</th>
+                    <th>Worker Name</th>
+                    <th>Supervisor Name</th>
+
+                    <th>Trade</th>
+                    <th>Shift</th>
+                    <th>Joining Date</th>
+                    <th>Action</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <input type="hidden" value="@item.tblWorker.uqId" name="uqId" />
+                    <tr>
+
+                        <td>@sn</td>
+                        <td>@item.tblWorker.strWorkderId</td>
+                        <td>@item.tblWorker.strName</td>
+
+                        <td>@item.tblSupervisor.strSupervisorName</td>
+                        <td>@item.tblTrade.strTradeName</td>
+                        <td>@item.tblShift.strShiftName</td>
+                        <td>@item.tblWorker.dtDurationFrom.Value.ToString("dd/MM/yyyy")</td>
+                        @if (Convert.ToInt32(item.tblWorker.Year) < Convert.ToInt32(s))
+                        {
+                            <td>
+                                <a title="Disabled" onclick="return false;" style="background-color:gray; color:white" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" href="/admin/tblDehiringrequests/DeHire?ID=@item.tblWorker.uqId&status=2" class="engineerbtn btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Verify</a>
+                                <a title="Disabled" onclick="return false;" style="background-color:gray; color:white" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" href="/admin/tblDehiringrequests/DeHire?ID=@item.tblWorker.uqId&status=3" class="engineerbtn btn btn-outline-danger btn-sm"><i class="fa fa-times-circle"></i> Reject</a>
+
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" href="/admin/tblDehiringrequests/DeHire?ID=@item.tblWorker.uqId&status=2" class="btnSubmit engineerbtn btn btn-outline-primary btn-sm"><i class="fa fa-check"></i> Verify</a>
+                                <a  data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" href="/admin/tblDehiringrequests/DeHire?ID=@item.tblWorker.uqId&status=3" class="btnSubmit engineerbtn btn btn-outline-danger btn-sm"><i class="fa fa-times-circle"></i> Reject</a>
+
+                            </td>
+                        }
+                        <!--<td>
+
+
+    <!--</td>-->
+                    </tr>
+
+                    sn++;
+                }
+
+            </tbody>
+        </table>
+    }
+</div>
+
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+<script src="/scripts/Common.js"></script>
+
+<script>
+    function GetStudent() {
+        var myVal = $("#ddlClassType").data("myValue");
+
+
+
+    }
+    $(document).ready(function () {
+        $('#submitbtn').attr("disabled", "disabled");
+
+        $('#checkBoxAll').click(function () {
+            if ($(this).is(":checked")) {
+                $(".chkCheckBoxId").prop("checked", true)
+            }
+            else {
+                $(".chkCheckBoxId").prop("checked", false)
+            }
+        });
+    });
+    function SelectedIndexChanged() {
+        //Form post
+        document.demoForm.submit();
+    }
+    $(document).ready(function () {
+        $('#tblSupervisor').DataTable({
+            dom: "Bfrtip",
+            scrollY: "300px",
+            scrollX: true,
+            scrollCollapse: true,
+            pageLength: 2000,
+            buttons: ['excel', 'colvis'],
+            fixedColumns: {
+                leftColumns: 2
+            }
+        });
+    });
+    $(document).ready(function () {
+        $("#tblUser").DataTable();
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblUser').load(data.url);
+                    $("#tblUser").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+</script>

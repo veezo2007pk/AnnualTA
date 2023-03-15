@@ -1,0 +1,48 @@
+﻿
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            To Do List
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">To Do List</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="box-header">
+                <input type="button" class="btn-bootstrap-dialog btn btn-info pull-right" title="Add ToDo" data-url="/admin/todo/create" value="Add ToDo" data-toggle="modal" />                
+            </div>
+            <div class="col-lg-6">
+                <div id="div_UnFinishtodo">
+                    @{Html.RenderAction("UnFinishToDoList", "ToDo");}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div id="div_Finishtodo">
+                    @{Html.RenderAction("FinishToDoList", "ToDo");}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/scripts/Common.js"></script>
+<div class="modal fade" id="bootstrapDialog" role="dialog" aria-labelledby="myModal-label" aria-hidden="true">
+
+</div>
+<script>
+    function CreateSuccess(data) {
+        if (data.status == "1") {
+            $('#bootstrapDialog').modal('hide');
+            $('#div_UnFinishtodo').load("/Admin/ToDo/UnFinishToDoList");
+            $('#div_Finishtodo').load("/Admin/ToDo/FinishToDoList");
+        }
+    }
+</script>

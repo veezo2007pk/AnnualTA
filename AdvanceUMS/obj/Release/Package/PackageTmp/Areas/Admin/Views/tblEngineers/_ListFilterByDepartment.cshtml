@@ -1,0 +1,366 @@
+﻿@model  IEnumerable<AdvanceUMS.Models.tblSupervisorListForm>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+
+@model IEnumerable<AdvanceUMS.Models.tblSupervisorListForm>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+
+    <section class="content">
+        <div class="row mb-2">
+            <div class="col-6">
+                @*@using (Ajax.BeginForm("AddUser", "tblSupervisors", new { }, new AjaxOptions { OnSuccess = "SuccessAddUser" }, new { enctype = "multipart/form-data" }))
+                    {*@
+
+                <div id="message"></div>
+                @Html.Raw(ViewBag.Message)
+
+                <div class="box box-primary">
+
+                    <div class="box-body">
+                        <div class="row">
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    @using (Html.BeginForm("FilterByDepartment", "tblEngineers", FormMethod.Post, new { id = "demoForm", name = "demoForm" }))
+                                    {
+                                        @Html.DropDownList("uqDepartmentCode", ViewBag.departmentList as SelectList, "Select Department", new { @class = "form-control", @onchange = "SelectedIndexChanged()" })
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+
+                                    @Html.DropDownList("uqHODId", ViewBag.hodList as SelectList, "Select HOD", new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="box-footer">
+                        <button type="submit" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" class="engineerbtn btn btn-primary btn-blockx">Submit</button>
+                    </div>
+                </div>
+
+
+
+                @*}*@
+            </div>
+        </div>
+    </section>
+
+    <table id="tblSupervisor" class="table ">
+        <thead>
+            <tr>
+                <th>Engineer Name</th>
+                <th>Department</th>
+                <th>HOD Name</th>
+
+                <th>Created At</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (item.tblEngineer != null)
+                    {
+                        <td>@item.tblEngineer.strEngineerName</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    @if (item.tblDepartment != null)
+                    {
+                        <td>@item.tblDepartment.strDepartmentName</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    @if (item.tblHOD != null)
+                    {
+                        <td>@item.tblHOD.strHODName</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    <td>@item.tblEngineer.dtCreatedAt</td>
+
+                    <td>
+                        @if (ViewBag.IsEdit == true)
+                        {
+                            <a href="/admin/tblEngineers/edit?ID=@item.tblEngineer.uqEngineerId" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                        }
+                        @if (ViewBag.IsDelete == true)
+                        {
+                            <a href="#" data-url="/admin/tblEngineers/delete/@item.tblEngineer.uqEngineerId" class="delete btn btn-outline-danger btn-sm"><i class="fa fa-trash-alt"></i> Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+
+
+
+<script src="/scripts/Common.js"></script>
+
+<script>
+    function SelectedIndexChanged() {
+        //Form post
+        document.demoForm.submit();
+    }
+    $(document).ready(function () {
+        $('#tblSupervisor').DataTable({
+            pageLength: '100',
+            dom: 'Bfrtip',
+            //buttons: [
+
+            //    'excelHtml5',
+
+            //    'pdfHtml5'
+            //]
+        });
+    });
+    $(document).ready(function () {
+        $("#tblUser").DataTable();
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblUser').load(data.url);
+                    $("#tblUser").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+<!--<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">-->
+        <!-- Start Header -->
+        <!--@{ Html.RenderAction("GetHeader", "Dashboard");}-->
+        <!-- End Header -->
+        <!-- Left side column. contains the logo and sidebar -->
+        <!--@{ Html.RenderAction("SidebarMenu", "Dashboard");}
+
+        <div class="content-wrapper">-->
+            <!-- Content Header (Page header) -->
+            <!--<section class="content-header">
+                <h1>
+                    Engineer List
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Engineer List</li>
+                </ol>
+            </section>-->
+
+            <!-- Main content -->
+            <!--<section class="content">
+                @using (Html.BeginForm("UpdateEngineerList", "tblEngineers", FormMethod.Post))
+                {
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                                @if (ViewBag.IsAdd == true)
+                                {
+                                    <div class="box-header">
+                                        <a href="/admin/tblEngineers/create" class="btn btn-info pull-right">Add User</a>
+                                    </div>
+                                }
+                                <div class="box-body">
+                                    <span id="message"></span>
+                                    @Html.Raw(ViewBag.Message)
+
+                                    <section class="content">
+                                        <div class="row">
+
+
+                                            <div id="message"></div>
+                                            @Html.Raw(ViewBag.Message)
+                                            <div class="col-md-8">
+                                                <div class="box box-primary">
+                                                    <div class="box-header with-border">
+                                                        <h3 class="box-title">General</h3>
+                                                    </div>
+                                                    <div class="box-body">
+
+                                                        <div class="row">
+
+                                                            <div class="col-xs-6">
+                                                                <div class="form-group">
+                                                                    @using (Html.BeginForm("FilterByDepartment", "tblEngineers", FormMethod.Post, new { id = "demoForm", name = "demoForm" }))
+                                                                    {
+                                                                        @Html.DropDownList("uqDepartmentCode", ViewBag.departmentList as SelectList, "Select Department", new { @class = "form-control", @onchange = "SelectedIndexChanged()" })
+                                                                    }
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xs-6">
+                                                                <div class="form-group">
+
+                                                                    @Html.DropDownList("uqHODId", ViewBag.hodList as SelectList, "Select HOD", new { @class = "form-control" })
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="box-footer">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </section>
+
+                                    <table id="tblEngineer" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>
+                                                <th>Engineer Name</th>
+                                                <th>Department</th>
+                                                <th>Created At</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td><input type="checkbox" name="ID" value="@item.tblEngineer.uqEngineerId" class="custom-checkbox chkCheckBoxId" /></td>
+                                                    @if (item.tblEngineer != null)
+                                                    {
+                                                        <td>@item.tblEngineer.strEngineerName</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td></td>
+                                                    }
+                                                    @if (item.tblDepartment != null)
+                                                    {
+                                                        <td>@item.tblDepartment.strDepartmentName</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td></td>
+                                                    }
+
+                                                    <td>@item.tblEngineer.dtCreatedAt</td>
+
+                                                    <td>
+                                                        @if (ViewBag.IsEdit == true)
+                                                        {
+                                                            <a href="/admin/tblEngineers/edit?ID=@item.tblEngineer.uqEngineerId" class="btn btn-primary btn-xs">Edit</a>
+                                                        }
+                                                        @if (ViewBag.IsDelete == true)
+                                                        {
+                                                            <a data-url="/admin/tblEngineers/delete/@item.tblEngineer.uqEngineerId" class="delete btn btn-warning btn-xs">Delete</a>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+
+
+
+        <script src="/scripts/Common.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#tblEngineer').DataTable();
+                $('#checkBoxAll').click(function () {
+                    if ($(this).is(":checked")) {
+                        $(".chkCheckBoxId").prop("checked", true)
+                    }
+                    else {
+                        $(".chkCheckBoxId").prop("checked", false)
+                    }
+                });
+            });
+            function SelectedIndexChanged() {
+                //Form post
+                document.demoForm.submit();
+            }
+            //$(document).ready(function () {
+            //    $('#tblEngineer').DataTable({
+            //        pageLength: '100',
+            //        dom: 'Bfrtip',
+            //        //buttons: [
+
+            //        //    'excelHtml5',
+
+            //        //    'pdfHtml5'
+            //        //]
+            //    });
+            //});
+            $(document).ready(function () {
+                $("#tblUser").DataTable();
+                $('.delete').click(function () {
+                    var url = $(this).data('url');
+                    $.get(url, function (data) {
+                        if (data.success == "0") {
+                            $('#tblUser').load(data.url);
+                            $("#tblUser").DataTable();
+                            $('#message').html(data.message);
+                        }
+                        else if (data.success == "3") {
+                            $('#message').html(data.message);
+                        }
+                    });
+                    return false;
+                });
+            });
+        </script>
+
+
+</body>-->

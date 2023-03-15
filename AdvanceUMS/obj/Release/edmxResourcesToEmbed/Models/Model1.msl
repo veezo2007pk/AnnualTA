@@ -1,0 +1,892 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbannualTAaModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="tblAccomodations">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblAccomodation">
+        <MappingFragment StoreEntitySet="tblAccomodation">
+          <ScalarProperty Name="uqAccommodationCode" ColumnName="uqAccommodationCode" />
+          <ScalarProperty Name="strAccommodationName" ColumnName="strAccommodationName" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAreas">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblArea">
+        <MappingFragment StoreEntitySet="tblArea">
+          <ScalarProperty Name="uqAreaCode" ColumnName="uqAreaCode" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAttendances">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblAttendance">
+        <MappingFragment StoreEntitySet="tblAttendance">
+          <ScalarProperty Name="uqAttendanceCode" ColumnName="uqAttendanceCode" />
+          <ScalarProperty Name="uqWorkerCode" ColumnName="uqWorkerCode" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="dtCheckOut" ColumnName="dtCheckOut" />
+          <ScalarProperty Name="bolIsOvertime" ColumnName="bolIsOvertime" />
+          <ScalarProperty Name="bolIsVerified" ColumnName="bolIsVerified" />
+          <ScalarProperty Name="uqShiftCode" ColumnName="uqShiftCode" />
+          <ScalarProperty Name="uqTradeCode" ColumnName="uqTradeCode" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="bolisAttendanceShiftToBackDate" ColumnName="bolisAttendanceShiftToBackDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblClearances">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblClearance">
+        <MappingFragment StoreEntitySet="tblClearance">
+          <ScalarProperty Name="uqClearanceCode" ColumnName="uqClearanceCode" />
+          <ScalarProperty Name="uqWorkerCode" ColumnName="uqWorkerCode" />
+          <ScalarProperty Name="strEngineeerRemarks" ColumnName="strEngineeerRemarks" />
+          <ScalarProperty Name="dtEngineerRemarks" ColumnName="dtEngineerRemarks" />
+          <ScalarProperty Name="strClearanceRemarks" ColumnName="strClearanceRemarks" />
+          <ScalarProperty Name="dtClearanceRemarks" ColumnName="dtClearanceRemarks" />
+          <ScalarProperty Name="strContractotRemarks" ColumnName="strContractotRemarks" />
+          <ScalarProperty Name="dtContractorRemarks" ColumnName="dtContractorRemarks" />
+          <ScalarProperty Name="strFeedback" ColumnName="strFeedback" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblContractors">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblContractor">
+        <MappingFragment StoreEntitySet="tblContractor">
+          <ScalarProperty Name="uqContractorCode" ColumnName="uqContractorCode" />
+          <ScalarProperty Name="strContractorName" ColumnName="strContractorName" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblContractorUsers">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblContractorUser">
+        <MappingFragment StoreEntitySet="tblContractorUser">
+          <ScalarProperty Name="uqId" ColumnName="uqId" />
+          <ScalarProperty Name="strUsername" ColumnName="strUsername" />
+          <ScalarProperty Name="strPassword" ColumnName="strPassword" />
+          <ScalarProperty Name="uqContractorId" ColumnName="uqContractorId" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCountries">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblCountry">
+        <MappingFragment StoreEntitySet="tblCountry">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDehireLogs">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblDehireLog">
+        <MappingFragment StoreEntitySet="tblDehireLog">
+          <ScalarProperty Name="uqDehireLog" ColumnName="uqDehireLog" />
+          <ScalarProperty Name="uqWorkerId" ColumnName="uqWorkerId" />
+          <ScalarProperty Name="intDehireStatus" ColumnName="intDehireStatus" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDepartments">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblDepartment">
+        <MappingFragment StoreEntitySet="tblDepartment">
+          <ScalarProperty Name="uqDepartmentCode" ColumnName="uqDepartmentCode" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblEngineers">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblEngineer">
+        <MappingFragment StoreEntitySet="tblEngineer">
+          <ScalarProperty Name="uqEngineerId" ColumnName="uqEngineerId" />
+          <ScalarProperty Name="strEngineerName" ColumnName="strEngineerName" />
+          <ScalarProperty Name="uqDepartmentCode" ColumnName="uqDepartmentCode" />
+          <ScalarProperty Name="uqHODId" ColumnName="uqHODId" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblExperiences">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblExperience">
+        <MappingFragment StoreEntitySet="tblExperience">
+          <ScalarProperty Name="uqExperienceCode" ColumnName="uqExperienceCode" />
+          <ScalarProperty Name="strExperienceName" ColumnName="strExperienceName" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblHODs">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblHOD">
+        <MappingFragment StoreEntitySet="tblHOD">
+          <ScalarProperty Name="uqHODId" ColumnName="uqHODId" />
+          <ScalarProperty Name="strHODName" ColumnName="strHODName" />
+          <ScalarProperty Name="uqDepartmentCode" ColumnName="uqDepartmentCode" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblJoiningStats">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblJoiningStat">
+        <MappingFragment StoreEntitySet="tblJoiningStat">
+          <ScalarProperty Name="uqJoiningStatusCode" ColumnName="uqJoiningStatusCode" />
+          <ScalarProperty Name="strJoiningStatusCode" ColumnName="strJoiningStatusCode" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblModules">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblModule">
+        <MappingFragment StoreEntitySet="tblModule">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="PageIcon" ColumnName="PageIcon" />
+          <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+          <ScalarProperty Name="PageSlug" ColumnName="PageSlug" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="ParentModuleID" ColumnName="ParentModuleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblOvertimes">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblOvertime">
+        <MappingFragment StoreEntitySet="tblOvertime">
+          <ScalarProperty Name="uqOvertimeCode" ColumnName="uqOvertimeCode" />
+          <ScalarProperty Name="uqAttendanceCode" ColumnName="uqAttendanceCode" />
+          <ScalarProperty Name="intRecommendedHrs" ColumnName="intRecommendedHrs" />
+          <ScalarProperty Name="bolIsVerified" ColumnName="bolIsVerified" />
+          <ScalarProperty Name="uqShiftCode" ColumnName="uqShiftCode" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRelationships">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblRelationship">
+        <MappingFragment StoreEntitySet="tblRelationship">
+          <ScalarProperty Name="uqRelationshipCode" ColumnName="uqRelationshipCode" />
+          <ScalarProperty Name="strRelationship" ColumnName="strRelationship" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblResidences">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblResidence">
+        <MappingFragment StoreEntitySet="tblResidence">
+          <ScalarProperty Name="uqResidenceCode" ColumnName="uqResidenceCode" />
+          <ScalarProperty Name="strResidenceName" ColumnName="strResidenceName" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRoles">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblRole">
+        <MappingFragment StoreEntitySet="tblRole">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="InsertBy" ColumnName="InsertBy" />
+          <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+          <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRolePermissions">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblRolePermission">
+        <MappingFragment StoreEntitySet="tblRolePermission">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="IsView" ColumnName="IsView" />
+          <ScalarProperty Name="IsAdd" ColumnName="IsAdd" />
+          <ScalarProperty Name="IsEdit" ColumnName="IsEdit" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSettings">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblSetting">
+        <MappingFragment StoreEntitySet="tblSetting">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LogoPath" ColumnName="LogoPath" />
+          <ScalarProperty Name="FeviconPath" ColumnName="FeviconPath" />
+          <ScalarProperty Name="SMTPHost" ColumnName="SMTPHost" />
+          <ScalarProperty Name="SMTPUserName" ColumnName="SMTPUserName" />
+          <ScalarProperty Name="SMTPPassword" ColumnName="SMTPPassword" />
+          <ScalarProperty Name="SMTPEmail" ColumnName="SMTPEmail" />
+          <ScalarProperty Name="SMTPPort" ColumnName="SMTPPort" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblShifts">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblShift">
+        <MappingFragment StoreEntitySet="tblShift">
+          <ScalarProperty Name="uqShiftId" ColumnName="uqShiftId" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="tmFrom" ColumnName="tmFrom" />
+          <ScalarProperty Name="tmTo" ColumnName="tmTo" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSkills">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblSkill">
+        <MappingFragment StoreEntitySet="tblSkills">
+          <ScalarProperty Name="uqSkillCode" ColumnName="uqSkillCode" />
+          <ScalarProperty Name="strSkillName" ColumnName="strSkillName" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSupervisors">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblSupervisor">
+        <MappingFragment StoreEntitySet="tblSupervisor">
+          <ScalarProperty Name="uqSupervisorId" ColumnName="uqSupervisorId" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="uqEngineerCode" ColumnName="uqEngineerCode" />
+          <ScalarProperty Name="uqDepartmentCode" ColumnName="uqDepartmentCode" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTAPlannings">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblTAPlanning">
+        <MappingFragment StoreEntitySet="tblTAPlanning">
+          <ScalarProperty Name="intTAPlanningCode" ColumnName="intTAPlanningCode" />
+          <ScalarProperty Name="uqTradeCode" ColumnName="uqTradeCode" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="uqShiftCode" ColumnName="uqShiftCode" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="uqAreaCode" ColumnName="uqAreaCode" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="uqDepartmentCode" ColumnName="uqDepartmentCode" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="dtFrom" ColumnName="dtFrom" />
+          <ScalarProperty Name="dtTo" ColumnName="dtTo" />
+          <ScalarProperty Name="intDays" ColumnName="intDays" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblToDoes">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblToDo">
+        <MappingFragment StoreEntitySet="tblToDo">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CompleteDate" ColumnName="CompleteDate" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTrades">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblTrade">
+        <MappingFragment StoreEntitySet="tblTrade">
+          <ScalarProperty Name="uqTradeCode" ColumnName="uqTradeCode" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="intRate" ColumnName="intRate" />
+          <ScalarProperty Name="intMealAllowance" ColumnName="intMealAllowance" />
+          <ScalarProperty Name="intOvertimeRate" ColumnName="intOvertimeRate" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+          <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
+          <ScalarProperty Name="TwitterLink" ColumnName="TwitterLink" />
+          <ScalarProperty Name="GoogleLink" ColumnName="GoogleLink" />
+          <ScalarProperty Name="LinkedInLink" ColumnName="LinkedInLink" />
+          <ScalarProperty Name="SkypeID" ColumnName="SkypeID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="IsSupervisor" ColumnName="IsSupervisor" />
+          <ScalarProperty Name="uqSupervisorCode" ColumnName="uqSupervisorCode" />
+          <ScalarProperty Name="IsEngineer" ColumnName="IsEngineer" />
+          <ScalarProperty Name="uqEngineerCode" ColumnName="uqEngineerCode" />
+          <ScalarProperty Name="IsHOD" ColumnName="IsHOD" />
+          <ScalarProperty Name="uqHODCode" ColumnName="uqHODCode" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+          <ScalarProperty Name="FailedPasswordCount" ColumnName="FailedPasswordCount" />
+          <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+          <ScalarProperty Name="InsertBy" ColumnName="InsertBy" />
+          <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+          <ScalarProperty Name="LastModifiedBy" ColumnName="LastModifiedBy" />
+          <ScalarProperty Name="uqContractorCode" ColumnName="uqContractorCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserLogs">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblUserLog">
+        <MappingFragment StoreEntitySet="tblUserLog">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="MoreInfo" ColumnName="MoreInfo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblWorkers">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblWorker">
+        <MappingFragment StoreEntitySet="tblWorker">
+          <ScalarProperty Name="uqId" ColumnName="uqId" />
+          <ScalarProperty Name="uqContractorUserId" ColumnName="uqContractorUserId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strNextOfKin" ColumnName="strNextOfKin" />
+          <ScalarProperty Name="strNextOfKinContactNo" ColumnName="strNextOfKinContactNo" />
+          <ScalarProperty Name="strFatherName" ColumnName="strFatherName" />
+          <ScalarProperty Name="strCNIC" ColumnName="strCNIC" />
+          <ScalarProperty Name="strContact" ColumnName="strContact" />
+          <ScalarProperty Name="strEmergencyNo" ColumnName="strEmergencyNo" />
+          <ScalarProperty Name="intAge" ColumnName="intAge" />
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="dtSafety" ColumnName="dtSafety" />
+          <ScalarProperty Name="bolIsClearance" ColumnName="bolIsClearance" />
+          <ScalarProperty Name="strAddress" ColumnName="strAddress" />
+          <ScalarProperty Name="uqTradeCode" ColumnName="uqTradeCode" />
+          <ScalarProperty Name="strQualification" ColumnName="strQualification" />
+          <ScalarProperty Name="uqSkillCode" ColumnName="uqSkillCode" />
+          <ScalarProperty Name="uqExperienceCode" ColumnName="uqExperienceCode" />
+          <ScalarProperty Name="strTAattended" ColumnName="strTAattended" />
+          <ScalarProperty Name="dtLastTAyear" ColumnName="dtLastTAyear" />
+          <ScalarProperty Name="intTARate" ColumnName="intTARate" />
+          <ScalarProperty Name="uqSupervisorCode" ColumnName="uqSupervisorCode" />
+          <ScalarProperty Name="uqAreaCode" ColumnName="uqAreaCode" />
+          <ScalarProperty Name="dtDurationFrom" ColumnName="dtDurationFrom" />
+          <ScalarProperty Name="dtDurationTo" ColumnName="dtDurationTo" />
+          <ScalarProperty Name="uqResidenceCode" ColumnName="uqResidenceCode" />
+          <ScalarProperty Name="uqContractorCode" ColumnName="uqContractorCode" />
+          <ScalarProperty Name="uqDepartmentCode" ColumnName="uqDepartmentCode" />
+          <ScalarProperty Name="uqAccommodationCode" ColumnName="uqAccommodationCode" />
+          <ScalarProperty Name="uqRelationshipCode" ColumnName="uqRelationshipCode" />
+          <ScalarProperty Name="uqShiftCode" ColumnName="uqShiftCode" />
+          <ScalarProperty Name="dtTAyear" ColumnName="dtTAyear" />
+          <ScalarProperty Name="vbrPicture" ColumnName="vbrPicture" />
+          <ScalarProperty Name="vbrPicture1" ColumnName="vbrPicture1" />
+          <ScalarProperty Name="intJoiningStatusCode" ColumnName="intJoiningStatusCode" />
+          <ScalarProperty Name="dtLastCheckedIn" ColumnName="dtLastCheckedIn" />
+          <ScalarProperty Name="intTACurrentRate" ColumnName="intTACurrentRate" />
+          <ScalarProperty Name="intDehireStatus" ColumnName="intDehireStatus" />
+          <ScalarProperty Name="dtDehire" ColumnName="dtDehire" />
+          <ScalarProperty Name="bolIsSafetyVerified" ColumnName="bolIsSafetyVerified" />
+          <ScalarProperty Name="bolIsWorkerApproveByEng" ColumnName="bolIsWorkerApproveByEng" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblYears">
+      <EntityTypeMapping TypeName="dbannualTAaModel.tblYear">
+        <MappingFragment StoreEntitySet="tblYear">
+          <ScalarProperty Name="intYearCode" ColumnName="intYearCode" />
+          <ScalarProperty Name="strYearName" ColumnName="strYearName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AdminAttendanceCorrection" FunctionName="dbannualTAaModel.Store.AdminAttendanceCorrection">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.AdminAttendanceCorrection_Result">
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="uqAttendanceCode" ColumnName="uqAttendanceCode" />
+          <ScalarProperty Name="uqId" ColumnName="uqId" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="bolIsOvertime" ColumnName="bolIsOvertime" />
+          <ScalarProperty Name="bolIsVerified" ColumnName="bolIsVerified" />
+          <ScalarProperty Name="uqShiftCode" ColumnName="uqShiftCode" />
+          <ScalarProperty Name="uqTradeCode" ColumnName="uqTradeCode" />
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strEngineerName" ColumnName="strEngineerName" />
+          <ScalarProperty Name="strContractorName" ColumnName="strContractorName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AdminOTCorrection" FunctionName="dbannualTAaModel.Store.AdminOTCorrection">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.AdminOTCorrection_Result">
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="uqAttendanceCode" ColumnName="uqAttendanceCode" />
+          <ScalarProperty Name="uqId" ColumnName="uqId" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="bolIsOvertime" ColumnName="bolIsOvertime" />
+          <ScalarProperty Name="bolIsVerified" ColumnName="bolIsVerified" />
+          <ScalarProperty Name="uqShiftCode" ColumnName="uqShiftCode" />
+          <ScalarProperty Name="uqTradeCode" ColumnName="uqTradeCode" />
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strEngineerName" ColumnName="strEngineerName" />
+          <ScalarProperty Name="strContractorName" ColumnName="strContractorName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="uqOvertimeCode" ColumnName="uqOvertimeCode" />
+          <ScalarProperty Name="intRecommendedHrs" ColumnName="intRecommendedHrs" />
+          <ScalarProperty Name="OvertimeVerified" ColumnName="OvertimeVerified" />
+          <ScalarProperty Name="OTRemarks" ColumnName="OTRemarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DailyPlanReport" FunctionName="dbannualTAaModel.Store.DailyPlanReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.DailyPlanReport_Result">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Planned" ColumnName="Planned" />
+          <ScalarProperty Name="Actual" ColumnName="Actual" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DailyPlanReportForDay" FunctionName="dbannualTAaModel.Store.DailyPlanReportForDay">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.DailyPlanReportForDay_Result">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Planned" ColumnName="Planned" />
+          <ScalarProperty Name="Actual" ColumnName="Actual" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DailyPlanReportForNight" FunctionName="dbannualTAaModel.Store.DailyPlanReportForNight">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.DailyPlanReportForNight_Result">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Planned" ColumnName="Planned" />
+          <ScalarProperty Name="Actual" ColumnName="Actual" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DehireData" FunctionName="dbannualTAaModel.Store.DehireData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.DehireData_Result">
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strEngineerName" ColumnName="strEngineerName" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="strContractorName" ColumnName="strContractorName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="FrontCard" FunctionName="dbannualTAaModel.Store.FrontCard">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.FrontCard_Result">
+          <ScalarProperty Name="strCNIC" ColumnName="strCNIC" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="vbrPicture" ColumnName="vbrPicture" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="strResidenceName" ColumnName="strResidenceName" />
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strContact" ColumnName="strContact" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="insertWorker" FunctionName="dbannualTAaModel.Store.insertWorker" />
+    <FunctionImportMapping FunctionImportName="MainAttendanceReport" FunctionName="dbannualTAaModel.Store.MainAttendanceReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.MainAttendanceReport_Result">
+          <ScalarProperty Name="Trade" ColumnName="Trade" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Actual" ColumnName="Actual" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ModuleDeleteSortOrder" FunctionName="dbannualTAaModel.Store.ModuleDeleteSortOrder">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.ModuleDeleteSortOrder_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="PageIcon" ColumnName="PageIcon" />
+          <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+          <ScalarProperty Name="PageSlug" ColumnName="PageSlug" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="ParentModuleID" ColumnName="ParentModuleID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ModuleInsertSortOrder" FunctionName="dbannualTAaModel.Store.ModuleInsertSortOrder" />
+    <FunctionImportMapping FunctionImportName="ModuleList" FunctionName="dbannualTAaModel.Store.ModuleList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.ModuleList_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ModuleUpdateSortOrder" FunctionName="dbannualTAaModel.Store.ModuleUpdateSortOrder" />
+    <FunctionImportMapping FunctionImportName="PlanningData" FunctionName="dbannualTAaModel.Store.PlanningData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.PlanningData_Result">
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="intRate" ColumnName="intRate" />
+          <ScalarProperty Name="intDays" ColumnName="intDays" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="intMealAllowance" ColumnName="intMealAllowance" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PlanningReport" FunctionName="dbannualTAaModel.Store.PlanningReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.PlanningReport_Result">
+          <ScalarProperty Name="ShiftName" ColumnName="ShiftName" />
+          <ScalarProperty Name="Trade" ColumnName="Trade" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="procGetClearanceList" FunctionName="dbannualTAaModel.Store.procGetClearanceList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.procGetClearanceList_Result">
+          <ScalarProperty Name="WrokerYear" ColumnName="WrokerYear" />
+          <ScalarProperty Name="ClearanceYear" ColumnName="ClearanceYear" />
+          <ScalarProperty Name="dtDehire" ColumnName="dtDehire" />
+          <ScalarProperty Name="uqClearanceCode" ColumnName="uqClearanceCode" />
+          <ScalarProperty Name="strFeedback" ColumnName="strFeedback" />
+          <ScalarProperty Name="dtContractorRemarks" ColumnName="dtContractorRemarks" />
+          <ScalarProperty Name="strContractotRemarks" ColumnName="strContractotRemarks" />
+          <ScalarProperty Name="uqEngineerId" ColumnName="uqEngineerId" />
+          <ScalarProperty Name="uqContractorCode" ColumnName="uqContractorCode" />
+          <ScalarProperty Name="bolIsClearance" ColumnName="bolIsClearance" />
+          <ScalarProperty Name="dtClearanceRemarks" ColumnName="dtClearanceRemarks" />
+          <ScalarProperty Name="dtEngineerRemarks" ColumnName="dtEngineerRemarks" />
+          <ScalarProperty Name="strEngineeerRemarks" ColumnName="strEngineeerRemarks" />
+          <ScalarProperty Name="strClearanceRemarks" ColumnName="strClearanceRemarks" />
+          <ScalarProperty Name="bolIsWorkerApproveByEng" ColumnName="bolIsWorkerApproveByEng" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="uqId" ColumnName="uqId" />
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strContact" ColumnName="strContact" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="intAge" ColumnName="intAge" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strEngineerName" ColumnName="strEngineerName" />
+          <ScalarProperty Name="strJoiningStatusCode" ColumnName="strJoiningStatusCode" />
+          <ScalarProperty Name="uqJoiningStatusCode" ColumnName="uqJoiningStatusCode" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="procGetWorkerList" FunctionName="dbannualTAaModel.Store.procGetWorkerList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.procGetWorkerList_Result">
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="strCNIC" ColumnName="strCNIC" />
+          <ScalarProperty Name="bolIsWorkerApproveByEng" ColumnName="bolIsWorkerApproveByEng" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="uqId" ColumnName="uqId" />
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strContact" ColumnName="strContact" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="intAge" ColumnName="intAge" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strEngineerName" ColumnName="strEngineerName" />
+          <ScalarProperty Name="strJoiningStatusCode" ColumnName="strJoiningStatusCode" />
+          <ScalarProperty Name="uqJoiningStatusCode" ColumnName="uqJoiningStatusCode" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TradeSummary" FunctionName="dbannualTAaModel.Store.TradeSummary">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.TradeSummary_Result">
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+          <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+          <ScalarProperty Name="Pending" ColumnName="Pending" />
+          <ScalarProperty Name="NotJoining" ColumnName="NotJoining" />
+          <ScalarProperty Name="NotResponding" ColumnName="NotResponding" />
+          <ScalarProperty Name="Rejected" ColumnName="Rejected" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UserLog" FunctionName="dbannualTAaModel.Store.UserLog">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.UserLog_Result">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WorkerAttendanceData" FunctionName="dbannualTAaModel.Store.WorkerAttendanceData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.WorkerAttendanceData_Result">
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strEngineerName" ColumnName="strEngineerName" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="strContractorName" ColumnName="strContractorName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AttendanceReport" FunctionName="dbannualTAaModel.Store.AttendanceReport">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.AttendanceReport_Result">
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="attendance" ColumnName="attendance" />
+          <ScalarProperty Name="totaltrade" ColumnName="totaltrade" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdateNigthBackDate" FunctionName="dbannualTAaModel.Store.UpdateNigthBackDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.UpdateNigthBackDate_Result">
+          <ScalarProperty Name="uqAttendanceCode" ColumnName="uqAttendanceCode" />
+          <ScalarProperty Name="uqWorkerCode" ColumnName="uqWorkerCode" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="dtCheckOut" ColumnName="dtCheckOut" />
+          <ScalarProperty Name="bolIsOvertime" ColumnName="bolIsOvertime" />
+          <ScalarProperty Name="bolIsVerified" ColumnName="bolIsVerified" />
+          <ScalarProperty Name="uqShiftCode" ColumnName="uqShiftCode" />
+          <ScalarProperty Name="uqTradeCode" ColumnName="uqTradeCode" />
+          <ScalarProperty Name="dtCreatedAt" ColumnName="dtCreatedAt" />
+          <ScalarProperty Name="dtMoidifyAt" ColumnName="dtMoidifyAt" />
+          <ScalarProperty Name="uqCreatedBy" ColumnName="uqCreatedBy" />
+          <ScalarProperty Name="uqModifyBy" ColumnName="uqModifyBy" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="bolisAttendanceShiftToBackDate" ColumnName="bolisAttendanceShiftToBackDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AttendanceForEngineer" FunctionName="dbannualTAaModel.Store.AttendanceForEngineer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.AttendanceForEngineer_Result">
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AttendanceForSupervisor" FunctionName="dbannualTAaModel.Store.AttendanceForSupervisor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.AttendanceForSupervisor_Result">
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="OTForEngineer" FunctionName="dbannualTAaModel.Store.OTForEngineer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.OTForEngineer_Result">
+          <ScalarProperty Name="intRecommendedHrs" ColumnName="intRecommendedHrs" />
+          <ScalarProperty Name="overtimeverified" ColumnName="overtimeverified" />
+          <ScalarProperty Name="overtimeRemarks" ColumnName="overtimeRemarks" />
+          <ScalarProperty Name="overtimeDate" ColumnName="overtimeDate" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="OTForSupervisor" FunctionName="dbannualTAaModel.Store.OTForSupervisor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.OTForSupervisor_Result">
+          <ScalarProperty Name="intRecommendedHrs" ColumnName="intRecommendedHrs" />
+          <ScalarProperty Name="overtimeverified" ColumnName="overtimeverified" />
+          <ScalarProperty Name="overtimeRemarks" ColumnName="overtimeRemarks" />
+          <ScalarProperty Name="overtimeDate" ColumnName="overtimeDate" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WorkerAttendanceDataForEng" FunctionName="dbannualTAaModel.Store.WorkerAttendanceDataForEng">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.WorkerAttendanceDataForEng_Result">
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strEngineerName" ColumnName="strEngineerName" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="strContractorName" ColumnName="strContractorName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WorkerAttendanceDataForSupervisor" FunctionName="dbannualTAaModel.Store.WorkerAttendanceDataForSupervisor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbannualTAaModel.WorkerAttendanceDataForSupervisor_Result">
+          <ScalarProperty Name="strWorkderId" ColumnName="strWorkderId" />
+          <ScalarProperty Name="strName" ColumnName="strName" />
+          <ScalarProperty Name="dtCheckIn" ColumnName="dtCheckIn" />
+          <ScalarProperty Name="strSupervisorName" ColumnName="strSupervisorName" />
+          <ScalarProperty Name="strDepartmentName" ColumnName="strDepartmentName" />
+          <ScalarProperty Name="strAreaName" ColumnName="strAreaName" />
+          <ScalarProperty Name="strTradeName" ColumnName="strTradeName" />
+          <ScalarProperty Name="strEngineerName" ColumnName="strEngineerName" />
+          <ScalarProperty Name="strShiftName" ColumnName="strShiftName" />
+          <ScalarProperty Name="strContractorName" ColumnName="strContractorName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,97 @@
+﻿@model AdvanceUMS.Helper.JoiningStatViewModel
+
+<script src="/scripts/jquery.validate.min.js"></script>
+<script src="/scripts/jquery.validate.unobtrusive.min.js"></script>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-4">
+            @using (Ajax.BeginForm("AddJoiningStat", "tblJoiningStats", new { }, new AjaxOptions { OnSuccess = "SuccessAddUser" }, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.uqJoiningStatusCode)
+                @Html.HiddenFor(model => model.dtCreatedAt)
+                @Html.HiddenFor(model => model.dtMoidifyAt)
+                @Html.HiddenFor(model => model.uqCreatedBy)
+                @Html.HiddenFor(model => model.uqModifyBy)
+
+                <div id="message"></div>
+                @Html.Raw(ViewBag.Message)
+
+                <div class="box box-primary">
+                   
+                    <div class="box-body">
+                                <div class="form-group">
+                                    <label>Joining Status Name @Html.ValidationMessageFor(model => model.strJoiningStatusCode, "", new { @class = "text-danger" })</label>
+                                    @Html.TextBoxFor(model => model.strJoiningStatusCode, new { @class = "form-control", placeholder = "Joining Status Name" })
+                                </div>
+                            
+
+                    </div>
+
+                    <div class="box-footer">
+                        <button type="submit" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" class="engineerbtn btn btn-primary btn-block">Submit</button>
+                    </div>
+                </div>
+
+
+
+            }
+        </div>
+        </div>
+</section>
+<input type="hidden" id="type" value="@ViewBag.Edit" />
+<link rel="stylesheet" href="/content/assets/css/dropify.min.css" />
+<script src="/content/assets/js/dropify.min.js"></script>
+<script>
+    $(function () {
+        var type = $('#type').val();
+        if (type == "1") {
+            $('#divPreviewPhoto').show();
+            $('#divUploadPhoto').hide();
+        }
+        else {
+            $('#divUploadPhotoButtons').hide();
+            $('#divPreviewPhoto').hide();
+            $('#divUploadPhoto').show();
+        }
+        $('#dtpDob').datepicker({
+            format: 'dd-M-yyyy',
+            //Disable the future dates.
+        });
+
+        $('.dropify').dropify();
+        var drEvent = $('#dropify-event').dropify();
+        drEvent.on('dropify.beforeClear', function (event, element) {
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+        drEvent.on('dropify.afterClear', function (event, element) {
+            alert('File deleted');
+        });
+        $('.dropify-fr').dropify(
+        {
+            messages:
+            {
+                default: 'Click here to choose any image',
+                replace: 'Click remove to remove this image',
+                remove: 'Remove',
+            }
+        });
+    });
+    function SuccessAddUser(data) {
+        if (data.status == "1") {
+            window.location = data.url;
+        }
+        if (data.status == "2") {
+            $('#message').html(data.message);
+        }
+    }
+    function UploadPhoto() {
+        $('#divPreviewPhoto').hide();
+        $('#divUploadPhoto').show();
+    }
+    function PreviewPhoto() {
+        $('#divPreviewPhoto').show();
+        $('#divUploadPhoto').hide();
+    }
+
+</script>

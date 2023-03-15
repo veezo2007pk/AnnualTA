@@ -1,0 +1,824 @@
+﻿<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
+    <meta name="Author" content="Spruko Technologies Private Limited">
+    <meta name="Keywords" content="admin,admin dashboard,admin dashboard template,admin panel template,admin template,admin theme,bootstrap 4 admin template,bootstrap 4 dashboard,bootstrap admin,bootstrap admin dashboard,bootstrap admin panel,bootstrap admin template,bootstrap admin theme,bootstrap dashboard,bootstrap form template,bootstrap panel,bootstrap ui kit,dashboard bootstrap 4,dashboard design,dashboard html,dashboard template,dashboard ui kit,envato templates,flat ui,html,html and css templates,html dashboard template,html5,jquery html,premium,premium quality,sidebar bootstrap 4,template admin bootstrap 4" />
+
+    <!-- Title -->
+    <title>HCM Solutions</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="~/assets/img/hmc-logo.png" type="image/x-icon" />
+
+    <!-- Icons css -->
+    <link href="/assets/css/icons.css" rel="stylesheet">
+
+    <!--  Right-sidemenu css -->
+    <link href="/assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+
+    <!-- P-scroll bar css-->
+    <link href="/assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
+
+    <!--  Left-Sidebar css -->
+    <link rel="stylesheet" href="/assets/css/sidemenu.css">
+
+    <!--- Style css --->
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <!--- Dark-mode css --->
+    <link href="/assets/css/style-dark.css" rel="stylesheet">
+
+    <!---Skinmodes css-->
+    <link href="/assets/css/skin-modes.css" rel="stylesheet" />
+
+    <!--- Animations css-->
+    <link href="/assets/css/animate.css" rel="stylesheet">
+
+    <link href="~/Content/loader.scss" />
+
+    <link href="/Content/assets/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Assets/datetimepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Content/assets/plugins/morris/morris.css">
+    <link rel="stylesheet" href="/Content/assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <link rel="stylesheet" href="/Content/assets/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="/Content/assets/plugins/daterangepicker/daterangepicker-bs3.css">
+    <link rel="stylesheet" href="/Content/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    @*<link rel="stylesheet" href="/Content/assets/plugins/datatables/dataTables.bootstrap.css">*@
+
+    <!-- Internal Data table css -->
+    <link href="/assets/plugins/datatable/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="/assets/plugins/datatable/css/buttons.bootstrap4.min.css" rel="stylesheet">
+    <link href="/assets/plugins/datatable/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="/assets/plugins/datatable/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/assets/plugins/datatable/css/responsive.dataTables.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/Content/assets/plugins/iCheck/all.css">
+    <link href="~/Assets/c3.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <!-- JQuery min js -->
+    <script src="/assets/plugins/jquery/jquery.min.js"></script>
+
+
+    <script src="~/Assets/c3.js"></script>
+    <script src="~/Assets/d3.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/scripts/Common.js"></script>
+
+
+    <style>
+
+        .side-menu .side-menu__icon {
+            line-height: 24px !important;
+        }
+        .box {
+            text-align: left !important;
+            font-weight: bold;
+            top: 0px !important;
+        }
+        .input-group label{
+            width:100% !important;
+        }
+
+        .xdsoft_datetimepicker{
+            z-index:99999;
+        }
+
+    </style>
+
+</head>
+
+<body class="main-body app sidebar-mini">
+    <div class="loading">
+        <img src="/assets/img/loader.svg" class="loader-img" alt="Loader">
+    </div>
+
+
+
+
+    <!-- Loader -->
+    <div id="global-loader">
+        <img src="/assets/img/loader.svg" class="loader-img" alt="Loader">
+    </div>
+    <!-- /Loader -->
+    <!-- Page -->
+    <div class="page">
+
+
+
+        @{ Html.RenderAction("SidebarMenu", "Dashboard");}
+
+
+        <!-- main-sidebar -->
+        <!-- main-content -->
+        <div class="main-content app-content">
+
+            @{ Html.RenderAction("GetHeader", "Dashboard");}
+            <!-- container -->
+            <div class="container-fluid">
+
+                <!-- breadcrumb -->
+                @*<div class="breadcrumb-header justify-content-between">
+                        <div class="my-auto">
+                            <div class="d-flex">
+                                <h4 class="content-title mb-0 my-auto">Pages</h4><span class="text-muted mt-1 tx-13 ml-2 mb-0">/ Blank</span>
+                            </div>
+                        </div>
+
+                    </div>*@
+                <!-- breadcrumb -->
+                <!-- row -->
+                <div class="row">
+
+                </div>
+                <!-- row closed -->
+
+                <div class="card  box-shadow-0 mt-4">
+                    <div class="card-body">
+                        @RenderBody()
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!-- Container closed -->
+        </div>
+        <!-- main-content closed -->
+        <!-- Footer opened -->
+        <div class="main-footer ht-40">
+            <div class="container-fluid pd-t-0-f ht-100p">
+                <span>Copyright © 2021 <a href="#">HCM Solutions</a>. Developed by <a target="_blank" href="https://www.biyosoft.tech/">Biyosoft Technologies</a> All rights reserved.</span>
+            </div>
+        </div>
+        <!-- Footer closed -->
+
+    </div>
+    <!-- End Page -->
+    <!-- Back-to-top -->
+    <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
+
+
+
+    <!-- Bootstrap Bundle js -->
+    <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Ionicons js --> x
+    <script src="/assets/plugins/moment/moment.js"></script>
+
+    <!-- P-scroll js -->
+    <script src="/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="/assets/plugins/perfect-scrollbar/p-scroll.js"></script>
+
+    <!-- Sticky js -->
+    <script src="/assets/js/sticky.js"></script>
+
+    <!-- eva-icons js -->
+    <script src="/assets/js/eva-icons.min.js"></script>
+
+    <!-- Rating js-->
+    <script src="/assets/plugins/rating/jquery.rating-stars.js"></script>
+    <script src="/assets/plugins/rating/jquery.barrating.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="/assets/plugins/side-menu/sidemenu.js"></script>
+
+    <!-- Right-sidebar js -->
+    <script src="/assets/plugins/sidebar/sidebar.js"></script>
+    <script src="/assets/plugins/sidebar/sidebar-custom.js"></script>
+
+    <!-- custom js -->
+    <script src="/assets/js/custom.js"></script>
+
+
+    <!-- Morris.js charts -->
+    <script src="/Content/assets/plugins/raphael/raphael-min.js"></script>
+    <script src="/Content/assets/plugins/morris/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="/Content/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="/Content/assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="/Content/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="/Content/assets/plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <script src="/Content/assets/plugins/moment/moment.min.js"></script>
+    @*<script src="/Content/assets/plugins/daterangepicker/daterangepicker.js"></script>*@
+    <!-- datepicker -->
+    <script src="/Content/assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="/Content/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="/Content/assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- iCheck 1.0.1 -->
+    <script src="/Content/assets/plugins/iCheck/icheck.min.js"></script>
+    <!-- FastClick -->
+    <script src="/Content/assets/plugins/fastclick/fastclick.js"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="/Content/assets/plugins/chartjs/Chart.min.js"></script>
+    <script src="~/Assets/date.format.js"></script>
+    <script src="~/Assets/datetimepicker.js"></script>
+
+    <!-- Internal Data tables -->
+    <script src="/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="/assets/plugins/datatable/js/dataTables.dataTables.min.js"></script>
+    <script src="/assets/plugins/datatable/js/dataTables.responsive.min.js"></script>
+    <script src="/assets/plugins/datatable/js/responsive.dataTables.min.js"></script>
+    <script src="/assets/plugins/datatable/js/jquery.dataTables.js"></script>
+    <script src="/assets/plugins/datatable/js/dataTables.bootstrap4.js"></script>
+    <script src="/assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
+    <script src="/assets/plugins/datatable/js/buttons.bootstrap4.min.js"></script>
+    <script src="/assets/plugins/datatable/js/jszip.min.js"></script>
+    <script src="/assets/plugins/datatable/js/pdfmake.min.js"></script>
+    <script src="/assets/plugins/datatable/js/vfs_fonts.js"></script>
+    <script src="/assets/plugins/datatable/js/buttons.html5.min.js"></script>
+    <script src="/assets/plugins/datatable/js/buttons.print.min.js"></script>
+    <script src="/assets/plugins/datatable/js/buttons.colVis.min.js"></script>
+    <script src="/assets/plugins/datatable/js/dataTables.responsive.min.js"></script>
+    <script src="/assets/plugins/datatable/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
+
+
+
+    <!-- DataTables -->
+    @*<script src="/Content/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="/Content/assets/plugins/datatables/dataTables.bootstrap.min.js"></script>*@
+    <script src="/Content/assets/plugins/underscore/underscore-min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.colVis.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
+
+
+
+    <script src="~/scripts/WebCam.js"></script>
+
+    <script>
+        $("#cnicmask").inputmask("99999-9999999-9");
+        $(".SelectedShiftIndexChanged").on('change', function () {
+
+            var s = $('.SelectedShiftIndexChanged').val();
+
+            //document.getElementById("supervisor").val() = selectedCountry;
+            $("#shift").val(s);
+            //var dst = document.getElementById("shift").val();
+            //dst = selectedCountry;
+            // alert("You have selected the country - " + selectedCountry);
+        });
+        $("select.SelectedSupervisorIndexChanged").change(function () {
+            var s = $('.SelectedSupervisorIndexChanged').val();
+            $("#supervisor").val(s);
+            //var dst = document.getElementById("supervisor").val();
+            //dst = selectedCountry;
+            //  alert("You have selected the country - " + selectedCountry);
+        });
+
+        $('.addattendance').hide()
+        function getbyID(EmpID) {
+
+            $('#strWorkerId').css('border-color', 'lightgrey');
+            $('#Name').css('border-color', 'lightgrey');
+            $('#dtCheckIntest').css('border-color', 'lightgrey');
+
+            $.ajax({
+                url: "/tblAttendances/getbyID/" + EmpID,
+                typr: "GET",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (result) {
+
+                    $('#uqAttendanceCode').val(result[0].uqAttendanceCode);
+                    $('#strWorkerId').val(result[0].strWorkderId);
+                    $('#Name').val(result[0].strName);
+                    //var date = parseInt(result[0].dtCheckIn.replace(/\/Date\(([0-9]+)[^+]\//i, "$1"));
+                    var fdate = new Date(parseInt(result[0].dtCheckIn.substr(6)))
+                    $('.datetimepicker').val(fdate.format('dd-mm-yyyy HH:mm'));
+
+
+                    $('#myModal').modal('show');
+                    $('#btnUpdate').show();
+                    $('#btnAdd').hide();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+            return false;
+        }
+
+        function loadData(strWorkerId) {
+
+
+
+
+            $.ajax({
+                url: "/tblAttendances/GetAttendancetList/?strWorkerId=" + strWorkerId,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $('.addattendance').show()
+                    var html = '';
+                    $.each(result, function (key, item) {
+
+                        html += '<tr>';
+                        html += '<td>' + item.strWorkderId + '</td>';
+                        html += '<td>' + item.strName + '</td>';
+                        html += '<td>' + item.strSupervisorName + '</td>';
+                        html += '<td>' + item.strEngineerName + '</td>';
+                        html += '<td>' + item.strContractorName + '</td>';
+                        html += '<td>' + item.strAreaName + '</td>';
+                        html += '<td>' + item.strDepartmentName + '</td>';
+                        html += '<td>' + item.strTradeName + '</td>';
+                        html += '<td>' + item.strShiftName + '</td>';
+                        var dtcheckin = new Date(parseInt(item.dtCheckIn.substr(6)))
+
+
+                        html += '<td>' + (dtcheckin.format('dd-mm-yyyy HH:MM')) + '</td>';
+                        if (item.bolIsVerified == true) { html += '<td style="color:green;">' + 'Present' + '</td>'; } else { html += '<td style="color:red;">' + 'Pending' + '</td>'; }
+
+                        html += '<td><a href="#" class="btn btn-outline-primary btn-sm" onclick="getbyID(\'' + item.uqAttendanceCode + '\')"><i class="fa fa-edit"></i> Edit</a><a href="#" class=" btn btn-outline-danger btn-sm" onclick="DeleteAttendance(\'' + item.uqAttendanceCode + '\')"><i class="fa fa-times-circle"></i> Delete</a></td>';
+                        html += '</tr>';
+                    });
+                    if (html != '') {
+
+                    }
+                    $('#SetStudentList').html(html);
+                },
+                beforeSend: function () {
+                    // Show image container
+                    $('.loading').show();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                    $('.addattendance').hide()
+                },
+                complete: function (data) {
+                    // Hide image container
+                    $('.loading').hide();
+                }
+            });
+
+        }
+        function Update() {
+
+
+
+            var empObj = {
+                uqAttendanceCode: $('#uqAttendanceCode').val(),
+                strWorkerId: $('#strWorkerId').val(),
+                dtCheckIn: $('#dtCheckIntest').val(),
+
+            };
+            $.ajax({
+                url: "/tblAttendances/UpdateAttendance",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+
+                    loadData($('#strWorkerId').val());
+                    $("#pageloader").fadeOut();
+                    $('#myModal').modal('hide');
+
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+
+                }
+            });
+        }
+        function submitdata(src) {
+            //alert(src);
+            var uqid = $("." + src + " .uqAttendanceCode").val();
+            var hours = $("." + src + " .ddlClassType option:selected").val();
+            $("#uqAttendanceCode").val(uqid);
+            $("#hours").val(hours);
+            $("#overtimepost").submit();
+
+        }
+
+        $('.btnSubmit').click(function () {
+            $(".btnsupervisorattendance").attr("disabled", true);
+            var r = confirm("Confirm Action?");
+            if (r == true) {
+                $('#myModall').modal('hide');
+                $('#myModallContractor').modal('hide');
+                $('#myModallEngineer').modal('hide');
+                $('#myModallEngineer').modal('hide');
+                $('.loading').show();
+            } else {
+                return false;
+                $('.loading').hide();
+                $(".btnsupervisorattendance").removeAttr("disabled");
+
+            }
+
+        });
+        function StartBlockPage() {
+            var block_body = $("#body");
+            $(block_body).block({
+                message: '<img src="http://www.nasa.gov/multimedia/videogallery/ajax-loader.gif" />',
+                overlayCSS: {
+                    backgroundColor: '#FFF',
+                    opacity: 0.8,
+                    cursor: 'wait',
+
+                },
+                css: {
+                    border: 0,
+                    padding: 0,
+                    backgroundColor: 'transparent',
+                }
+            });
+        }
+        $(function () {
+
+            $("#btnSubmitupdateSupervisor").click(function () {
+                if (!$('#uqEngineerCode').val()) {
+                    alert("Please select engineer from list")
+                    return false;
+
+                }
+                else {
+
+                    var checked_checkboxes = $("#tblSupervisor input[type=checkbox]:checked");
+                    if (checked_checkboxes.length == 0) {
+                        $(".error").show();
+                        return false;
+                    }
+
+                    var r = confirm("Are you sure to update selected supervisors?");
+                    if (r == true) {
+                        $('.loading').show();
+                        var values = new Array();
+                        $.each($("#tblSupervisor input[type=checkbox]:checked"), function () {
+                            var data = $(this).parents('tr:eq(0)');
+                            values.push({ 'strSupervisorName': $(data).find('td:eq(1)').text() });
+                            console.log($(data).find('td:eq(1)').text());
+
+                        });
+                        var data1 = { 'searchSupervisor_Results': values, uqEngineerCode: $('#uqEngineerCode').val() };
+                        var data = JSON.stringify(data1)
+                        $.ajax({
+                            type: 'post',
+                            url: '/tblSupervisors/UpdateSupervisorList',
+                            data: data,
+                            contentType: 'application/json; charset=utf-8',
+                            success: function (response) {
+                                window.location = '/admin/tblSupervisors'
+                            },
+                            error: function (response) {
+                                window.location = '/admin/tblSupervisors'
+                            }
+                        });
+                    } else {
+                        return false;
+
+                    }
+
+                    return true;
+                }
+            });
+        });
+        $(document).ready(function () {
+            $('.loading').hide();
+            $(".error").hide();
+            $('.datetimepicker').datetimepicker({
+                format: 'd-m-Y H:m',
+                autoclose: false
+            });
+
+
+
+        });
+        function UpdateOvertime() {
+
+            $("#pageloader").fadeIn();
+
+            var empObj = {
+                uqOvertimeCode: $('#uqOvertimeCode').val(),
+                strWorkerId: $('#strWorkerId').val(),
+                intRecommendedHrs: $('#dtCheckIntest').val(),
+
+            };
+            $.ajax({
+                url: "/tblOvertimes/UpdateAttendance",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+
+                    loadDataOvertime($('#strWorkerId').val());
+                    $("#pageloader").fadeOut();
+                    $('#myModal').modal('hide');
+
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                    $("#pageloader").fadeOut();
+                }
+            });
+        }
+
+        function getbyIDOvertime(EmpID) {
+
+            $('#strWorkerId').css('border-color', 'lightgrey');
+            $('#Name').css('border-color', 'lightgrey');
+            $('#dtCheckIntest').css('border-color', 'lightgrey');
+
+            $.ajax({
+                url: "/tblOvertimes/getbyID/" + EmpID,
+                typr: "GET",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (result) {
+
+                    $('#uqOvertimeCode').val(result[0].uqOvertimeCode);
+                    $('#strWorkerId').val(result[0].strWorkderId);
+                    $('#Name').val(result[0].strName);
+
+                    $('#dtCheckIntest').val(result[0].intRecommendedHrs);
+
+
+                    $('#myModal').modal('show');
+                    $('#btnUpdate').show();
+                    $('#btnAdd').hide();
+                },
+                beforeSend: function () {
+                    // Show image container
+                    $('.loading').show();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                },
+                complete: function (data) {
+                    // Hide image container
+                    $('.loading').hide();
+                }
+            });
+            return false;
+        }
+
+        function loadDataOvertime(strWorkerId) {
+
+            $(".addbtn").hide();
+
+            $("#pageloader").fadeIn();
+            $.ajax({
+                url: "/tblOvertimes/GetAttendancetList/?strWorkerId=" + strWorkerId,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $('.addattendance').show()
+                    var html = '';
+                    $.each(result, function (key, item) {
+
+                        html += '<tr>';
+                        html += '<td>' + item.strWorkderId + '</td>';
+                        html += '<td>' + item.strName + '</td>';
+                        html += '<td>' + item.strSupervisorName + '</td>';
+                        html += '<td>' + item.strEngineerName + '</td>';
+                        html += '<td>' + item.strContractorName + '</td>';
+                        html += '<td>' + item.strAreaName + '</td>';
+                        html += '<td>' + item.strDepartmentName + '</td>';
+                        html += '<td>' + item.strTradeName + '</td>';
+                        html += '<td>' + item.strShiftName + '</td>';
+
+
+
+                        html += '<td>' + item.intRecommendedHrs + '</td>';
+                        html += '<td>' + item.OTRemarks + '</td>';
+                        if (item.OvertimeVerified == true) { html += '<td style="color:green;">' + 'Verified' + '</td>'; } else { html += '<td style="color:red;">' + 'Pending' + '</td>'; }
+
+                        html += '<td><a href="#" class="btn btn-outline-primary btn-sm" onclick="getbyIDOvertime(\'' + item.uqOvertimeCode + '\')"><i class="fa fa-edit"></i> Edit</a></td>';
+                        //html += '<td><a href="#" onclick="getbyIDAdd(\'' + item.uqOvertimeCode + '\')">Add</a></td>';
+                        html += '</tr>';
+                    });
+                    if (html != '') {
+                        $(".addbtn").show();
+                    }
+                    $('#SetStudentList').html(html);
+                },
+                beforeSend: function () {
+                    // Show image container
+                    $('.loading').show();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                    $('.addattendance').hide()
+                },
+                complete: function (data) {
+                    // Hide image container
+                    $('.loading').hide();
+                }
+            });
+            $("#pageloader").fadeOut();
+        }
+
+        function Add() {
+            $("#pageloader").fadeIn();
+            var empObj = {
+
+                strWorkderId: $('#strWorkerId').val(),
+                dtCheckIn: $('#dtCheckIntest').val(),
+            };
+
+            $.ajax({
+                url: "/tblAttendances/AddAttendance",
+                data: JSON.stringify(empObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    loadData($('#strWorkerId').val());
+                    $('#myModal').modal('hide');
+                },
+                beforeSend: function () {
+                    // Show image container
+                    $('.loading').show();
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                    $("#pageloader").fadeOut();
+                },
+                complete: function (data) {
+                    // Hide image container
+                    $('.loading').hide();
+                }
+            });
+        }
+
+        //$('#dtpDob').datepicker({
+        //    format: 'dd-M-yyyy',
+        //    //Disable the future dates.
+        //});
+        $(function () {
+
+        });
+        function DeleteAttendance(src) {
+            var r = confirm("Confirm Action?");
+            if (r == true) {
+                $('#myModall').modal('hide');
+                $('#myModallContractor').modal('hide');
+                $('#myModallEngineer').modal('hide');
+                $('#myModallEngineer').modal('hide');
+                $.ajax({
+                    url: "/tblAttendances/Revert/?id=" + src,
+                    type: "GET",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    beforeSend: function () {
+                        // Show image container
+                        $('.loading').show();
+                    },
+                    success: function (result) {
+
+                        $('#workerid').val(result)
+                        loadData($('#workerid').val())
+
+                    },
+                    complete: function (data) {
+
+                        // Hide image container
+                        $('.loading').hide();
+                        loadData($('#workerid').val())
+                    }
+                });
+
+            } else {
+                return false;
+                $('.loading').hide();
+
+            }
+
+        }
+
+        function GetWorkerId(src) {
+
+
+            $.ajax({
+                url: "/tblWorkers/GetWorkerId/?ID=" + src,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                beforeSend: function () {
+                    // Show image container
+                    $('.loading').show();
+                },
+                success: function (result) {
+
+                    $('#workerid').val(result)
+
+                },
+                complete: function (data) {
+                    // Hide image container
+                    $('.loading').hide();
+                }
+            });
+        }
+        function showvalue(src) {
+
+            //var valdata = $("#traderid option:selected").val();
+            var valdata = $("#traderid option:selected").data("rate");
+
+            $("#rate").val(valdata);
+        }
+        //$(function () {
+        //    jQuery("#webcam").webcam({
+        //        width: 320,
+        //        height: 240,
+        //        mode: "save",
+        //        swffile: '/scripts/jscam.swf',
+        //        debug: function (type, status) {
+        //            // $('#camStatus').append(type + ": " + status + '<br /><br />');
+        //        },
+        //        onSave: function (data, ab) {
+        //            console.log(data + ab);
+        //            $.ajax({
+        //                type: "POST",
+        //                url: '/tblWorkers/GetCapture',
+        //                data: '',
+        //                contentType: "application/json; charset=utf-8",
+        //                dataType: "text",
+        //                success: function (r) {
+
+        //                    $("#imgCapture").css("visibility", "visible");
+        //                    $("#imgCapture").attr("src", r);
+        //                },
+        //                failure: function (response) {
+        //                    alert(response.d);
+        //                }
+        //            });
+        //        },
+        //        onCapture: function () {
+        //            webcam.save('/tblWorkers/Capture');
+        //        }
+        //    });
+        //});
+        function Capture() {
+            webcam.capture();
+        }
+        function onWebcam() {
+            $('#webcam').show();
+            $('#btnCapture').show();
+
+        }
+        function offWebcam() {
+            $('#webcam').hide();
+            $('#btnCapture').hide();
+
+        }
+
+
+
+        $(function () {
+            Webcam.set({
+                width: 320,
+                height: 240,
+
+            });
+            Webcam.attach('#webcam');
+            $("#btnCapture").click(function () {
+
+                Webcam.snap(function (data_uri) {
+
+
+                    $("#imgCapture")[0].src = data_uri;
+                    $("#imgCapture").css("visibility", "visible");
+                    $.ajax({
+                        type: "POST",
+                        url: "/tblWorkers/Capture",
+                        data: "{data: '" + $("#imgCapture")[0].src + "'}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (r) { }
+                    });
+                });
+            });
+            $("#btnUpload").click(function () {
+
+            });
+        });
+
+
+
+
+    </script>
+
+
+</body>
+</html>

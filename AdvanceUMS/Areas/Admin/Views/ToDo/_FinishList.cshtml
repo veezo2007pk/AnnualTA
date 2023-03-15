@@ -1,0 +1,35 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblToDo>
+<div class="box box-danger">
+    <div class="box-header">
+        <i class="ion ion-clipboard"></i>
+        <h3 class="box-title">Finish To Do List</h3>
+    </div>
+    <div class="box-body">
+        <ul class="todo-list">
+            @foreach (var item in Model)
+            {
+                <li class="done">
+                    <input type="checkbox" class="minimal finish" rel="@item.ID" value="" name="">
+                    <span class="text">@item.Description</span>                    
+                    <div class="tools">
+                        <i class="fa fa-trash-o"></i>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+<script src="~/Scripts/Common.js"></script>
+<script>
+    $(document).ready(function () {
+        $('input[type="checkbox"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue'
+        });
+
+        $(".todo-list").on("ifChecked", "input.finish", function () {
+            var ID = $(this).attr("rel");
+            UpdateToDoStatus(ID);
+        });
+    });
+</script>
+

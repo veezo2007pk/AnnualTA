@@ -1,0 +1,100 @@
+﻿<!--<header  class="main-header">-->
+<!-- Logo -->
+<!--<a style="        background-color: #1d8174 !important;" href="" class="logo">
+    <span class="logo-mini">@ViewBag.Name</span>
+    <span class="logo-lg"><b>@ViewBag.Name</b></span>
+</a>
+<nav style="        background-color: #09544a !important;" class="navbar navbar-static-top" role="navigation">
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+    </a>
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="@ViewBag.PhotoPath" err-src="@ViewBag.PhotoPath" class="user-image" alt="User Image">
+                    <span class="hidden-xs">@ViewBag.UserName</span>
+                </a>
+                <ul class="dropdown-menu">-->
+<!-- User image -->
+<!--<li class="user-header">
+    <img src="@ViewBag.PhotoPath" err-src="@ViewBag.PhotoPath" class="img-circle" alt="User Image">
+    <p>
+        @ViewBag.UserName
+        <small>Member since @ViewBag.RegisterDate</small>
+    </p>
+</li>-->
+<!-- Menu Footer-->
+<!--<li class="user-footer">
+                            <div class="pull-left">
+                                @if (ViewBag.IsAdmin == true)
+                                {
+                                    <a href="/admin/user/profile?ID=@ViewBag.UserID" class="btn btn-default btn-flat">Profile</a>
+                                }
+                                else
+                                {
+                                    <a href="/admin/user/edit?ID=@ViewBag.UserID" class="btn btn-default btn-flat">Change Password</a>
+
+                                }
+                            </div>
+                            <div class="pull-right">
+                                <a href="/Account/LogOut" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>-->
+<!-- main-header -->
+<div class="main-header sticky side-header nav nav-item">
+    <div class="container-fluid">
+        <div class="main-header-left ">
+            <div class="responsive-logo">
+                <a href="#"><img src="~/assets/img/hmc-logo.png" class="logo-1" alt="logo"></a>
+                <a href="#"><img src="~/assets/img/hmc-logo.png" class="dark-logo-1" alt="logo"></a>
+                <a href="#"><img src="~/assets/img/hmc-logo.png" class="logo-2" alt="logo"></a>
+                <a href="#"><img src="~/assets/img/hmc-logo.png" class="dark-logo-2" alt="logo"></a>
+            </div>
+            <div class="app-sidebar__toggle" data-toggle="sidebar">
+                <a class="open-toggle" href="#"><i class="header-icon fe fe-align-left"></i></a>
+                <a class="close-toggle" href="#"><i class="header-icons fe fe-x"></i></a>
+            </div>
+        </div>
+        <div class="main-header-right">
+
+            <div class="nav nav-item  navbar-nav-right ml-auto">
+
+                <div class="dropdown main-profile-menu nav nav-item nav-link">
+                    <a class="profile-user d-flex" href=""><img alt="" src="@ViewBag.PhotoPath"></a>
+                    <div class="dropdown-menu">
+                        <div class="main-header-profile bg-primary p-3">
+                            <div class="d-flex wd-100p">
+                                <div class="main-img-user"><img alt="" src="@ViewBag.PhotoPath" class=""></div>
+                                <div class="ml-3 my-auto">
+                                    <h6>@ViewBag.UserName</h6><span>Member since @ViewBag.RegisterDate</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (ViewBag.IsAdmin == true)
+                        {
+                            <a class="dropdown-item" href="/admin/user/profile?ID=@ViewBag.UserID"><i class="bx bx-user-circle"></i>Profile</a>
+                        }
+                        else
+                        {
+                            <a class="dropdown-item" href="/admin/user/edit?ID=@ViewBag.UserID"><i class="bx bx-lock"></i>Change Password</a>
+
+                        }
+
+                        <a class="dropdown-item" href="/Account/LogOut"><i class="bx bx-log-out"></i> Sign Out</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /main-header -->

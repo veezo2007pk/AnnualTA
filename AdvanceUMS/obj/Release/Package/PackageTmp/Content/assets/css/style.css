@@ -1,0 +1,89 @@
+﻿table thead
+{
+    background-color:#ddd;
+}
+.product {
+    height: 120px;       
+    padding:0px 2px 2px 0px;
+    margin-bottom:2px;
+    text-align: center;
+    background-size: cover;    
+    color: #fff;
+    overflow: hidden;
+    -webkit-transition: all 0.3s ease-in-out 0.1s;
+    -moz-transition: all 0.3s ease-in-out 0.1s;
+    -o-transition: all 0.3s ease-in-out 0.1s;
+    -ms-transition: all 0.3s ease-in-out 0.1s;
+    transition: all 0.3s ease-in-out 0.1s;
+}
+.waves-effect {
+    position: relative;    
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.product h3 
+{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: #000;
+    display: block;
+    font-weight: 700;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    -webkit-transition: all 0.1s ease-in-out 0.1s;
+    -moz-transition: all 0.1s ease-in-out 0.1s;
+    -o-transition: all 0.1s ease-in-out 0.1s;
+    -ms-transition: all 0.1s ease-in-out 0.1s;
+    transition: all 0.1s ease-in-out 0.1s;
+}
+.product .btn{
+    position: absolute;
+    top: 77px;
+    text-align: center;
+    left: 35px;
+    cursor: pointer;
+    z-index:9;
+}
+
+.product img {
+    width: 100%;
+    height: 120px;
+    opacity: 0.3;         
+    -webkit-transition: all 0.3s ease-in-out 0.1s;
+    -moz-transition: all 0.3s ease-in-out 0.1s;
+    -o-transition: all 0.3s ease-in-out 0.1s;
+    -ms-transition: all 0.3s ease-in-out 0.1s;
+    transition: all 0.3s ease-in-out 0.1s;
+}
+
+.product:hover h3 {
+    opacity: 1;
+}
+.mask h3 {
+    margin-top: 50px;    
+}
+.delete
+{
+    color:Red;
+    cursor:pointer;
+}
+#productList th,#productList td{text-align:right;padding:5px}
+#productList th.name,#productList td.name{text-align:left;}
+#productList input.qty{text-align:center;height:23px}
+#ticketModal{width:380px}
+#printSection table td,#printSection table th{font-size:14px;padding:2px}
+
+#OpenBill .bill
+{
+    background-color: #834f50; 
+    color: #FFF; 
+    margin: 7px 20px;                                                                
+    padding-top: 10px; 
+    padding-bottom: 10px;
+}

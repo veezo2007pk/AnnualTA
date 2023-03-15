@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdvanceUMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AdvanceUMSEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="ModuleList" ReturnType="Collection(AdvanceUMSModel.ModuleList_Result)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ModuleDeleteSortOrder" ReturnType="Collection(AdvanceUMSModel.ModuleDeleteSortOrder_Result)">
+      <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+      <Parameter Name="PModuleID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ModuleInsertSortOrder">
+      <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+      <Parameter Name="PModuleID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ModuleUpdateSortOrder">
+      <Parameter Name="OldSortOrder" Mode="In" Type="Int32" />
+      <Parameter Name="NewSortOrder" Mode="In" Type="Int32" />
+      <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+      <Parameter Name="PModuleID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="tblAccomodations" EntityType="AdvanceUMSModel.tblAccomodation" />
+    <EntitySet Name="tblAreas" EntityType="AdvanceUMSModel.tblArea" />
+    <EntitySet Name="tblContractors" EntityType="AdvanceUMSModel.tblContractor" />
+    <EntitySet Name="tblContractorUsers" EntityType="AdvanceUMSModel.tblContractorUser" />
+    <EntitySet Name="tblCountries" EntityType="AdvanceUMSModel.tblCountry" />
+    <EntitySet Name="tblDepartments" EntityType="AdvanceUMSModel.tblDepartment" />
+    <EntitySet Name="tblExperiences" EntityType="AdvanceUMSModel.tblExperience" />
+    <EntitySet Name="tblModules" EntityType="AdvanceUMSModel.tblModule" />
+    <EntitySet Name="tblResidences" EntityType="AdvanceUMSModel.tblResidence" />
+    <EntitySet Name="tblRoles" EntityType="AdvanceUMSModel.tblRole" />
+    <EntitySet Name="tblRolePermissions" EntityType="AdvanceUMSModel.tblRolePermission" />
+    <EntitySet Name="tblSettings" EntityType="AdvanceUMSModel.tblSetting" />
+    <EntitySet Name="tblSkills" EntityType="AdvanceUMSModel.tblSkill" />
+    <EntitySet Name="tblToDoes" EntityType="AdvanceUMSModel.tblToDo" />
+    <EntitySet Name="tblTrades" EntityType="AdvanceUMSModel.tblTrade" />
+    <EntitySet Name="tblUsers" EntityType="AdvanceUMSModel.tblUser" />
+    <EntitySet Name="tblUserLogs" EntityType="AdvanceUMSModel.tblUserLog" />
+    <AssociationSet Name="FK_UserPermission_ModuleMast" Association="AdvanceUMSModel.FK_UserPermission_ModuleMast">
+      <End Role="tblModule" EntitySet="tblModules" />
+      <End Role="tblRolePermission" EntitySet="tblRolePermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRolePermission_tblRole" Association="AdvanceUMSModel.FK_tblRolePermission_tblRole">
+      <End Role="tblRole" EntitySet="tblRoles" />
+      <End Role="tblRolePermission" EntitySet="tblRolePermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblToDo_tblUser" Association="AdvanceUMSModel.FK_tblToDo_tblUser">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblToDo" EntitySet="tblToDoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserLog_tblUser" Association="AdvanceUMSModel.FK_tblUserLog_tblUser">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblUserLog" EntitySet="tblUserLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUser_tblContractor" Association="AdvanceUMSModel.FK_tblUser_tblContractor">
+      <End Role="tblContractor" EntitySet="tblContractors" />
+      <End Role="tblUser" EntitySet="tblUsers" />
+    </AssociationSet>
+    <EntitySet Name="tblJoiningStats" EntityType="AdvanceUMSModel.tblJoiningStat" />
+    <EntitySet Name="tblWorkers" EntityType="AdvanceUMSModel.tblWorker" />
+  </EntityContainer>
+  <ComplexType Name="ModuleList_Result">
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="ModuleName" Nullable="true" MaxLength="512" />
+    <Property Type="String" Name="FullName" Nullable="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Int32" Name="DisplayOrder" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ModuleDeleteSortOrder_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="DisplayOrder" Nullable="true" />
+    <Property Type="String" Name="ModuleName" Nullable="true" MaxLength="512" />
+    <Property Type="String" Name="PageIcon" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PageUrl" Nullable="true" MaxLength="512" />
+    <Property Type="String" Name="PageSlug" Nullable="true" MaxLength="512" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="true" />
+    <Property Type="Boolean" Name="IsActive" Nullable="true" />
+    <Property Type="Boolean" Name="IsDefault" Nullable="true" />
+    <Property Type="Int32" Name="ParentModuleID" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="tblAccomodation">
+    <Key>
+      <PropertyRef Name="uqAccommodationCode" />
+    </Key>
+    <Property Name="uqAccommodationCode" Type="Guid" Nullable="false" />
+    <Property Name="strAccommodationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblArea">
+    <Key>
+      <PropertyRef Name="uqAreaCode" />
+    </Key>
+    <Property Name="uqAreaCode" Type="Guid" Nullable="false" />
+    <Property Name="strAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblContractor">
+    <Key>
+      <PropertyRef Name="uqContractorCode" />
+    </Key>
+    <Property Name="uqContractorCode" Type="Guid" Nullable="false" />
+    <Property Name="strContractorName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+    <NavigationProperty Name="tblUsers" Relationship="AdvanceUMSModel.FK_tblUser_tblContractor" FromRole="tblContractor" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblContractorUser">
+    <Key>
+      <PropertyRef Name="uqId" />
+    </Key>
+    <Property Name="uqId" Type="Guid" Nullable="false" />
+    <Property Name="strUsername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="strPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uqContractorId" Type="Guid" Nullable="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblCountry">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblDepartment">
+    <Key>
+      <PropertyRef Name="uqDepartmentCode" />
+    </Key>
+    <Property Name="uqDepartmentCode" Type="Guid" Nullable="false" />
+    <Property Name="strDepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblExperience">
+    <Key>
+      <PropertyRef Name="uqExperienceCode" />
+    </Key>
+    <Property Name="uqExperienceCode" Type="Guid" Nullable="false" />
+    <Property Name="strExperienceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblModule">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="ModuleName" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="PageIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PageUrl" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="PageSlug" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDefault" Type="Boolean" />
+    <Property Name="ParentModuleID" Type="Int32" />
+    <NavigationProperty Name="tblRolePermissions" Relationship="AdvanceUMSModel.FK_UserPermission_ModuleMast" FromRole="tblModule" ToRole="tblRolePermission" />
+  </EntityType>
+  <EntityType Name="tblResidence">
+    <Key>
+      <PropertyRef Name="uqResidenceCode" />
+    </Key>
+    <Property Name="uqResidenceCode" Type="Guid" Nullable="false" />
+    <Property Name="strResidenceName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsDefault" Type="Boolean" />
+    <Property Name="InsertBy" Type="Guid" />
+    <Property Name="InsertDate" Type="DateTime" Precision="3" />
+    <Property Name="LastModified" Type="DateTime" Precision="3" />
+    <Property Name="LastModifiedBy" Type="Guid" />
+    <NavigationProperty Name="tblRolePermissions" Relationship="AdvanceUMSModel.FK_tblRolePermission_tblRole" FromRole="tblRole" ToRole="tblRolePermission" />
+  </EntityType>
+  <EntityType Name="tblRolePermission">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModuleID" Type="Int32" />
+    <Property Name="RoleID" Type="Guid" />
+    <Property Name="IsView" Type="Boolean" />
+    <Property Name="IsAdd" Type="Boolean" />
+    <Property Name="IsEdit" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="tblModule" Relationship="AdvanceUMSModel.FK_UserPermission_ModuleMast" FromRole="tblRolePermission" ToRole="tblModule" />
+    <NavigationProperty Name="tblRole" Relationship="AdvanceUMSModel.FK_tblRolePermission_tblRole" FromRole="tblRolePermission" ToRole="tblRole" />
+  </EntityType>
+  <EntityType Name="tblSetting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LogoPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FeviconPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SMTPHost" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SMTPUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SMTPPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SMTPEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SMTPPort" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblSkill">
+    <Key>
+      <PropertyRef Name="uqSkillCode" />
+    </Key>
+    <Property Name="uqSkillCode" Type="Guid" Nullable="false" />
+    <Property Name="strSkillName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblToDo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="UserID" Type="Guid" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="IsCompleted" Type="Boolean" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="CompleteDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblUser" Relationship="AdvanceUMSModel.FK_tblToDo_tblUser" FromRole="tblToDo" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblTrade">
+    <Key>
+      <PropertyRef Name="uqTradeCode" />
+    </Key>
+    <Property Name="uqTradeCode" Type="Guid" Nullable="false" />
+    <Property Name="strTradeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" Nullable="false" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="RoleID" Type="Guid" />
+    <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="CountryID" Type="Int32" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhotoPath" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="FacebookLink" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="TwitterLink" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="GoogleLink" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="LinkedInLink" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="SkypeID" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDefault" Type="Boolean" />
+    <Property Name="IsLockedOut" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+    <Property Name="LastLockoutDate" Type="DateTime" Precision="3" />
+    <Property Name="FailedPasswordCount" Type="Int32" />
+    <Property Name="InsertDate" Type="DateTime" Precision="3" />
+    <Property Name="InsertBy" Type="Guid" />
+    <Property Name="LastModified" Type="DateTime" Precision="3" />
+    <Property Name="LastModifiedBy" Type="Guid" />
+    <NavigationProperty Name="tblToDoes" Relationship="AdvanceUMSModel.FK_tblToDo_tblUser" FromRole="tblUser" ToRole="tblToDo" />
+    <NavigationProperty Name="tblUserLogs" Relationship="AdvanceUMSModel.FK_tblUserLog_tblUser" FromRole="tblUser" ToRole="tblUserLog" />
+    <Property Name="uqContractorCode" Type="Guid" />
+    <NavigationProperty Name="tblContractor" Relationship="AdvanceUMSModel.FK_tblUser_tblContractor" FromRole="tblUser" ToRole="tblContractor" />
+  </EntityType>
+  <EntityType Name="tblUserLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="UserID" Type="Guid" />
+    <Property Name="Message" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="LogTime" Type="DateTime" Precision="3" />
+    <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MoreInfo" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblUser" Relationship="AdvanceUMSModel.FK_tblUserLog_tblUser" FromRole="tblUserLog" ToRole="tblUser" />
+  </EntityType>
+  <Association Name="FK_UserPermission_ModuleMast">
+    <End Type="AdvanceUMSModel.tblModule" Role="tblModule" Multiplicity="0..1" />
+    <End Type="AdvanceUMSModel.tblRolePermission" Role="tblRolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblModule">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblRolePermission">
+        <PropertyRef Name="ModuleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRolePermission_tblRole">
+    <End Type="AdvanceUMSModel.tblRole" Role="tblRole" Multiplicity="0..1" />
+    <End Type="AdvanceUMSModel.tblRolePermission" Role="tblRolePermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRole">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblRolePermission">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblToDo_tblUser">
+    <End Type="AdvanceUMSModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+    <End Type="AdvanceUMSModel.tblToDo" Role="tblToDo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblToDo">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserLog_tblUser">
+    <End Type="AdvanceUMSModel.tblUser" Role="tblUser" Multiplicity="0..1" />
+    <End Type="AdvanceUMSModel.tblUserLog" Role="tblUserLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tblUserLog">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUser_tblContractor">
+    <End Type="AdvanceUMSModel.tblContractor" Role="tblContractor" Multiplicity="0..1" />
+    <End Type="AdvanceUMSModel.tblUser" Role="tblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblContractor">
+        <PropertyRef Name="uqContractorCode" />
+      </Principal>
+      <Dependent Role="tblUser">
+        <PropertyRef Name="uqContractorCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tblJoiningStat">
+    <Key>
+      <PropertyRef Name="uqJoiningStatusCode" />
+    </Key>
+    <Property Name="uqJoiningStatusCode" Type="Guid" Nullable="false" />
+    <Property Name="strJoiningStatusCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dtCreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+  <EntityType Name="tblWorker">
+    <Key>
+      <PropertyRef Name="uqId" />
+    </Key>
+    <Property Name="uqId" Type="Guid" Nullable="false" />
+    <Property Name="uqContractorUserId" Type="Guid" />
+    <Property Name="strName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="strFatherName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="strCNIC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="strContact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="strEmergencyNo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="intAge" Type="Int32" />
+    <Property Name="strWorkderId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="strAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="uqTradeCode" Type="Guid" />
+    <Property Name="strQualification" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="uqSkillCode" Type="Guid" />
+    <Property Name="uqExperienceCode" Type="Guid" />
+    <Property Name="strTAattended" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="dtLastTAyear" Type="DateTime" Precision="3" />
+    <Property Name="intTARate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="strSupervisorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="strAreaEngName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="uqAreaCode" Type="Guid" />
+    <Property Name="dtDurationFrom" Type="DateTime" Precision="3" />
+    <Property Name="dtDurationTo" Type="DateTime" Precision="3" />
+    <Property Name="uqResidenceCode" Type="Guid" />
+    <Property Name="uqContractorCode" Type="Guid" />
+    <Property Name="uqDepartmentCode" Type="Guid" />
+    <Property Name="uqAccommodationCode" Type="Guid" />
+    <Property Name="dtTAyear" Type="DateTime" Precision="3" />
+    <Property Name="vbrPicture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="intJoiningStatusCode" Type="Guid" />
+    <Property Name="intTACurrentRate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="dtCreatedAt" Type="DateTime" Precision="3" />
+    <Property Name="dtMoidifyAt" Type="DateTime" Precision="3" />
+    <Property Name="uqCreatedBy" Type="Guid" />
+    <Property Name="uqModifyBy" Type="Guid" />
+  </EntityType>
+</Schema>

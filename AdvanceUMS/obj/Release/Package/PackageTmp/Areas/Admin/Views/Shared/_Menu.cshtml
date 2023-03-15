@@ -1,0 +1,84 @@
+﻿<!--<aside class="main-sidebar" style="        background-color: #09544a !important;">-->
+<!-- sidebar: style can be found in sidebar.less -->
+<!--<section class="sidebar">-->
+<!-- Sidebar user panel -->
+<!--<div class="user-panel">
+        <div class="pull-left image">
+            <img src="@ViewBag.PhotoPath" err-src="@ViewBag.PhotoPath" style="height:50px;" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+            <p>@ViewBag.UserName</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+    </div>
+    <div >
+        <ul  class="sidebar-menu">
+            <li  class="header">MAIN NAVIGATION</li>
+           @Html.Raw(ViewBag.MenuList)
+            @if (ViewBag.IsAdmin == true)
+            {
+                <li class="header">ADMIN MENU</li>
+                <li><a href="/admin/user"><i class="fa fa-users"></i> <span>User</span></a></li>
+                <li><a href="/admin/role"><i class="fa fa-registered"></i> <span>Role</span></a></li>
+                <li><a href="/admin/module"><i class="fa fa-server"></i> <span>Module</span></a></li>
+                <li><a href="/admin/setting"><i class="fa fa-gear"></i> <span>Setting</span></a></li>
+            }
+        </ul>
+    </div>
+</section>-->
+<!-- /.sidebar -->
+<!--</aside>-->
+<!-- main-sidebar -->
+
+
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar sidebar-scroll">
+    <div class="main-sidebar-header active">
+        <a class="desktop-logo logo-light active" href="#"><img src="~/assets/img/hmc-logo.png"  class="main-logo" alt="logo"></a>
+        <a class="desktop-logo logo-dark active" href="#"><img src="~/assets/img/hmc-logo.png"  class="main-logo dark-theme" alt="logo"></a>
+        <a class="logo-icon mobile-logo icon-light active" href="#"><img src="~/assets/img/hmc-logo.png"  class="logo-icon" alt="logo"></a>
+        <a class="logo-icon mobile-logo icon-dark active" href="#"><img src="~/assets/img/hmc-logo.png"  class="logo-icon dark-theme" alt="logo"></a>
+    </div>
+    <div class="main-sidemenu">
+        <div class="app-sidebar__user clearfix">
+            <div class="dropdown user-pro-body">
+                @*<div class="">
+                    <img alt="user-img" class="avatar avatar-xl brround" src="@ViewBag.PhotoPath"><span class="avatar-status profile-status bg-green"></span>
+                </div>*@
+                <div class="user-info" style="background-color: indianred">
+                    <h4 style="color: white !important; text-transform: capitalize " class="font-weight-bold mt-3 mb-0">@ViewBag.Name</h4>
+                    <span style="color: white !important; text-transform: capitalize " class="font-weight-bold mb-0 text-muted">@ViewBag.UserName</span>
+                </div>
+            </div>
+        </div>
+        <ul class="side-menu">
+
+            
+            <li class="side-item side-item-category">Main Navigation</li>
+            @Html.Raw(ViewBag.MenuList)
+
+           
+
+            @if (ViewBag.IsAdmin == true)
+            {
+
+                <li class="side-item side-item-category">Admin Menu</li>
+                <li class="slide">
+                    <a class="side-menu__item" href="/admin/user"><i class="side-menu__icon fa fa-user"></i><span class="side-menu__label">Users</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" href="/admin/role"><i class="side-menu__icon fa fa-users-cog"></i><span class="side-menu__label">Roles</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" href="/admin/module"><i class="side-menu__icon fa fa-file-alt"></i><span class="side-menu__label">Modules</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" href="/admin/setting"><i class="side-menu__icon fa fa-cog"></i><span class="side-menu__label">Setting</span></a>
+                </li>
+            }
+
+
+        </ul>
+    </div>
+</aside>
+<!-- main-sidebar -->

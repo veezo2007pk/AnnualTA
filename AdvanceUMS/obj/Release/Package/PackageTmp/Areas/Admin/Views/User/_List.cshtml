@@ -1,0 +1,75 @@
+﻿@model IEnumerable<AdvanceUMS.Models.tblUser>
+@{
+    AdvanceUMS.Helper.GeneralHelper dHelper = new AdvanceUMS.Helper.GeneralHelper();
+}
+<div class="box-body">
+    <span id="message"></span>
+    @Html.Raw(ViewBag.Message)
+    <table id="tblUser" class="table">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Register Date</th>
+                <th>Status</th>
+                <th style="text-align:center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.UserName</td>
+                <td>
+                    @item.FirstName  @item.LastName
+                </td>
+                <td>@item.Email</td>
+                <td>@dHelper.GerRoleName(item.RoleID)</td>
+                <td>@item.InsertDate</td>
+                <td>
+                    @if (item.IsActive == true)
+                    {
+                        <a id="@item.ID" href="" class="updateStatus btn label-success btn-xs" data-url="/admin/user/updateStatus/@item.ID">Active</a>
+                    }
+                    else
+                    {
+                        <a id="@item.ID" href="" class="updateStatus btn label-danger btn-xs" data-url="/admin/user/updateStatus/@item.ID">InActive</a>
+                    }
+                </td>
+                <td style="text-align:center">
+                    @if (ViewBag.IsEdit == true)
+                    {
+                    <a href="/admin/user/edit?ID=@item.ID" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                    }
+                    @if (ViewBag.IsDelete == true)
+                    {
+                <a href="/admin/user/delete?ID=@item.ID"  class="btnSubmit btn btn-outline-danger btn-sm"><i class="fa fa-trash-alt"></i> Delete</a>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="/scripts/Common.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tblUser").DataTable();
+        $('.delete').click(function () {
+            var url = $(this).data('url');
+            $.get(url, function (data) {
+                if (data.success == "0") {
+                    $('#tblUser').load(data.url);
+                    $("#tblUser").DataTable();
+                    $('#message').html(data.message);
+                }
+                else if (data.success == "3") {
+                    $('#message').html(data.message);
+                }
+            });
+            return false;
+        });
+    });
+</script>
